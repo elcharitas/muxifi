@@ -18,6 +18,6 @@ contracts/* @elcharitas
 
 # everything else about the app...
 
-src/* @oke-yomi
+src/**/*.jsx @oke-yomi
 src/providers/* @elcharitas
 src/utils/* @elcharitas @oke-yomi
