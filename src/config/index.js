@@ -1,5 +1,3 @@
-const APP_NAME = "Muxify";
-const APP_VERSION = "0.1.0";
-const APP_DESCRIPTION = "Muxify is a music player for the web";
+import { APP_CONFIG as APP } from "./app";
 
-export { APP_NAME, APP_VERSION, APP_DESCRIPTION };
+export const CONFIG = { APP };
