@@ -1,0 +1,23 @@
+# The global owners of Muxify
+
+*   @oke-yomi @Immortalitic @elcharitas
+
+# as regards contracts, solidity and all
+
+contracts/* @elcharitas
+
+# avoid adding/modifying json/yaml without approval
+
+*.json @elcharitas
+*.yaml @elcharitas
+
+# as regards docs, licenses et al.
+
+*.txt @Immortalitic
+*.md @Immortalitic
+
+# everything else about the app...
+
+src/* @oke-yomi
+src/providers/* @elcharitas
+src/utils/* @elcharitas @oke-yomi
