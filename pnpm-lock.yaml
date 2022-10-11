@@ -14,6 +14,7 @@ specifiers:
   hardhat: ^2.11.2
   moralis: ^2.6.4
   next: 12.3.1
+  nft.storage: ^7.0.0
   react: 18.2.0
   react-dom: 18.2.0
   wagmi: ^0.6.8
@@ -28,6 +29,7 @@ dependencies:
   ethers: 5.7.1
   moralis: 2.6.4
   next: 12.3.1_biqbaboplfbrettd7655fr4n2y
+  nft.storage: 7.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   wagmi: 0.6.8_nznuxirfauibn2fjde2ghjonky
@@ -2583,7 +2585,7 @@ packages:
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -4342,18 +4344,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -4803,6 +4793,37 @@ packages:
   /ip-regex/4.3.0:
     resolution: {integrity: sha512-B9ZWJxHHOHUhUjCPrMpLD4xEq35bUTClHM1S6CBU5ixQnkZmwipwgc96vAd7AAGM9TGHvJR+Uss+/Ak6UphK+Q==}
     engines: {node: '>=8'}
+    dev: false
+
+  /ipfs-car/0.6.2:
+    resolution: {integrity: sha512-tliuakkKKtCa4TTnFT3zJKjq/aD8EGKX8Y0ybCyrAW0fo/n2koZpxiLjBvtTs47Rqyji6ggXo+atPbJJ60hJmg==}
+    hasBin: true
+    dependencies:
+      '@ipld/car': 3.2.4
+      '@web-std/blob': 3.0.4
+      bl: 5.0.0
+      blockstore-core: 1.0.5
+      browser-readablestream-to-it: 1.0.3
+      idb-keyval: 6.2.0
+      interface-blockstore: 2.0.3
+      ipfs-core-types: 0.8.4
+      ipfs-core-utils: 0.12.2
+      ipfs-unixfs-exporter: 7.0.11
+      ipfs-unixfs-importer: 9.0.10
+      ipfs-utils: 9.0.7
+      it-all: 1.0.6
+      it-last: 1.0.6
+      it-pipe: 1.1.0
+      meow: 9.0.0
+      move-file: 2.1.0
+      multiformats: 9.9.0
+      stream-to-it: 0.2.4
+      streaming-iterables: 6.2.0
+      uint8arrays: 3.1.0
+    transitivePeerDependencies:
+      - encoding
+      - node-fetch
+      - supports-color
     dev: false
 
   /ipfs-car/0.7.0:
@@ -5843,6 +5864,28 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nft.storage/7.0.0:
+    resolution: {integrity: sha512-6ris9loxF9TNTPY/JghLzdLlvFV3UzWkUcVTfmrRn49jzDUfyT5wMhDmYRBQuknNFN1jf7jlSGNHixs5SpOoOA==}
+    dependencies:
+      '@ipld/car': 3.2.4
+      '@ipld/dag-cbor': 6.0.15
+      '@web-std/blob': 3.0.4
+      '@web-std/fetch': 3.0.3
+      '@web-std/file': 3.0.2
+      '@web-std/form-data': 3.0.2
+      carbites: 1.0.6
+      ipfs-car: 0.6.2
+      it-pipe: 1.1.0
+      multiformats: 9.9.0
+      p-retry: 4.6.2
+      streaming-iterables: 6.2.0
+      throttled-queue: 2.1.4
+    transitivePeerDependencies:
+      - encoding
+      - node-fetch
+      - supports-color
+    dev: false
+
   /node-addon-api/2.0.2:
     resolution: {integrity: sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==}
 
@@ -6723,7 +6766,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
