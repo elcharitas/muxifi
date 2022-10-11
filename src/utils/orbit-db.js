@@ -1,29 +1,28 @@
 import OrbitDB from "orbit-db";
 import { create } from "ipfs";
+import { PersistedKeystore } from "./keystore";
 import { CONFIG } from "src/config";
 
 export const ORBIT = {
     INSTANCE: undefined,
-    IDENTITY: {
-        id: CONFIG.ORBIT.IDENTITY.ID,
-        publicKey: CONFIG.ORBIT.IDENTITY.PUBLIC_KEY,
-        type: CONFIG.ORBIT.IDENTITY.TYPE,
-        get signatures() {
-            return {
-                id: this.id,
-                publicKey: this.publicKey,
-            };
-        },
-    },
 };
 
 /**
  * Creates a new identity.
  * @param {string} id
- * @returns {Promise<typeof ORBIT.IDENTITY>}
+ * @param {string} key
+ * @returns {Promise<{id: string, publicKey: string}>}
  */
-export const createIdentity = async (id) => {
-    return await OrbitDB.Identities.createIdentity({ id });
+export const createIdentity = async (id, key) => {
+    const orbitId = await OrbitDB.Identities.createIdentity({
+        id,
+        keystore: new PersistedKeystore(key),
+    });
+
+    if (orbitId.id !== id) {
+        throw new Error(`Identity ID mismatch: ${orbitId.id} !== ${id}`);
+    }
+    return orbitId;
 };
 
 /**
@@ -34,7 +33,10 @@ export const createInstance = async () => {
     if (ORBIT.INSTANCE === undefined) {
         const ipfs = await create();
         ORBIT.INSTANCE = await OrbitDB.createInstance(ipfs, {
-            identity: ORBIT.IDENTITY,
+            identity: await createIdentity(
+                CONFIG.ORBIT.IDENTITY.ID,
+                CONFIG.ORBIT.IDENTITY.KEY
+            ),
         });
     }
     return ORBIT.INSTANCE;
