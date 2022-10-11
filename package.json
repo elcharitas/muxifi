@@ -22,6 +22,7 @@
         "nft.storage": "^7.0.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "swr": "^1.3.0",
         "wagmi": "^0.6.8",
         "web3.storage": "^4.4.0"
     },
