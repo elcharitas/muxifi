@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import { AuthProvider, ThemeProvider } from "src/providers";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MuxiApp = ({ Component, pageProps }) => {
+    return (
+        <ThemeProvider>
+            <AuthProvider>
+                <Component {...pageProps} />
+            </AuthProvider>
+        </ThemeProvider>
+    );
+};
 
-export default MyApp
+export default MuxiApp;
