@@ -19,10 +19,11 @@ export const ORBIT = {
 
 /**
  * Creates a new identity.
+ * @param {string} id
  * @returns {Promise<typeof ORBIT.IDENTITY>}
  */
-export const createIdentity = async () => {
-    return await OrbitDB.Identities.createIdentity();
+export const createIdentity = async (id) => {
+    return await OrbitDB.Identities.createIdentity({ id });
 };
 
 /**
