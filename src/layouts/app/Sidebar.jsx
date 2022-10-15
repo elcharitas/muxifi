@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import { Box, Drawer } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, Box, Drawer } from "@mui/material";
+import { Anchor } from "src/components";
 
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
@@ -28,7 +29,25 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 justifyContent: "space-between",
             }}
         >
-            <Box>{/* <Logo /> */}</Box>
+            <Box>
+                <Anchor
+                    href="/"
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: 64,
+                        mt: 2,
+                    }}
+                >
+                    <Image
+                        src="/assets/svgs/logo.svg"
+                        alt="logo"
+                        width={100}
+                        height={50}
+                    />
+                </Anchor>
+            </Box>
 
             <Box>{/* <Footer /> */}</Box>
             <Box sx={{ flexGrow: 1 }} />
