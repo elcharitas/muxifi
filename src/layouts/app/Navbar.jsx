@@ -1,10 +1,5 @@
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
-import {
-    useConnectModal,
-    useAccountModal,
-    useChainModal,
-} from "@rainbow-me/rainbowkit";
 import { CONFIG } from "src/config";
 import { Button } from "src/components";
 
@@ -26,7 +21,6 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 }));
 
 const Navbar = ({ onOpenSidebar }) => {
-    const { openConnectModal } = useConnectModal();
     return (
         <RootStyle>
             <ToolbarStyle>
