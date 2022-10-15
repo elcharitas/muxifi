@@ -82,6 +82,40 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     }}
                 />
             </Stack>
+
+            <Stack direction="column" spacing={3} sx={{ px: 6, mt: 8 }}>
+                <Anchor
+                    icon="profile-circle"
+                    href="/app/create"
+                    label="Become a Creator"
+                    sx={{
+                        fontSize: "18px",
+                        color: "#565D5A",
+                        "&:hover": {
+                            color: "#CCCECD",
+                        },
+                    }}
+                    labelProps={{
+                        fontWeight: "bold",
+                    }}
+                />
+
+                <Anchor
+                    icon="collections"
+                    href="/app/play"
+                    label="Collections"
+                    sx={{
+                        fontSize: "18px",
+                        color: "#565D5A",
+                        "&:hover": {
+                            color: "#CCCECD",
+                        },
+                    }}
+                    labelProps={{
+                        fontWeight: "bold",
+                    }}
+                />
+            </Stack>
             <Box>{/* <Footer /> */}</Box>
             <Box sx={{ flexGrow: 1 }} />
         </Box>
