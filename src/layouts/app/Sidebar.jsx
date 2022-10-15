@@ -49,7 +49,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Home"
                     sx={{
                         fontSize: "18px",
-                        color: "white",
+                        color: "#CCCECD",
                     }}
                     labelProps={{
                         fontWeight: "bold",
@@ -63,6 +63,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     sx={{
                         fontSize: "18px",
                         color: "#565D5A",
+                        "&:hover": {
+                            color: "#CCCECD",
+                        },
                     }}
                     labelProps={{
                         fontWeight: "bold",
@@ -76,6 +79,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     sx={{
                         fontSize: "18px",
                         color: "#565D5A",
+                        "&:hover": {
+                            color: "#CCCECD",
+                        },
                     }}
                     labelProps={{
                         fontWeight: "bold",
