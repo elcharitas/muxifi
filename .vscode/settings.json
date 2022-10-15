@@ -1,9 +1,6 @@
 {
     "editor.tabCompletion": "on",
-    "prettier.eslintIntegration": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    },
+    "prettier.eslintIntegration": false,
     "[javascriptreact]": {
         "editor.defaultFormatter": "svipas.prettier-plus"
     },

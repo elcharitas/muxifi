@@ -35,7 +35,7 @@ export const createInstance = async () => {
         ORBIT.INSTANCE = await OrbitDB.createInstance(ipfs, {
             identity: await createIdentity(
                 CONFIG.ORBIT.IDENTITY.ID,
-                CONFIG.ORBIT.IDENTITY.KEY,
+                CONFIG.ORBIT.IDENTITY.KEY
             ),
         });
     }
