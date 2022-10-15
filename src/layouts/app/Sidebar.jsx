@@ -3,11 +3,12 @@ import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { useMediaQuery, Box, Drawer } from "@mui/material";
 import { Anchor } from "src/components";
+import { CONFIG } from "src/config";
 
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
         flexShrink: 0,
-        width: 250,
+        width: CONFIG.UI.APP_SIDEBAR_WIDTH,
     },
 }));
 

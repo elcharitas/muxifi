@@ -1,10 +1,11 @@
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import { CONFIG } from "src/config";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
     [theme.breakpoints.up("lg")]: {
-        width: `calc(100% - 250px)`,
+        width: `calc(100% - ${CONFIG.UI.APP_SIDEBAR_WIDTH}px)`,
     },
 }));
 
