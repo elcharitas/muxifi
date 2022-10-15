@@ -62,7 +62,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     open={isOpenSidebar}
                     onClose={onCloseSidebar}
                     PaperProps={{
-                        sx: { width: 250 },
+                        sx: { width: CONFIG.UI.APP_SIDEBAR_WIDTH },
                     }}
                 >
                     {renderContent}
@@ -75,7 +75,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     variant="persistent"
                     PaperProps={{
                         sx: {
-                            width: 250,
+                            width: CONFIG.UI.APP_SIDEBAR_WIDTH,
                             bgcolor: "background.default",
                             borderRightStyle: "none",
                         },
