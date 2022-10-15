@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+    "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals"],
+    "rules": {
+        "import/prefer-default-export": "off",
+        "quotes": "double",
+        "indent": ["error", { "allowIndentationTabs": true }],
+        "no-alert": "off"
+    }
 }
