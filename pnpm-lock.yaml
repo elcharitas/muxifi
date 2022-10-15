@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@fontsource/raleway': ^4.5.11
   '@mui/icons-material': ^5.10.6
   '@mui/material': ^5.10.8
   '@nomiclabs/hardhat-ethers': ^2.1.1
@@ -28,6 +29,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.4_react@18.2.0
   '@emotion/styled': 11.10.4_gyryel6m34lsxtsejhafetjriq
+  '@fontsource/raleway': 4.5.11
   '@mui/icons-material': 5.10.6_t3e56bfurmhwc5lfjedqqhppmi
   '@mui/material': 5.10.8_6xnkn2aqnlmdvuspwqrjexfduy
   '@rainbow-me/rainbowkit': 0.7.1_5fvj66zjzmlavc4x6bpudwohzy
@@ -771,6 +773,10 @@ packages:
       '@ethersproject/logger': 5.7.0
       '@ethersproject/properties': 5.7.0
       '@ethersproject/strings': 5.7.0
+    dev: false
+
+  /@fontsource/raleway/4.5.11:
+    resolution: {integrity: sha512-WrFuS5q3tPqNci4iDwIf7lnkHY5jrkWswy6B007W//cAB7Iiw2NuxBNxrCetYpe3efPbEoFPcoKeTPqDzoWQ3A==}
     dev: false
 
   /@grpc/grpc-js/1.7.1:
