@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import { useMediaQuery, Box, Drawer } from "@mui/material";
+import { useMediaQuery, Box, Drawer, Stack } from "@mui/material";
 import { Anchor } from "src/components";
 import { CONFIG } from "src/config";
+import { Icon } from "@mui/material";
 
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
@@ -30,17 +31,8 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 justifyContent: "space-between",
             }}
         >
-            <Box>
-                <Anchor
-                    href="/"
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: 64,
-                        mt: 2,
-                    }}
-                >
+            <Stack direction="column" spacing={2} sx={{ px: 6, my: 4 }}>
+                <Anchor href="/" sx={{ height: 64 }}>
                     <Image
                         src="/assets/svgs/logo.svg"
                         alt="logo"
@@ -48,8 +40,22 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         height={50}
                     />
                 </Anchor>
-            </Box>
+            </Stack>
 
+            <Stack direction="column" spacing={2} sx={{ px: 6 }}>
+                <Anchor
+                    icon="home"
+                    href="/app"
+                    label="Home"
+                    sx={{
+                        fontSize: "18px",
+                        color: "white",
+                    }}
+                    labelProps={{
+                        fontWeight: "bold",
+                    }}
+                />
+            </Stack>
             <Box>{/* <Footer /> */}</Box>
             <Box sx={{ flexGrow: 1 }} />
         </Box>
