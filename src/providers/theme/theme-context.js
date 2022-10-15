@@ -7,6 +7,9 @@ export const theme = createTheme({
         primary: {
             main: CONFIG.THEME.DEFAULT_COLOR,
         },
+        background: {
+            default: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#010C07" : "#fff",
+        },
     },
     typography: {
         fontFamily: CONFIG.THEME.DEFAULT_FONT,
