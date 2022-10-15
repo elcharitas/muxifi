@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { useMediaQuery, Box, Drawer, Stack } from "@mui/material";
