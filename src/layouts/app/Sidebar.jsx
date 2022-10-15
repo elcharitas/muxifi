@@ -42,7 +42,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 </Anchor>
             </Stack>
 
-            <Stack direction="column" spacing={2} sx={{ px: 6 }}>
+            <Stack direction="column" spacing={3} sx={{ px: 6 }}>
                 <Anchor
                     icon="home"
                     href="/app"
@@ -50,6 +50,32 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     sx={{
                         fontSize: "18px",
                         color: "white",
+                    }}
+                    labelProps={{
+                        fontWeight: "bold",
+                    }}
+                />
+
+                <Anchor
+                    icon="add-square"
+                    href="/app/create"
+                    label="Create Playlist"
+                    sx={{
+                        fontSize: "18px",
+                        color: "#565D5A",
+                    }}
+                    labelProps={{
+                        fontWeight: "bold",
+                    }}
+                />
+
+                <Anchor
+                    icon="game"
+                    href="/app/play"
+                    label="Games"
+                    sx={{
+                        fontSize: "18px",
+                        color: "#565D5A",
                     }}
                     labelProps={{
                         fontWeight: "bold",
