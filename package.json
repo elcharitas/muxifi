@@ -17,6 +17,7 @@
         "@mui/icons-material": "^5.10.6",
         "@mui/material": "^5.10.8",
         "@rainbow-me/rainbowkit": "^0.7.1",
+        "@svgr/webpack": "^6.5.0",
         "ethers": "^5.7.1",
         "ipfs": "^0.64.2",
         "moralis": "^2.6.4",
