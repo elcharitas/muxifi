@@ -2,8 +2,16 @@
     "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals"],
     "rules": {
         "import/prefer-default-export": "off",
+        "import/no-self-import": "off",
         "quotes": ["error", "double"],
         "indent": ["error", 4],
         "no-alert": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": ["node_modules", "./"]
+            }
+        }
     }
 }
