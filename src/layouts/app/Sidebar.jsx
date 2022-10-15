@@ -38,7 +38,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
             <Stack direction="column" spacing={3} sx={{ px: 6 }}>
                 <Anchor
-                    icon="home"
+                    icon="home-selected"
                     href="/app"
                     label="Home"
                     sx={{
