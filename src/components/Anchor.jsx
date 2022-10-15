@@ -15,7 +15,7 @@ export const Anchor = ({
     return (
         <NextLink href={href} passHref>
             <Link sx={{ textDecoration: "none", ...sx }} {...props}>
-                <Stack direction="row" alignItems="center" spacing={1}>
+                <Stack direction="row" alignItems="center" spacing={1.5}>
                     {icon && <SvgIcon name={icon} />}
                     {label && <Typography {...labelProps}>{label}</Typography>}
                     {children}
