@@ -11,7 +11,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 50,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up("lg")]: {
         minHeight: 60,
         padding: theme.spacing(0, 5),
