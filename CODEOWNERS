@@ -20,4 +20,6 @@ contracts/* @elcharitas
 
 src/**/*.jsx @oke-yomi
 src/providers/* @elcharitas
+src/config/* @elcharitas
+src/pages/api/* @elcharitas
 src/utils/* @elcharitas @oke-yomi
