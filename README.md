@@ -1,5 +1,3 @@
-# MuxiFi
-
 <p>
     <img src="src/assets/svgs/logo.svg"/>
 </p>
