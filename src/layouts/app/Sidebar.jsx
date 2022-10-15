@@ -142,7 +142,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         sx: {
                             width: CONFIG.UI.APP_SIDEBAR_WIDTH,
                             bgcolor: "background.default",
-                            borderRightStyle: "none",
+                            borderRightStyle: "dashed",
                         },
                     }}
                 >

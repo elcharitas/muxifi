@@ -1,6 +1,12 @@
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import {
+    useConnectModal,
+    useAccountModal,
+    useChainModal,
+} from "@rainbow-me/rainbowkit";
 import { CONFIG } from "src/config";
+import { Button } from "src/components";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
@@ -10,15 +16,17 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
-    minHeight: 50,
+    minHeight: 80,
     backgroundColor: theme.palette.background.default,
+    borderBottom: "1px dashed rgba(255, 255, 255, 0.12)",
     [theme.breakpoints.up("lg")]: {
-        minHeight: 60,
+        minHeight: 100,
         padding: theme.spacing(0, 5),
     },
 }));
 
 const Navbar = ({ onOpenSidebar }) => {
+    const { openConnectModal } = useConnectModal();
     return (
         <RootStyle>
             <ToolbarStyle>
@@ -40,7 +48,7 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    {/* <Account /> */}
+                    <Button>Connect Wallet</Button>
                 </Stack>
             </ToolbarStyle>
         </RootStyle>
