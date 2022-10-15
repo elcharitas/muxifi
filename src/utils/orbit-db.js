@@ -49,5 +49,11 @@ export const createInstance = async () => {
  */
 export const openDb = async (path) => {
     const orbit = await createInstance();
-    return await orbit.docs(path, { create: true });
+    console.log("orbit", orbit.identity.id);
+    return await orbit.docs(path, {
+        create: true,
+        accessController: {
+            write: [orbit.identity.id, orbit.identity.publicKey],
+        },
+    });
 };
