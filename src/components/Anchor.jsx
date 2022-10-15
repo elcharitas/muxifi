@@ -1,11 +1,22 @@
 import NextLink from "next/link";
-import { Link } from "@mui/material";
+import Image from "next/image";
+import { Link, Stack, Typography } from "@mui/material";
 
-export const Anchor = ({ children, href, ...props }) => {
+export const Anchor = ({ children, href, label, icon, ...props }) => {
     return (
         <NextLink href={href} passHref>
-            <Link {...props}>
-                <>{children}</>
+            <Link sx={{ textDecoration: "none" }} {...props}>
+                <Stack direction="row" spacing={1}>
+                    {icon && (
+                        <Image
+                            src={`/assets/svgs/${icon}.svg`}
+                            width={27}
+                            height={27}
+                        />
+                    )}
+                    {label && <Typography>{label}</Typography>}
+                    {children}
+                </Stack>
             </Link>
         </NextLink>
     );
