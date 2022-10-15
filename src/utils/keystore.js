@@ -1,4 +1,4 @@
-import { ec } from "elliptic";
+import { ec as EC } from "elliptic";
 
 export class PersistedKeystore {
     constructor(privKey) {
@@ -7,11 +7,11 @@ export class PersistedKeystore {
     }
 
     hasKey() {
-        return this.key !== undefined ? true : false;
+        return this.key !== undefined;
     }
 
     genKeyPair(privKey) {
-        return new ec("secp256k1").keyPair({
+        return new EC("secp256k1").keyPair({
             priv: Buffer.from(privKey),
             privEnc: "hex",
             pubEnc: "hex",

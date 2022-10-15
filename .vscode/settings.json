@@ -1,3 +1,19 @@
 {
-    "editor.tabCompletion": "on"
+    "editor.tabCompletion": "on",
+    "prettier.eslintIntegration": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "svipas.prettier-plus"
+    },
+    "javascript.validate.enable": true,
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact"
+    ]
 }
