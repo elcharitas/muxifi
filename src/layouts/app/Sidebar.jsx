@@ -2,9 +2,8 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { useMediaQuery, Box, Drawer, Stack } from "@mui/material";
-import { Anchor } from "src/components";
+import { Anchor, SvgIcon } from "src/components";
 import { CONFIG } from "src/config";
-import { Icon } from "@mui/material";
 
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
@@ -33,12 +32,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
         >
             <Stack direction="column" spacing={2} sx={{ px: 6, my: 4 }}>
                 <Anchor href="/" sx={{ height: 64 }}>
-                    <Image
-                        src="/assets/svgs/logo.svg"
-                        alt="logo"
-                        width={100}
-                        height={50}
-                    />
+                    <SvgIcon name="logo" size={200} />
                 </Anchor>
             </Stack>
 
