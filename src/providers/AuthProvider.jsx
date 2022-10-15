@@ -1,8 +1,9 @@
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { darkTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiConfig } from "wagmi";
 import { Disclaimer } from "src/components";
 import { wagmiClient, chains } from "src/utils";
 import { CONFIG } from "src/config";
+import "@rainbow-me/rainbowkit/styles.css";
 
 const AuthProvider = ({ children }) => (
     <WagmiConfig client={wagmiClient}>
@@ -14,6 +15,12 @@ const AuthProvider = ({ children }) => (
                 appName: CONFIG.APP.NAME,
                 disclaimer: Disclaimer,
             }}
+            theme={darkTheme({
+                accentColor: CONFIG.THEME.DEFAULT_COLOR,
+                accentColorForeground: "white",
+                fontStack: "system",
+                overlayBlur: "small",
+            })}
         >
             {children}
         </RainbowKitProvider>
