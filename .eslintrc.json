@@ -15,7 +15,10 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off",
-        "react/jsx-one-expression-per-line": "off"
+        "react/jsx-one-expression-per-line": "off",
+        "react/function-component-definition": "off",
+        "arrow-body-style": "off",
+        "object-curly-newline": "off"
     },
     "settings": {
         "import/resolver": {
