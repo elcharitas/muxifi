@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => (
             theme={darkTheme({
                 accentColor: CONFIG.THEME.DEFAULT_COLOR,
                 accentColorForeground: "white",
-                fontStack: "system",
+                fontStack: CONFIG.THEME.DEFAULT_FONT,
                 overlayBlur: "small",
             })}
         >
