@@ -1,6 +1,3 @@
-import { DisclaimerComponent } from "@rainbow-me/rainbowkit";
-
-/** @type {DisclaimerComponent} */
 export const Disclaimer = ({ Text, Link }) => (
     <Text>
         By connecting your wallet, you agree to the{" "}

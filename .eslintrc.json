@@ -1,12 +1,24 @@
 {
     "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals"],
+    "parser": "@babel/eslint-parser",
     "rules": {
         "import/prefer-default-export": "off",
         "import/no-self-import": "off",
         "class-methods-use-this": "off",
+        "import/no-named-as-default-member": "off",
         "quotes": ["error", "double"],
         "indent": ["error", 4],
-        "no-alert": "off"
+        "no-alert": "off",
+        "import/export": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/function-component-definition": "off",
+        "arrow-body-style": "off",
+        "object-curly-newline": "off"
     },
     "settings": {
         "import/resolver": {

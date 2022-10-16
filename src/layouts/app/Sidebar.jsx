@@ -18,7 +18,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
         if (isOpenSidebar) {
             onCloseSidebar();
         }
-    }, []);
+    }, [isOpenSidebar, onCloseSidebar]);
 
     const renderContent = (
         <Box

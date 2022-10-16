@@ -1,5 +1,5 @@
 import { APP_CONFIG as APP } from "./app";
-import { WAGMI_CONFIG as WAGMI } from "./wagmi";
+import { WAGMI_CONFIG as WAGMI } from "./network";
 import { THEME_CONFIG as THEME } from "./theme";
 import { ORBIT_CONFIG as ORBIT } from "./orbit-db";
 import { UI_CONFIG as UI } from "./ui";
