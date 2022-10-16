@@ -6,7 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+        "lint": "next lint",
         "contract:flatten": "hardhat flatten contracts/Muxify.sol > contracts/MuxifyFlattened.sol",
         "contract:compile": "hardhat compile --force && cp artifacts/contracts/**/*.json src/contracts"
     },
