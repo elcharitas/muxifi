@@ -4,6 +4,7 @@
         "import/prefer-default-export": "off",
         "import/no-self-import": "off",
         "class-methods-use-this": "off",
+        "import/no-named-as-default-member": "off",
         "quotes": ["error", "double"],
         "indent": ["error", 4],
         "no-alert": "off"
