@@ -42,7 +42,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Home"
                     sx={{
                         fontSize: "18px",
-                        color: "#CCCECD",
+                        color: "tertiary.light",
                     }}
                     labelProps={{
                         fontWeight: "bold",
@@ -55,9 +55,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Create Playlist"
                     sx={{
                         fontSize: "18px",
-                        color: "#565D5A",
+                        color: "tertiary.main",
                         "&:hover": {
-                            color: "#CCCECD",
+                            color: "tertiary.light",
                         },
                     }}
                     labelProps={{
@@ -71,9 +71,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Games"
                     sx={{
                         fontSize: "18px",
-                        color: "#565D5A",
+                        color: "tertiary.main",
                         "&:hover": {
-                            color: "#CCCECD",
+                            color: "tertiary.light",
                         },
                     }}
                     labelProps={{
@@ -89,9 +89,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Become a Creator"
                     sx={{
                         fontSize: "18px",
-                        color: "#565D5A",
+                        color: "tertiary.main",
                         "&:hover": {
-                            color: "#CCCECD",
+                            color: "tertiary.light",
                         },
                     }}
                     labelProps={{
@@ -105,9 +105,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     label="Collections"
                     sx={{
                         fontSize: "18px",
-                        color: "#565D5A",
+                        color: "tertiary.main",
                         "&:hover": {
-                            color: "#CCCECD",
+                            color: "tertiary.light",
                         },
                     }}
                     labelProps={{

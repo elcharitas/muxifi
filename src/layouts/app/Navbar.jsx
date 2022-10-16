@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { CONFIG } from "src/config";
-import { Button } from "src/components";
+import { ConnectButton } from "src/components";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
@@ -42,7 +42,7 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    <Button>Connect Wallet</Button>
+                    <ConnectButton />
                 </Stack>
             </ToolbarStyle>
         </RootStyle>
