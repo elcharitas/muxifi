@@ -5,7 +5,6 @@ const MuxiApp = ({ Component, pageProps }) => {
     return (
         <ThemeProvider>
             <AuthProvider>
-                <style>{`[data-rk]{ --rk-fonts-body: "${CONFIG.THEME.DEFAULT_FONT}, sans-serif !important;}`}</style>
                 <Component {...pageProps} />
             </AuthProvider>
         </ThemeProvider>
