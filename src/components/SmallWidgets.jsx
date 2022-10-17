@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 const RootStyle = styled(Box)({
     width: 330,
     height: 120,
-    marginTop: 80,
+    // marginTop: 80,
     borderRadius: 12,
     display: "flex",
     alignItems: "center",
