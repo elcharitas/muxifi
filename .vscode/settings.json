@@ -12,5 +12,8 @@
         "typescript",
         "javascriptreact",
         "typescriptreact"
-    ]
+    ],
+    "files.eol": "\n",
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
 }

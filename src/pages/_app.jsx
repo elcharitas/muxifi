@@ -1,4 +1,4 @@
-import { CONFIG } from "src/config";
+// import { CONFIG } from "src/config";
 import { AuthProvider, ThemeProvider } from "src/providers";
 
 const MuxiApp = ({ Component, pageProps }) => {
