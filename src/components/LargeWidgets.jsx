@@ -1,6 +1,7 @@
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import Img from "src/temps/trialImg.png";
+import Img from "src/temps/trial2.png";
 import { Box, Typography } from "@mui/material";
 
 const RootStyle = styled(Box)({
@@ -14,14 +15,14 @@ const RootStyle = styled(Box)({
     backgroundColor: "orange",
 });
 
-const Textbox = styled(Typography)({
-    variant: "p",
-    marginLeft: 17,
-    fontWeight: 700,
-    fontSize: 24,
-});
+// const Textbox = styled(Typography)({
+//     variant: "p",
+//     marginLeft: 17,
+//     fontWeight: 700,
+//     fontSize: 24,
+// });
 
-const SmallWidgets = () => {
+const LargeWidgets = () => {
     return (
         <RootStyle>
             <Image
@@ -30,9 +31,11 @@ const SmallWidgets = () => {
                 width="81"
                 height="81"
             />
-            <Textbox>Recent Playlist</Textbox>
+            <Box>
+                <Typography variant="h4" component="h6">P heading</Typography>
+            </Box>
         </RootStyle>
     );
 };
 
-export default SmallWidgets;
+export default LargeWidgets;
