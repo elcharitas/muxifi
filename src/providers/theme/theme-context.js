@@ -8,7 +8,8 @@ export const theme = createTheme({
             main: CONFIG.THEME.DEFAULT_COLOR,
         },
         background: {
-            default: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#010C07" : "#fff",
+            default: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#000402" : "#fff",
+            paper: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#010A06" : "#fff",
         },
         tertiary: {
             light: "#CCCECD",
@@ -18,5 +19,40 @@ export const theme = createTheme({
     },
     typography: {
         fontFamily: CONFIG.THEME.DEFAULT_FONT,
+    },
+    components: {
+        MuiTypography: {
+            variants: [
+                {
+                    props: {
+                        variant: "h5",
+                    },
+                    style: {
+                        fontSize: 20,
+                        fontWeight: 700,
+                    },
+                },
+                {
+                    props: {
+                        variant: "body2",
+                    },
+                    style: {
+                        fontSize: 14,
+                        fontWeight: 500,
+                        marginTop: 3,
+                    },
+                },
+                {
+                    props: {
+                        variant: "body3",
+                    },
+                    style: {
+                        fontSize: 13,
+                        fontWeight: 700,
+                        marginTop: 12,
+                    },
+                },
+            ],
+        },
     },
 });

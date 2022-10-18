@@ -1,13 +1,12 @@
-import LargeWidgets from "src/components/LargeWidgets";
 import MusicIcon from "src/components/MusicIcon";
-import SmallWidgets from "src/components/SmallWidgets";
+import { PlaylistItem, PlaylistCard } from "src/components";
 import AppLayout from "src/layouts/app";
 
 const AppPage = () => {
     return (
         <AppLayout title="Welcome to MuxiFi">
-            <SmallWidgets />
-            <LargeWidgets />
+            <PlaylistCard title="Recent Playlist" />
+            <PlaylistItem />
             <MusicIcon />
         </AppLayout>
     );
