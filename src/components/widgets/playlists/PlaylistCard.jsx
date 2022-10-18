@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import Img from "src/assets/img/trialImg.png";
 import { Typography } from "@mui/material";
-import { RootWidgetStyle } from "../../common.styles";
+import { RootWidgetStyle } from "src/components/styles";
 
 const Textbox = styled(Typography)({
     variant: "p",
