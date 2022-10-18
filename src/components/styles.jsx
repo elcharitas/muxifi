@@ -10,6 +10,9 @@ export const RootWidgetStyle = styled(Box)(({ theme }) => ({
     alignItems: "center",
     padding: 19,
     backgroundColor: theme.palette.background.paper,
+    borderStyle: "dashed",
+    borderWidth: "1px",
+    borderColor: "rgba(255, 255, 255, 0.12)",
     "& img": {
         borderRadius: 12,
     },
