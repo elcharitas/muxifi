@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Img from "src/assets/img/trial2.png";
 import { Box, Typography } from "@mui/material";
-import { RootWidgetStyle } from "./common.styles";
+import { RootWidgetStyle } from "../../common.styles";
 
 const LargeWidgets = () => {
     return (
