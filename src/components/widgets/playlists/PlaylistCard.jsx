@@ -1,8 +1,8 @@
-import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import Img from "src/assets/img/trialImg.png";
 import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { RootWidgetStyle } from "src/components/styles";
+import Img from "src/assets/img/trialImg.png";
 
 const Textbox = styled(Typography)({
     variant: "p",
@@ -11,11 +11,9 @@ const Textbox = styled(Typography)({
     fontSize: 24,
 });
 
-const PlaylistCard = ({ title }) => (
+export const PlaylistCard = ({ title }) => (
     <RootWidgetStyle sx={{ width: 330 }}>
         <Image alt="" src={Img} width="81" height="81" />
         <Textbox>{title}</Textbox>
     </RootWidgetStyle>
 );
-
-export default PlaylistCard;
