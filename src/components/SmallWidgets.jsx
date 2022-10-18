@@ -1,18 +1,8 @@
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import Img from "src/assets/img/trialImg.png";
-import { Box, Typography } from "@mui/material";
-
-const RootStyle = styled(Box)({
-    width: 330,
-    height: 120,
-    // marginTop: 80,
-    borderRadius: 12,
-    display: "flex",
-    alignItems: "center",
-    padding: 19,
-    backgroundColor: "orange",
-});
+import { Typography } from "@mui/material";
+import { RootWidgetStyle } from "./common.styles";
 
 const Textbox = styled(Typography)({
     variant: "p",
@@ -23,15 +13,10 @@ const Textbox = styled(Typography)({
 
 const SmallWidgets = () => {
     return (
-        <RootStyle>
-            <Image
-                alt=""
-                src={Img}
-                width="81"
-                height="81"
-            />
+        <RootWidgetStyle sx={{ width: 330 }}>
+            <Image alt="" src={Img} width="81" height="81" />
             <Textbox>Recent Playlist</Textbox>
-        </RootStyle>
+        </RootWidgetStyle>
     );
 };
 
