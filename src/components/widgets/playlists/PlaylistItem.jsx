@@ -1,27 +1,19 @@
 import Image from "next/image";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { RootWidgetStyle } from "src/components/styles";
-import Img from "src/assets/img/trial2.png";
+import Img from "src/assets/img/trialImg.png";
 
-export const PlaylistItem = () => (
-    <RootWidgetStyle>
-        <Box>
-            <Image
-                alt=""
-                src={Img}
-                width="202"
-                height="202"
-                marginBottom="24"
-            />
-            <Box>
-                <Typography variant="h5">P heading</Typography>
-                <Typography variant="body2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-                <Typography variant="body3" component="p">
-                    + Collect Playlist.
-                </Typography>
-            </Box>
-        </Box>
+const Textbox = styled(Typography)({
+    variant: "h5",
+    marginLeft: 17,
+    fontWeight: 700,
+    fontSize: 20,
+});
+
+export const PlaylistItem = ({ title }) => (
+    <RootWidgetStyle sx={{ width: 330 }}>
+        <Image alt="" src={Img} width="70" height="70" />
+        <Textbox>{title}</Textbox>
     </RootWidgetStyle>
 );

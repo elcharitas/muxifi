@@ -5,8 +5,8 @@ import AppLayout from "src/layouts/app";
 const AppPage = () => {
     return (
         <AppLayout title="Welcome to MuxiFi">
-            <PlaylistCard title="Recent Playlist" />
-            <PlaylistItem />
+            <PlaylistItem title="Recent Playlist" />
+            <PlaylistCard title="Gifted" />
             <MusicIcon />
         </AppLayout>
     );

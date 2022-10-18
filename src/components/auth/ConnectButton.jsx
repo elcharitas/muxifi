@@ -33,12 +33,12 @@ export const ConnectButton = () => {
                 return (
                     <Button
                         color="tertiary"
-                        sx={{ pl: 1 }}
+                        sx={{ py: 0.5, pl: 0.5, fontSize: 15 }}
                         onClick={openAccountModal}
                     >
                         <Box
                             sx={{
-                                p: 1,
+                                p: 0.7,
                                 display: "flex",
                                 alignItems: "center",
                                 backgroundColor: "background.default",
