@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import Img from "src/temps/trialImg.png";
+import Img from "src/assets/img/trialImg.png";
 import { Box, Typography } from "@mui/material";
 
 const RootStyle = styled(Box)({
