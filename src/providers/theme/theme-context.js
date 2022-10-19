@@ -11,6 +11,12 @@ export const theme = createTheme({
             default: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#000402" : "#fff",
             paper: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#010A06" : "#fff",
         },
+        border: {
+            main:
+                CONFIG.THEME.DEFAULT_THEME === "dark"
+                    ? "rgba(255, 255, 255, 0.12)"
+                    : "#000",
+        },
         tertiary: {
             light: "#CCCECD",
             main: "#565D5A",

@@ -13,7 +13,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
     backgroundColor: theme.palette.background.default,
-    borderTop: "1px dashed rgba(255, 255, 255, 0.12)",
+    borderTop: `1px dashed ${theme.palette.border.main}`,
     [theme.breakpoints.up("lg")]: {
         minHeight: 100,
         padding: theme.spacing(0, 5),
