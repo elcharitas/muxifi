@@ -12,7 +12,7 @@ export const RootWidgetStyle = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     borderStyle: "dashed",
     borderWidth: "1px",
-    borderColor: "rgba(255, 255, 255, 0.12)",
+    borderColor: theme.palette.border.main,
     "& img": {
         borderRadius: 12,
     },
