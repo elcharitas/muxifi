@@ -1,9 +1,9 @@
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
-import Img from "src/temps/trial2.png";
+import Img from "src/assets/temps/trial2.png";
 import { Box, Typography } from "@mui/material";
 
-const theme = createTheme({
+const TypoTheme = createTheme({
     components: {
         MuiTypography: {
             variants: [
@@ -41,20 +41,20 @@ const theme = createTheme({
     },
 });
 
-const RootStyle = styled(Box)({
+const RootStyle = styled(Box)(({ theme }) => ({
     width: 241,
     // height: 120,
     marginTop: 80,
     borderRadius: 12,
     alignItems: "center",
     padding: 19,
-    backgroundColor: "orange",
-});
+    backgroundColor: theme.palette.background.default,
+}));
 
-const LargeWidgets = () => {
+export const LargeWidgets = () => {
     return (
         <RootStyle>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={TypoTheme}>
                 <Image
                     alt=""
                     src={Img}
@@ -63,7 +63,7 @@ const LargeWidgets = () => {
                     marginBottom="24"
                 />
                 <Box>
-                    <Typography variant="h4" component="h6">P heading</Typography>
+                    <Typography variant="h4" component="h6">Playlist Title</Typography>
                     <Typography variant="body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Typography>
                     <Typography variant="body3" component="p">+ Collect Playlist.</Typography>
                 </Box>
@@ -71,5 +71,3 @@ const LargeWidgets = () => {
         </RootStyle>
     );
 };
-
-export default LargeWidgets;

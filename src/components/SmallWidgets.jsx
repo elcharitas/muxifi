@@ -1,9 +1,9 @@
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import Img from "src/temps/trialImg.png";
+import Img from "src/assets/temps/trialImg.png";
 import { Box, Typography } from "@mui/material";
 
-const RootStyle = styled(Box)({
+const RootStyle = styled(Box)(({ theme }) => ({
     width: 330,
     height: 120,
     // marginTop: 80,
@@ -11,8 +11,8 @@ const RootStyle = styled(Box)({
     display: "flex",
     alignItems: "center",
     padding: 19,
-    backgroundColor: "orange",
-});
+    backgroundColor: theme.palette.background.default,
+}));
 
 const Textbox = styled(Typography)({
     variant: "p",
@@ -21,7 +21,7 @@ const Textbox = styled(Typography)({
     fontSize: 24,
 });
 
-const SmallWidgets = () => {
+export const SmallWidgets = () => {
     return (
         <RootStyle>
             <Image
@@ -34,5 +34,3 @@ const SmallWidgets = () => {
         </RootStyle>
     );
 };
-
-export default SmallWidgets;
