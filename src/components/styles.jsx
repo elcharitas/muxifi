@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 
 export const RootWidgetStyle = styled(Box)(({ theme }) => ({
     width: 241,
-    marginTop: 80,
     display: "flex",
     borderRadius: 12,
     alignItems: "center",
@@ -15,5 +14,9 @@ export const RootWidgetStyle = styled(Box)(({ theme }) => ({
     borderColor: theme.palette.border.main,
     "& img": {
         borderRadius: 12,
+    },
+    "&:hover": {
+        borderColor: "red",
+        // FIXME: enure to remove this
     },
 }));
