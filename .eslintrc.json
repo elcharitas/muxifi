@@ -19,8 +19,8 @@
         "react/function-component-definition": "off",
         "arrow-body-style": "off",
         "object-curly-newline": "off",
-        "linebreak-style": 0,
-				"no-unused-vars": "warn"
+        "linebreak-style": "off",
+        "no-unused-vars": "warn"
     },
     "settings": {
         "import/resolver": {

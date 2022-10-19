@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import Image from "next/image";
-import Img from "src/assets/temps/whiteFrame.png";
+import Img from "src/assets/img/whiteFrame.png";
 
 const RootStyle = styled(Box)({
     width: 241,

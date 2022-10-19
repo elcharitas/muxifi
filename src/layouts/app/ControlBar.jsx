@@ -1,26 +1,26 @@
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
-import { CONFIG } from "src/config";
-import { ConnectButton } from "src/components";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
-    [theme.breakpoints.up("lg")]: {
-        width: `calc(100% - ${CONFIG.UI.APP_SIDEBAR_WIDTH}px)`,
-    },
+    backgroundColor: theme.palette.background.default,
+    position: "fixed",
+    top: "auto",
+    bottom: 0,
+    zIndex: 9999,
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
     backgroundColor: theme.palette.background.default,
-    borderBottom: `1px dashed ${theme.palette.border.main}`,
+    borderTop: `1px dashed ${theme.palette.border.main}`,
     [theme.breakpoints.up("lg")]: {
         minHeight: 100,
         padding: theme.spacing(0, 5),
     },
 }));
 
-const Navbar = ({ onOpenSidebar }) => {
+const ControlBar = ({ onOpenSidebar }) => {
     return (
         <RootStyle>
             <ToolbarStyle>
@@ -42,11 +42,11 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    <ConnectButton />
+                    {/* <ConnectButton /> */}
                 </Stack>
             </ToolbarStyle>
         </RootStyle>
     );
 };
 
-export default Navbar;
+export default ControlBar;
