@@ -16,6 +16,7 @@ export const RootWidgetStyle = styled(Box)(({ theme }) => ({
         borderRadius: 12,
     },
     "&:hover": {
-        borderColor: "red", // enure to remove this
+        borderColor: "red",
+        // FIXME: enure to remove this
     },
 }));

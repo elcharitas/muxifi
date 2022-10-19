@@ -46,6 +46,7 @@ export const theme = createTheme({
                         fontSize: 14,
                         fontWeight: 500,
                         marginTop: 3,
+                        color: "#565D5A",
                     },
                 },
                 {
@@ -56,6 +57,24 @@ export const theme = createTheme({
                         fontSize: 13,
                         fontWeight: 700,
                         marginTop: 12,
+                    },
+                },
+                {
+                    props: {
+                        variant: "hero-title",
+                    },
+                    style: {
+                        fontSize: 49,
+                        fontWeight: 700,
+                    },
+                },
+                {
+                    props: {
+                        variant: "hero-subtitle",
+                    },
+                    style: {
+                        fontSize: 34,
+                        fontWeight: 500,
                     },
                 },
             ],

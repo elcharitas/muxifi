@@ -8,6 +8,7 @@ const HeadingWrapper = styled("div")({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: 24,
 });
 
 export const PlayList = ({ title, size }) => {
@@ -25,6 +26,7 @@ export const PlayList = ({ title, size }) => {
                         "&:hover": {
                             border: "none",
                             color: "tertiary.dark",
+                            // FIXME: enure to remove this
                         },
                     }}
                 >See more
