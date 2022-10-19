@@ -3,6 +3,7 @@ import { useState } from "react";
 import { styled, Box } from "@mui/material";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import ControlBar from "./ControlBar";
 
 export const RootStyle = styled("div")(({ theme }) => ({
     display: "flex",
@@ -35,6 +36,7 @@ const AppLayout = ({ title = "", children }) => {
             <Box>
                 <RootStyle>
                     <Navbar onOpenSidebar={() => setOpenSidebar(true)} />
+                    <ControlBar />
                     <Sidebar
                         isOpenSidebar={isOpenSidebar}
                         onCloseSidebar={() => setOpenSidebar(false)}
