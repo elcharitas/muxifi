@@ -1,0 +1,3 @@
+- [ ] Ensure to remove hover style for style.jsx and PlayList.jsx
+- [ ] Remove Red background on Home page
+- [ ] Create component to loop through home features

@@ -1,5 +1,4 @@
 import HomePage from "src/components/home";
-import { PlaylistItem, PlaylistCard } from "src/components";
 import AppLayout from "src/layouts/app";
 
 const AppPage = () => {

@@ -18,6 +18,7 @@ const Wrapper = styled("div")(({ theme }) => ({
     overflow: "auto",
     minHeight: "100%",
     paddingTop: 50,
+    marginTop: 60,
     paddingBottom: theme.spacing(10),
     [theme.breakpoints.up("lg")]: {
         paddingTop: 80,
