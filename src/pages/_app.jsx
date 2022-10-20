@@ -1,4 +1,4 @@
-// import { CONFIG } from "src/config";
+import { appWithTranslation } from "next-i18next";
 import { AuthProvider, ThemeProvider } from "src/providers";
 
 const MuxiApp = ({ Component, pageProps }) => {
@@ -11,4 +11,4 @@ const MuxiApp = ({ Component, pageProps }) => {
     );
 };
 
-export default MuxiApp;
+export default appWithTranslation(MuxiApp);
