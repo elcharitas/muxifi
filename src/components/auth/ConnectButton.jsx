@@ -1,9 +1,11 @@
 import { Box } from "@mui/material";
 import { ConnectButton as RainbowConnect } from "@rainbow-me/rainbowkit";
+import { useTranslation } from "next-i18next";
 import { Button } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 
 export const ConnectButton = () => {
+    const { t } = useTranslation("account");
     return (
         <RainbowConnect.Custom>
             {({
@@ -24,9 +26,7 @@ export const ConnectButton = () => {
                                     : openConnectModal
                             }
                         >
-                            {chain?.unsupported
-                                ? "Wrong network"
-                                : "Connect Wallet"}
+                            {t(chain?.unsupported ? "wrongNetwork" : "connect")}
                         </Button>
                     );
                 }

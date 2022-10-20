@@ -1,0 +1,5 @@
+{
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect Wallet",
+    "wrongNetwork": "Wrong Network"
+}

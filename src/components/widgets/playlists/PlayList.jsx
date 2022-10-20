@@ -1,5 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useTranslation } from "next-i18next";
 import { Button } from "src/components/Button";
 import { Heading } from "../../Heading";
 import { PlaylistCard } from "./PlaylistCard";
@@ -12,6 +13,7 @@ const HeadingWrapper = styled("div")({
 });
 
 export const PlayList = ({ title, size }) => {
+    const { t } = useTranslation("playlist");
     return (
         <Box mt="37.5px">
             <HeadingWrapper>
@@ -29,7 +31,8 @@ export const PlayList = ({ title, size }) => {
                             // FIXME: enure to remove this
                         },
                     }}
-                >See more
+                >
+                    {t("more")}
                 </Button>
             </HeadingWrapper>
 

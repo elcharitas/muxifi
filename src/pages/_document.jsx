@@ -1,9 +1,10 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import { CONFIG } from "src/config";
+import { i18n } from "next-i18next.config";
 
-export default function Document() {
+const Document = ({ __NEXT_DATA__: { locale } }) => {
     return (
-        <Html>
+        <Html lang={locale || i18n.defaultLocale}>
             <Head />
             <body>
                 <Main />
@@ -12,4 +13,6 @@ export default function Document() {
             </body>
         </Html>
     );
-}
+};
+
+export default Document;
