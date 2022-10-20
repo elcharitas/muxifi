@@ -23,6 +23,7 @@
         "ipfs": "^0.64.2",
         "moralis": "^2.6.4",
         "next": "12.3.1",
+        "next-i18next": "^12.1.0",
         "nft.storage": "^7.0.0",
         "orbit-db": "0.28.7",
         "radash": "8.0.0-rc.1",
