@@ -18,7 +18,8 @@ export const theme = createTheme({
         gradients: {
             primary:
                 "linear-gradient(114.41deg, #F5820D 14.86%, #5E0A0A 94.57%)",
-            background: "linear-gradient(180deg, #565D5A 0%, #010A06 100%)",
+            background:
+                "linear-gradient(to right bottom, #010a06, #010905, #000805, #000604, #000503, #050b09, #0a100e, #0f1412, #171c1a, #1d2421, #242c28, #2b3530)",
         },
         border: {
             main: "rgba(255, 255, 255, 0.12)",
