@@ -4,7 +4,7 @@
         "desc": "In est ut anim aliquip ad pariatur.",
         "cta": "Read More"
     },
-    "podcast": {
+    "about": {
         "entry": "Listen to Decentralized distributed Musics & Podcasts.",
         "desc": "In est ut anim aliquip ad pariatur.",
         "cta": "Listen Now!"
@@ -14,7 +14,7 @@
         "desc": "In est ut anim aliquip ad pariatur.",
         "cta": "Earn Now!"
     },
-    "bet": {
+    "defi": {
         "entry": "Bet/Bid for trending Contents & Collections",
         "desc": "In est ut anim aliquip ad pariatur.",
         "cta": "Start Now!"
@@ -32,7 +32,7 @@
                 "desc": "Connect with your friends on MuxiFi"
             },
             {
-                "title": "Finance",
+                "title": "DeFi",
                 "desc": "Manage your finances with MuxiFi"
             }
         ]
