@@ -77,6 +77,20 @@ export const theme = createTheme({
                 },
                 {
                     props: {
+                        variant: "section-title",
+                    },
+                    style: {
+                        fontSize: 30,
+                        fontWeight: "bolder !important",
+                        background:
+                            "linear-gradient(114.41deg, #F5820D 14.86%, #5E0A0A 94.57%)",
+                        backgroundClip: "text",
+                        textFillColor: "transparent",
+                        textAlign: "left",
+                    },
+                },
+                {
+                    props: {
                         variant: "hero-subtitle",
                     },
                     style: {
