@@ -1,4 +1,5 @@
 /** This module would hold all common styles */
+import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Anchor } from "./Anchor";
 
@@ -7,7 +8,7 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     display: "flex",
     borderRadius: 12,
     alignItems: "center",
-    padding: 19,
+    padding: 15,
     color: theme.palette.common.white,
     backgroundColor: theme.palette.background.paper,
     borderStyle: "dashed",
@@ -19,4 +20,14 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     "&:hover": {
         borderColor: theme.palette.tertiary.main,
     },
+}));
+
+export const ImgStyle = styled(Box)(({ $src }) => ({
+    content: `" "`,
+    width: 200,
+    height: 200,
+    borderRadius: 12,
+    backgroundImage: `url(${String($src?.src || $src)})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "none",
 }));
