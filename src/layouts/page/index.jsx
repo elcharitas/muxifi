@@ -28,7 +28,7 @@ const PageLayout = ({ title = "", children }) => {
     return (
         <>
             <Head>
-                <title>{title} | MuxiFi</title>
+                <title>{`${title} | MuxiFi`}</title>
             </Head>
             <RootStyle>
                 <PageNavbar />

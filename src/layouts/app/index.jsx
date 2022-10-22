@@ -32,7 +32,7 @@ const AppLayout = ({ title = "", children }) => {
     return (
         <>
             <Head>
-                <title>{title}</title>
+                <title>{`${title} | MuxiFi`}</title>
             </Head>
             <Box>
                 <RootStyle>
