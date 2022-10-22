@@ -8,6 +8,9 @@ export const theme = createTheme({
             main: "#F5820D",
             dark: CONFIG.THEME.DEFAULT_COLOR,
         },
+        secondary: {
+            main: "#2B3530",
+        },
         background: {
             default: "#000402",
             paper: "#010A06",
