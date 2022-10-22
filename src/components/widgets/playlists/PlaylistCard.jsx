@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
 import { ImgStyle, RootWidgetStyle } from "src/components/styles";
 import PlayListImg from "src/assets/img/trial2.png";
+import { PlayButton } from "src/components";
 
 export const PlaylistCard = ({ title }) => {
     const { t } = useTranslation("playlist");
@@ -19,7 +20,11 @@ export const PlaylistCard = ({ title }) => {
                     $src={PlayListImg}
                     sx={{ mb: 1, width: { xs: 250, md: 200 } }}
                     fullWidth
-                />
+                >
+                    <div className="root-btn">
+                        <PlayButton />
+                    </div>
+                </ImgStyle>
                 <Box sx={{ display: { xs: "flex", md: "none" } }}>
                     <Typography variant="body">{title}</Typography>
                 </Box>

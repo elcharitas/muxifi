@@ -19,12 +19,20 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     "& img": {
         borderRadius: 12,
     },
+    ".root-btn": {
+        display: "none",
+        padding: 8,
+    },
     "&:hover": {
         borderColor: theme.palette.tertiary.main,
+        ".root-btn": {
+            display: "block",
+        },
     },
 }));
 
 export const ImgStyle = styled(Box)(({ $src }) => ({
+    display: "flex",
     content: EMPTY_STRING,
     width: 200,
     height: 200,
@@ -32,4 +40,6 @@ export const ImgStyle = styled(Box)(({ $src }) => ({
     backgroundImage: `url(${String($src?.src || $src)})`,
     backgroundSize: "cover",
     backgroundRepeat: "none",
+    alignItems: "end",
+    justifyContent: "end",
 }));
