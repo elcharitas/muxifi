@@ -4,7 +4,7 @@ import { SvgIcon } from "./SvgIcon";
 
 export const Anchor = ({
     children,
-    href,
+    href = "",
     label,
     icon,
     sx,
