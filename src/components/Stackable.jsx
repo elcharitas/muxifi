@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+import { EMPTY_STRING } from "./styles";
 
 export const Stackable = ({ children, sx, ...props }) => {
     return (
@@ -10,7 +11,7 @@ export const Stackable = ({ children, sx, ...props }) => {
             spacing={1}
             sx={{
                 "&::after": {
-                    content: `" "`,
+                    content: EMPTY_STRING,
                     width: "100%",
                 },
                 "& > *": {

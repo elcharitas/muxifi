@@ -3,6 +3,8 @@ import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Anchor } from "./Anchor";
 
+export const EMPTY_STRING = JSON.stringify(" ");
+
 export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     width: 241,
     display: "flex",
@@ -23,7 +25,7 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
 }));
 
 export const ImgStyle = styled(Box)(({ $src }) => ({
-    content: `" "`,
+    content: EMPTY_STRING,
     width: 200,
     height: 200,
     borderRadius: 12,
