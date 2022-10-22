@@ -8,9 +8,18 @@ export const theme = createTheme({
             main: "#F5820D",
             dark: CONFIG.THEME.DEFAULT_COLOR,
         },
+        secondary: {
+            main: "#2B3530",
+        },
         background: {
             default: "#000402",
             paper: "#010A06",
+        },
+        gradients: {
+            primary:
+                "linear-gradient(114.41deg, #F5820D 14.86%, #5E0A0A 94.57%)",
+            background:
+                "linear-gradient(to right bottom, #010a06, #010905, #000805, #000604, #000503, #050b09, #0a100e, #0f1412, #171c1a, #1d2421, #242c28, #2b3530)",
         },
         border: {
             main: "rgba(255, 255, 255, 0.12)",
@@ -68,11 +77,41 @@ export const theme = createTheme({
                 },
                 {
                     props: {
+                        variant: "section-title",
+                    },
+                    style: {
+                        fontSize: 30,
+                        fontWeight: "bolder !important",
+                        background:
+                            "linear-gradient(114.41deg, #F5820D 14.86%, #5E0A0A 94.57%)",
+                        backgroundClip: "text",
+                        textFillColor: "transparent",
+                        textAlign: "left",
+                    },
+                },
+                {
+                    props: {
                         variant: "hero-subtitle",
                     },
                     style: {
                         fontSize: 22,
                         fontWeight: 700,
+                    },
+                },
+            ],
+        },
+        MuiButton: {
+            variants: [
+                {
+                    props: {
+                        variant: "nav-item",
+                    },
+                    style: {
+                        borderRadius: "12px !important",
+                        padding: "8px 20px !important",
+                        "&.active": {
+                            backgroundColor: "#2B3530",
+                        },
                     },
                 },
             ],

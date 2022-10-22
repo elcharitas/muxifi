@@ -1,10 +1,10 @@
 import { Stack } from "@mui/material";
 import { EMPTY_STRING } from "./styles";
 
-export const Stackable = ({ children, sx, ...props }) => {
+export const Stackable = ({ children, reverse, sx, ...props }) => {
     return (
         <Stack
-            direction="row"
+            direction={reverse ? "row-reverse" : "row"}
             alignItems="center"
             flexWrap="wrap"
             justifyContent="space-between"
@@ -18,6 +18,7 @@ export const Stackable = ({ children, sx, ...props }) => {
                     flex: "1 1 auto",
                     alignSelf: "auto",
                 },
+                ...sx,
             }}
             {...props}
         >

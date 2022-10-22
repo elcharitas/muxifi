@@ -1,0 +1,46 @@
+{
+    "hero": {
+        "entry": "Enjoy your Music with Finance.",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "cta": "Read More"
+    },
+    "about": {
+        "entry": "Listen to Decentralized distributed Musics & Podcasts.",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "cta": "Listen Now!"
+    },
+    "earn": {
+        "entry": "We help people earn with the right music.",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "cta": "Earn Now!"
+    },
+    "defi": {
+        "entry": "Bet/Bid for trending Contents & Collections",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "cta": "Start Now!"
+    },
+    "features": {
+        "entry": "Gain Access to special features on MuxiFi",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "items": [
+            {
+                "title": "Music",
+                "desc": "Listen to your favorite music on MuxiFi"
+            },
+            {
+                "title": "Podcast",
+                "desc": "Connect with your friends on MuxiFi"
+            },
+            {
+                "title": "DeFi",
+                "desc": "Manage your finances with MuxiFi"
+            }
+        ]
+    },
+    "newsletter": {
+        "entry": "Subscribe to our newsletter",
+        "desc": "In est ut anim aliquip ad pariatur.",
+        "email": "Enter e-mail address",
+        "cta": "Get Update!"
+    }
+}
