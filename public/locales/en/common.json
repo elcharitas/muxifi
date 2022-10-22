@@ -1,4 +1,12 @@
 {
     "lorem": "Consequat exercitation ullamco Lorem qui est occaecat culpa.",
-    "lorem.title": "Lorem ipsum dolor sit amet"
+    "lorem.title": "Lorem ipsum dolor sit amet",
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "music": "Music",
+        "contact": "Contact Us",
+        "features": "Features",
+        "launch": "Launch App"
+    }
 }
