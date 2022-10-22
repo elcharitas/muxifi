@@ -5,17 +5,15 @@ export const theme = createTheme({
     palette: {
         mode: CONFIG.THEME.DEFAULT_THEME,
         primary: {
-            main: CONFIG.THEME.DEFAULT_COLOR,
+            main: "#F5820D",
+            dark: CONFIG.THEME.DEFAULT_COLOR,
         },
         background: {
-            default: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#000402" : "#fff",
-            paper: CONFIG.THEME.DEFAULT_THEME === "dark" ? "#010A06" : "#fff",
+            default: "#000402",
+            paper: "#010A06",
         },
         border: {
-            main:
-                CONFIG.THEME.DEFAULT_THEME === "dark"
-                    ? "rgba(255, 255, 255, 0.12)"
-                    : "#000",
+            main: "rgba(255, 255, 255, 0.12)",
         },
         tertiary: {
             light: "#CCCECD",
@@ -34,8 +32,8 @@ export const theme = createTheme({
                         variant: "h5",
                     },
                     style: {
-                        fontSize: 20,
-                        fontWeight: 900,
+                        fontSize: 18,
+                        fontWeight: 700,
                     },
                 },
                 {
@@ -64,8 +62,8 @@ export const theme = createTheme({
                         variant: "hero-title",
                     },
                     style: {
-                        fontSize: 49,
-                        fontWeight: 700,
+                        fontSize: 26,
+                        fontWeight: 900,
                     },
                 },
                 {
@@ -73,8 +71,8 @@ export const theme = createTheme({
                         variant: "hero-subtitle",
                     },
                     style: {
-                        fontSize: 34,
-                        fontWeight: 500,
+                        fontSize: 22,
+                        fontWeight: 700,
                     },
                 },
             ],
