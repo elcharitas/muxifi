@@ -6,7 +6,7 @@ import { NavItems } from "../NavItems";
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
-    backgroundColor: theme.palette.background.default,
+    background: "transparent",
     [theme.breakpoints.up("lg")]: {
         minHeight: 90,
         padding: theme.spacing(0, 8),
@@ -16,7 +16,13 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 const PageNavbar = ({ onOpenSidebar }) => {
     const { t } = useTranslation();
     return (
-        <AppBar sx={{ boxShadow: "none" }}>
+        <AppBar
+            sx={{
+                boxShadow: "none",
+                background: "transparent",
+                backdropFilter: "blur(8px)",
+            }}
+        >
             <ToolbarStyle>
                 <Stack>
                     <IconButton
