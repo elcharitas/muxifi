@@ -13,7 +13,7 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     padding: 15,
     color: theme.palette.common.white,
     backgroundColor: theme.palette.background.paper,
-    borderStyle: "dashed",
+    borderStyle: "none",
     borderWidth: "1px",
     borderColor: theme.palette.border.main,
     "& img": {
