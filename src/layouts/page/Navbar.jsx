@@ -65,7 +65,9 @@ const PageNavbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    <Button>{t("nav.launch")}</Button>
+                    <Button component={Anchor} href="/app">
+                        {t("nav.launch")}
+                    </Button>
                 </Stack>
             </ToolbarStyle>
         </AppBar>
