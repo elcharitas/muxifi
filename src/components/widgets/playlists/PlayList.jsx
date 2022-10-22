@@ -1,8 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
-import { Button } from "src/components/Button";
-import { Heading } from "../../Heading";
+import { Button, Heading, Stackable } from "src/components";
 import { PlaylistCard } from "./PlaylistCard";
 
 const HeadingWrapper = styled("div")({
@@ -36,7 +35,15 @@ export const PlayList = ({ title, size }) => {
                 </Button>
             </HeadingWrapper>
 
-            <Grid container spacing="13px">
+            <Grid
+                container
+                spacing="13px"
+                sx={{ "& > *": { margin: "1%!important" } }}
+            >
+                <PlaylistCard title="Playlist Title" />
+                <PlaylistCard title="Playlist Title" />
+                <PlaylistCard title="Playlist Title" />
+                <PlaylistCard title="Playlist Title" />
                 <PlaylistCard title="Playlist Title" />
                 <PlaylistCard title="Playlist Title" />
                 <PlaylistCard title="Playlist Title" />
