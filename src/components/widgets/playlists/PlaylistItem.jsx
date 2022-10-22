@@ -12,8 +12,8 @@ const Textbox = styled(Typography)({
 });
 
 export const PlaylistItem = ({ title }) => (
-    <Grid item xs={6} sm={4} md={3}>
-        <RootWidgetStyle sx={{ width: { xs: 200, md: 300 } }}>
+    <Grid item xs={12} sm={4} md={3}>
+        <RootWidgetStyle sx={{ width: { xs: "100%", md: 300 } }}>
             <Image alt="" src={Img} width="70" height="70" />
             <Textbox>{title}</Textbox>
         </RootWidgetStyle>
