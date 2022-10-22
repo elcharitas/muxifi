@@ -10,7 +10,7 @@ export const PageSection = ({
     children,
 }) => {
     return (
-        <Container>
+        <Container sx={{ mb: 20 }}>
             <Stackable reverse={reverse}>
                 <Box sx={{ maxWidth: "350px", px: 2 }}>
                     <Typography variant="section-title">{title}</Typography>
