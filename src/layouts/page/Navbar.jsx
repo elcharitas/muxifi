@@ -35,7 +35,7 @@ const PageNavbar = ({ onOpenSidebar }) => {
                     </Anchor>
                 </Stack>
 
-                <Box sx={{ flexGrow: 1 }}></Box>
+                <Box sx={{ flexGrow: 1 }} />
                 <NavItems
                     items={[
                         {
@@ -52,7 +52,7 @@ const PageNavbar = ({ onOpenSidebar }) => {
                         },
                     ]}
                 />
-                <Box sx={{ flexGrow: 1 }}></Box>
+                <Box sx={{ flexGrow: 1 }} />
 
                 <Stack
                     direction="row"
