@@ -18,6 +18,7 @@ export const Stackable = ({ children, sx, ...props }) => {
                     flex: "1 1 auto",
                     alignSelf: "auto",
                 },
+                ...sx,
             }}
             {...props}
         >
