@@ -1,13 +1,11 @@
 import { appWithTranslation } from "next-i18next";
-import { AuthProvider, ThemeProvider, StoreProvider } from "src/providers";
+import { AuthProvider, ThemeProvider } from "src/providers";
 
 const MuxiApp = ({ Component, pageProps }) => {
     return (
         <ThemeProvider>
             <AuthProvider>
-                <StoreProvider>
-                    <Component {...pageProps} />
-                </StoreProvider>
+                <Component {...pageProps} />
             </AuthProvider>
         </ThemeProvider>
     );
