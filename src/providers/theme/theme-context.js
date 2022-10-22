@@ -86,5 +86,21 @@ export const theme = createTheme({
                 },
             ],
         },
+        MuiButton: {
+            variants: [
+                {
+                    props: {
+                        variant: "nav-item",
+                    },
+                    style: {
+                        borderRadius: "12px !important",
+                        padding: "8px 20px !important",
+                        "&.active": {
+                            backgroundColor: "#2B3530",
+                        },
+                    },
+                },
+            ],
+        },
     },
 });
