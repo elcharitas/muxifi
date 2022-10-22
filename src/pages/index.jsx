@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { PageSection } from "src/components";
+import { PageSection } from "src/components/widgets";
 import { ImgStyle } from "src/components/styles";
 import PageLayout from "src/layouts/page";
 import { buildI18n } from "src/utils/i18n";

@@ -1,5 +1,6 @@
 import { Box, Grid, styled } from "@mui/material";
-import { Heading, PlayList, PlaylistItem } from "src/components";
+import { Heading } from "src/components";
+import { PlayList, PlaylistItem } from "src/components/widgets";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
 
