@@ -35,7 +35,7 @@ export const theme = createTheme({
                     },
                     style: {
                         fontSize: 20,
-                        fontWeight: 700,
+                        fontWeight: 900,
                     },
                 },
                 {
