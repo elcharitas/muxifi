@@ -10,9 +10,7 @@ export const PlaylistCard = ({ title }) => {
         <RootWidgetStyle
             sx={{
                 width: { xs: "100%", md: "min-content" },
-                get maxWidth() {
-                    return this.width;
-                },
+                maxWidth: { xs: "100%", md: "min-content" },
                 justifyContent: "center",
             }}
         >

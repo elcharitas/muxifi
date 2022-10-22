@@ -1,7 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
-import { Button, Heading, Stackable } from "src/components";
+import { Button } from "src/components/Button";
+import { Heading } from "src/components/Heading";
 import { PlaylistCard } from "./PlaylistCard";
 
 const HeadingWrapper = styled("div")({
