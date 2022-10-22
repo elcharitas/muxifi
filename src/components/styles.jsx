@@ -1,13 +1,14 @@
 /** This module would hold all common styles */
 import { styled } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { Anchor } from "./Anchor";
 
-export const RootWidgetStyle = styled(Box)(({ theme }) => ({
+export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     width: 241,
     display: "flex",
     borderRadius: 12,
     alignItems: "center",
     padding: 19,
+    color: theme.palette.common.white,
     backgroundColor: theme.palette.background.paper,
     borderStyle: "dashed",
     borderWidth: "1px",
@@ -16,7 +17,6 @@ export const RootWidgetStyle = styled(Box)(({ theme }) => ({
         borderRadius: 12,
     },
     "&:hover": {
-        borderColor: "red",
-        // FIXME: enure to remove this
+        borderColor: theme.palette.tertiary.main,
     },
 }));
