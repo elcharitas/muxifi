@@ -7,10 +7,23 @@ import PlayListImg from "src/assets/img/trial2.png";
 export const PlaylistCard = ({ title }) => {
     const { t } = useTranslation("playlist");
     return (
-        <RootWidgetStyle sx={{ maxWidth: "min-content" }}>
+        <RootWidgetStyle
+            sx={{
+                width: { xs: "100%", md: "min-content" },
+                maxWidth: { xs: "100%", md: "min-content" },
+                justifyContent: "center",
+            }}
+        >
             <Box>
-                <ImgStyle $src={PlayListImg} sx={{ mb: 1 }} />
-                <Box>
+                <ImgStyle
+                    $src={PlayListImg}
+                    sx={{ mb: 1, width: { xs: 250, md: 200 } }}
+                    fullWidth
+                />
+                <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                    <Typography variant="body">{title}</Typography>
+                </Box>
+                <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Typography variant="h5">{title}</Typography>
                     <Typography variant="body2">{t("common:lorem")}</Typography>
                     <Button
