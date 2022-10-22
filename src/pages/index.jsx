@@ -18,7 +18,7 @@ export default function Home() {
         <PageLayout title="Home">
             {sections.map((section, index) => (
                 <PageSection
-                    key={String(section)}
+                    key={section}
                     title={t(`${section}.entry`)}
                     description={t(`${section}.desc`)}
                     cta={t(`${section}.cta`)}

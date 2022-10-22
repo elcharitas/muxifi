@@ -3,9 +3,9 @@ import { Anchor, Button, Stackable } from "src/components";
 export const NavItems = ({ items }) => {
     return (
         <Stackable>
-            {items?.map((item, id) => (
+            {items?.map((item) => (
                 <Button
-                    key={String(id)}
+                    key={item.href}
                     variant="nav-item"
                     component={Anchor}
                     href={item.href}
