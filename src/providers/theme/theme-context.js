@@ -1,4 +1,4 @@
-import { createTheme, alpha } from "@mui/material";
+import { createTheme } from "@mui/material";
 import { CONFIG } from "src/config";
 
 export const theme = createTheme({
