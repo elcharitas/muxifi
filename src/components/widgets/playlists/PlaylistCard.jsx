@@ -19,7 +19,6 @@ export const PlaylistCard = ({ title }) => {
                 <ImgStyle
                     $src={PlayListImg}
                     sx={{ mb: 1, width: { xs: 250, md: 200 } }}
-                    fullWidth
                 >
                     <div className="root-btn">
                         <PlayButton />
