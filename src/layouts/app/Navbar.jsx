@@ -5,6 +5,8 @@ import { ConnectButton } from "src/components";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
+    background: "transparent",
+    backdropFilter: "blur(6px)",
     [theme.breakpoints.up("lg")]: {
         width: `calc(100% - ${CONFIG.UI.APP_SIDEBAR_WIDTH}px)`,
     },
@@ -12,8 +14,6 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
-    backgroundColor: theme.palette.background.default,
-    borderBottom: `1px dashed ${theme.palette.border.main}`,
     [theme.breakpoints.up("lg")]: {
         minHeight: 100,
         padding: theme.spacing(0, 5),

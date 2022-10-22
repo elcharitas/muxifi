@@ -71,8 +71,8 @@ export const theme = createTheme({
                         variant: "hero-title",
                     },
                     style: {
-                        fontSize: 26,
-                        fontWeight: 900,
+                        fontSize: 28,
+                        fontWeight: 700,
                     },
                 },
                 {
