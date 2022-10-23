@@ -31,15 +31,17 @@ export const RootWidgetStyle = styled(Anchor)(({ theme }) => ({
     },
 }));
 
-export const ImgStyle = styled(Box)(({ $src }) => ({
-    display: "flex",
-    content: EMPTY_STRING,
-    width: 200,
-    height: 200,
-    borderRadius: 12,
-    backgroundImage: `url(${String($src?.src || $src)})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "none",
-    alignItems: "end",
-    justifyContent: "end",
-}));
+export const ImgStyle = styled(({ $src, ...props }) => <Box {...props} />)(
+    ({ $src }) => ({
+        display: "flex",
+        content: EMPTY_STRING,
+        width: 200,
+        height: 200,
+        borderRadius: 12,
+        backgroundImage: `url(${String($src?.src || $src)})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "none",
+        alignItems: "end",
+        justifyContent: "end",
+    }),
+);
