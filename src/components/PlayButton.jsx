@@ -11,6 +11,7 @@ export const PlayButton = ({ isPlaying, onClick }) => (
             padding: 0,
         }}
         onClick={onClick}
+        disabled={isPlaying}
     >
         <PlaySVG />
     </Button>
