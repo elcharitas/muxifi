@@ -1,7 +1,7 @@
 {
     "hero": {
         "entry": "Enjoy the Perfect Music experience.",
-        "desc": "Earn more BNB while jamming your favourite songs",
+        "desc": "From country music to trending Afro beats, plug in to the best sounds in the world. ",
         "cta": "Read more"
     },
     "about": {
@@ -10,18 +10,18 @@
         "cta": "Listen Now!"
     },
     "earn": {
-        "entry": "We help people earn with the right music.",
-        "desc": "In est ut anim aliquip ad pariatur.",
-        "cta": "Earn Now!"
+        "entry": " STREAM TO EARN",
+        "desc": "Get BNB for correctly predicting the top songs on MuxiFI.",
+        "cta": "Let's Go!"
     },
     "defi": {
-        "entry": "Bet/Bid for trending Contents & Collections",
-        "desc": "In est ut anim aliquip ad pariatur.",
-        "cta": "Start Now!"
+        "entry": "Build the finest collections of all times",
+        "desc": "Curate the greatest collections of pure music.",
+        "cta": "Become the best collector of the year"
     },
     "features": {
-        "entry": "Gain Access to special features on MuxiFi",
-        "desc": "In est ut anim aliquip ad pariatur.",
+        "entry": "Everyone deserves to listen to grea Music",
+        "desc": "And it gets better when you can earn from it.",
         "items": [
             {
                 "title": "Music",
@@ -39,8 +39,8 @@
     },
     "newsletter": {
         "entry": "Subscribe to our newsletter",
-        "desc": "In est ut anim aliquip ad pariatur.",
+        "desc": "Be the first to get the latest gist in the music industry.",
         "email": "Enter e-mail address",
-        "cta": "Get Update!"
+        "cta": "Join now!"
     }
 }
