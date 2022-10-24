@@ -132,5 +132,17 @@ export const theme = createTheme({
                 },
             ],
         },
+        MuiIconButton: {
+            variants: [
+                {
+                    props: {
+                        variant: "social-icon",
+                    },
+                    style: {
+                        backgroundColor: "#2B3530",
+                    },
+                },
+            ],
+        },
     },
 });
