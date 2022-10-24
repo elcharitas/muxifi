@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
 import { Button } from "src/components/Button";
 import { Heading } from "src/components/Heading";
+import PlayListImg from "src/assets/img/trial2.png";
 import { PlaylistCard } from "./PlaylistCard";
 
 const HeadingWrapper = styled("div")({
@@ -41,14 +42,14 @@ export const PlayList = ({ title, size }) => {
                 spacing="13px"
                 sx={{ "& > *": { margin: "1%!important" } }}
             >
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
+                <PlaylistCard title="Playlist Title" image={PlayListImg} />
             </Grid>
         </Box>
     );
