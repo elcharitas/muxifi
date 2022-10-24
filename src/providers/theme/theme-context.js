@@ -19,7 +19,7 @@ export const theme = createTheme({
             primary:
                 "linear-gradient(114.41deg, #F5820D 14.86%, #5E0A0A 94.57%)",
             background:
-                "linear-gradient(to right bottom, #010a06, #010905, #000805, #000604, #000503, #050b09, #0a100e, #0f1412, #171c1a, #1d2421, #242c28, #2b3530)",
+                "linear-gradient(to right bottom, #010a06, #010905, #000805, #000604, #000503, #050b09, #0a100e, #0f1412, #000503)",
         },
         border: {
             main: "rgba(255, 255, 255, 0.12)",
@@ -111,6 +111,22 @@ export const theme = createTheme({
                         padding: "8px 20px !important",
                         "&.active": {
                             backgroundColor: "#2B3530",
+                        },
+                    },
+                },
+            ],
+        },
+        MuiLink: {
+            variants: [
+                {
+                    props: {
+                        variant: "footer-link",
+                    },
+                    style: {
+                        color: "#565D5A",
+                        margin: "10px 0",
+                        "&:hover": {
+                            color: "#CCCECD",
                         },
                     },
                 },
