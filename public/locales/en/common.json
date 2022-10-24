@@ -7,6 +7,10 @@
         "music": "Music",
         "contact": "Contact Us",
         "features": "Features",
-        "launch": "Launch App"
+        "launch": "Launch App",
+        "artiste": "Artiste",
+        "album": "Album",
+        "playlist": "Playlist",
+        "podcast": "Podcast"
     }
 }
