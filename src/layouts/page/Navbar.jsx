@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import { Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { Anchor, Button, SvgIcon } from "src/components";
 import { NavItems } from "../NavItems";
@@ -7,6 +7,7 @@ import { NavItems } from "../NavItems";
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
     background: "transparent",
+    justifyContent: "space-around",
     [theme.breakpoints.up("lg")]: {
         minHeight: 90,
         padding: theme.spacing(0, 8),
@@ -24,11 +25,11 @@ const PageNavbar = ({ onOpenSidebar }) => {
             }}
         >
             <ToolbarStyle>
-                <Stack>
+                <Stack direction="row" alignItems="center">
                     <IconButton
                         onClick={onOpenSidebar}
                         sx={{
-                            mr: 1,
+                            mx: 1,
                             color: "text.primary",
                             display: { lg: "none" },
                         }}
@@ -37,11 +38,10 @@ const PageNavbar = ({ onOpenSidebar }) => {
                     </IconButton>
 
                     <Anchor href="/" sx={{ height: 64 }}>
-                        <SvgIcon name="logo" size={200} />
+                        <SvgIcon name="logo" size={200} height={50} />
                     </Anchor>
                 </Stack>
 
-                <Box sx={{ flexGrow: 1 }} />
                 <NavItems
                     items={[
                         {
@@ -58,7 +58,6 @@ const PageNavbar = ({ onOpenSidebar }) => {
                         },
                     ]}
                 />
-                <Box sx={{ flexGrow: 1 }} />
 
                 <Stack
                     direction="row"

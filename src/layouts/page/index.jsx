@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { styled, Box } from "@mui/material";
 import PageNavbar from "./Navbar";
+import PageFooter from "./Footer";
 
 export const RootStyle = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -34,6 +35,7 @@ const PageLayout = ({ title = "", children }) => {
                 <PageNavbar />
                 <PageWrapper>{children}</PageWrapper>
             </RootStyle>
+            <PageFooter />
         </>
     );
 };
