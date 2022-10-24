@@ -3,6 +3,9 @@ import NextSVG from "src/assets/svgs/next.svg";
 import PrevSVG from "src/assets/svgs/prev.svg";
 import HeartSVG from "src/assets/svgs/heart.svg";
 import ShuffleSVG from "src/assets/svgs/shuffle.svg";
+import RepeatSVG from "src/assets/svgs/repeat.svg";
+import VolumeSVG from "src/assets/svgs/volume.svg";
+import FilterSVG from "src/assets/svgs/music-filter.svg";
 import { Button } from "./Button";
 
 const BUTTON_ICONS = {
@@ -11,6 +14,9 @@ const BUTTON_ICONS = {
     prev: PrevSVG,
     heart: HeartSVG,
     shuffle: ShuffleSVG,
+    repeat: RepeatSVG,
+    volume: VolumeSVG,
+    queue: FilterSVG,
 };
 
 export const ControlButton = ({
@@ -18,7 +24,7 @@ export const ControlButton = ({
     sx = {},
     onClick,
     disabled = false,
-    variant = "contained",
+    variant = "text",
 }) => {
     const Icon = BUTTON_ICONS[icon];
     return (
@@ -49,6 +55,7 @@ export const PlayButton = ({ isPlaying, onClick }) => (
             e.preventDefault();
             onClick?.(e);
         }}
+        variant="contained"
         disabled={isPlaying}
     />
 );
