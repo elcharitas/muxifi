@@ -37,3 +37,6 @@ next-env.d.ts
 
 # orbitdb
 /orbitdb
+
+# prevent vscode settings from being modified
+.vscode
