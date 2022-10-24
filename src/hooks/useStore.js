@@ -43,7 +43,7 @@ export const useStore = (path = "appVersion") => {
          * @param {store[path][key]} value
          */
         set(key, value) {
-            this.dispatch(path, {
+            dispatch(path, {
                 ...store[path],
                 [key]: value,
             });
