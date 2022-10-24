@@ -5,7 +5,17 @@ export const useControl = () => {
 
     return {
         ready: ready && currentTrack.id !== 0,
-        track: currentTrack,
+        track: {
+            ...currentTrack,
+            name: "Music Name",
+            artiste: {
+                id: 1,
+                name: "Artiste",
+            },
+            favorite: false,
+        },
+        repeat: false,
+        shuffle: false,
         setTrack: set,
     };
 };
