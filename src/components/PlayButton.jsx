@@ -10,7 +10,10 @@ export const PlayButton = ({ isPlaying, onClick }) => (
             borderRadius: "50%",
             padding: 0,
         }}
-        onClick={onClick}
+        onClick={(e) => {
+            e.preventDefault();
+            onClick?.(e);
+        }}
         disabled={isPlaying}
     >
         <PlaySVG />
