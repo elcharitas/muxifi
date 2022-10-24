@@ -4,4 +4,4 @@ export * from "./SvgIcon";
 export * from "./Button";
 export * from "./Heading";
 export * from "./Stackable";
-export * from "./PlayButton";
+export * from "./ControlButtons";
