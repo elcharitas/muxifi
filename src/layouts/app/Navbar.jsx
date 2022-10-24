@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import { useTranslation } from "next-i18next";
+import { Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { CONFIG } from "src/config";
 import { ConnectButton } from "src/components";
+import { NavItems } from "../NavItems";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: "none",
@@ -14,6 +16,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
+    justifyContent: "space-between",
     [theme.breakpoints.up("lg")]: {
         minHeight: 100,
         padding: theme.spacing(0, 5),
@@ -21,6 +24,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 }));
 
 const Navbar = ({ onOpenSidebar }) => {
+    const { t } = useTranslation();
     return (
         <RootStyle>
             <ToolbarStyle>
@@ -35,7 +39,26 @@ const Navbar = ({ onOpenSidebar }) => {
                     {/* <Menu /> */}
                 </IconButton>
 
-                <Box sx={{ flexGrow: 1 }} />
+                <NavItems
+                    items={[
+                        {
+                            label: t("nav.playlist"),
+                            href: "/app",
+                        },
+                        {
+                            label: t("nav.podcast"),
+                            href: "/app/podcasts",
+                        },
+                        {
+                            label: t("nav.artiste"),
+                            href: "/app/artistes",
+                        },
+                        {
+                            label: t("nav.album"),
+                            href: "/app/albums",
+                        },
+                    ]}
+                />
 
                 <Stack
                     direction="row"
