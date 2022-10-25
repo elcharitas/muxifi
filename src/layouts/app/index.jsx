@@ -38,14 +38,14 @@ const AppLayout = ({ title = "", children }) => {
             <Box>
                 <RootStyle>
                     <Navbar onOpenSidebar={() => setOpenSidebar(true)} />
-                    <ControlBar />
-                    <Sidebar
-                        isOpenSidebar={isOpenSidebar}
-                        onCloseSidebar={() => setOpenSidebar(false)}
-                    />
-                    <Wrapper>
-                        <AudioPlayerProvider>{children}</AudioPlayerProvider>
-                    </Wrapper>
+                    <AudioPlayerProvider>
+                        <ControlBar />
+                        <Sidebar
+                            isOpenSidebar={isOpenSidebar}
+                            onCloseSidebar={() => setOpenSidebar(false)}
+                        />
+                        <Wrapper>{children}</Wrapper>
+                    </AudioPlayerProvider>
                 </RootStyle>
             </Box>
         </>
