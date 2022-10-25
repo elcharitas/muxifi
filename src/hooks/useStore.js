@@ -6,8 +6,8 @@ const INITIAL_STATE = {
     currentTrack: {
         id: 0,
         playlist: 0,
-        position: 0,
-        isPlaying: false,
+        repeat: false,
+        shuffle: false,
     },
 };
 
