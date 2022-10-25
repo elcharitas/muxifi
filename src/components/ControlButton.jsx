@@ -25,6 +25,7 @@ export const ControlButton = ({
     onClick,
     disabled = false,
     variant = "text",
+    color = "secondary",
 }) => {
     const Icon = BUTTON_ICONS[icon];
     return (
@@ -41,6 +42,7 @@ export const ControlButton = ({
                 e.preventDefault();
                 onClick?.(e);
             }}
+            color={color}
             variant={variant}
             disabled={disabled}
         >
