@@ -59,5 +59,6 @@ export const PlayButton = ({ isPlaying, onClick }) => (
         }}
         variant="contained"
         disabled={isPlaying}
+        color="primary"
     />
 );
