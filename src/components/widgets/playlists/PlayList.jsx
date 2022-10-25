@@ -1,8 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
+import { useControl } from "src/hooks";
 import { Button } from "src/components/Button";
 import { Heading } from "src/components/Heading";
+import PlayListImg from "src/assets/img/trial2.png";
 import { PlaylistCard } from "./PlaylistCard";
 
 const HeadingWrapper = styled("div")({
@@ -14,6 +16,7 @@ const HeadingWrapper = styled("div")({
 
 export const PlayList = ({ title, size }) => {
     const { t } = useTranslation("playlist");
+    const { setTrack } = useControl();
     return (
         <Box mt="37.5px">
             <HeadingWrapper>
@@ -28,7 +31,6 @@ export const PlayList = ({ title, size }) => {
                         "&:hover": {
                             border: "none",
                             color: "tertiary.dark",
-                            // FIXME: enure to remove this
                         },
                     }}
                 >
@@ -41,14 +43,14 @@ export const PlayList = ({ title, size }) => {
                 spacing="13px"
                 sx={{ "& > *": { margin: "1%!important" } }}
             >
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
-                <PlaylistCard title="Playlist Title" />
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                    <PlaylistCard
+                        key={item}
+                        title="Playlist Title"
+                        image={PlayListImg}
+                        handlePlay={() => setTrack("id", item)}
+                    />
+                ))}
             </Grid>
         </Box>
     );

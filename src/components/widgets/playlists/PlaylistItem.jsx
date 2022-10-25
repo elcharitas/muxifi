@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { RootWidgetStyle } from "src/components/styles";
-import { PlayButton } from "src/components/PlayButton";
+import { PlayButton } from "src/components/ControlButton";
 import Img from "src/assets/img/trialImg.png";
 
 const Textbox = styled(Typography)({

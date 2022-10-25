@@ -1,9 +1,15 @@
 import { styled } from "@mui/material/styles";
-import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
+import { Box, Stack, AppBar, Toolbar, Typography, Slider } from "@mui/material";
+import { useControl } from "src/hooks";
+import { ControlButton, PlayButton, Stackable } from "src/components";
+import { ImgStyle } from "src/components/styles";
+import CoverImg from "src/assets/img/cover.png";
+import { CONFIG } from "src/config";
 
-const RootStyle = styled(AppBar)(({ theme }) => ({
+const RootStyle = styled(AppBar)(() => ({
     boxShadow: "none",
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "transparent",
+    backgroundImage: "none",
     position: "fixed",
     top: "auto",
     bottom: 0,
@@ -11,41 +17,99 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
-    minHeight: 80,
+    minHeight: 100,
     backgroundColor: theme.palette.background.default,
     borderTop: `1px dashed ${theme.palette.border.main}`,
+    justifyContent: "space-between",
     [theme.breakpoints.up("lg")]: {
-        minHeight: 100,
+        minHeight: 120,
         padding: theme.spacing(0, 5),
     },
 }));
 
-const ControlBar = ({ onOpenSidebar }) => {
+const ControlBar = () => {
+    const { track, ready } = useControl();
     return (
-        <RootStyle>
-            <ToolbarStyle>
-                <IconButton
-                    onClick={onOpenSidebar}
+        ready && (
+            <RootStyle>
+                <ImgStyle
+                    $src={CoverImg}
                     sx={{
-                        mr: 1,
-                        color: "text.primary",
-                        display: { lg: "none" },
+                        borderRadius: 0,
+                        width: CONFIG.UI.APP_SIDEBAR_WIDTH,
+                        height: CONFIG.UI.APP_SIDEBAR_WIDTH,
                     }}
-                >
-                    {/* <Menu /> */}
-                </IconButton>
+                />
+                <ToolbarStyle>
+                    <Stackable sx={{ display: { xs: "none", md: "flex" } }}>
+                        <Box sx={{ mr: 4 }}>
+                            <Typography variant="h5">{track.name}</Typography>
+                            <Typography variant="body2">
+                                {track.artiste.name}
+                            </Typography>
+                        </Box>
+                        <ControlButton icon="heart" />
+                    </Stackable>
 
-                <Box sx={{ flexGrow: 1 }} />
+                    <Box>
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            justifyContent="center"
+                            spacing={{ xs: 0.5, sm: 1.5 }}
+                        >
+                            <ControlButton icon="shuffle" />
+                            <ControlButton icon="prev" />
+                            <PlayButton />
+                            <ControlButton icon="next" />
+                            <ControlButton icon="repeat" />
+                        </Stack>
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            justifyContent="center"
+                            spacing={{ xs: 0.5, sm: 1.5 }}
+                        >
+                            <Typography variant="body2">0:0</Typography>
+                            <Slider
+                                defaultValue={track.position}
+                                aria-label="Disabled slider"
+                                sx={{
+                                    width: 350,
+                                    "& .MuiSlider-thumb": {
+                                        width: "15px",
+                                        height: "15px",
+                                    },
+                                }}
+                                color="secondary"
+                            />
+                            <Typography variant="body2">0:0</Typography>
+                        </Stack>
+                    </Box>
 
-                <Stack
-                    direction="row"
-                    alignItems="center"
-                    spacing={{ xs: 0.5, sm: 1.5 }}
-                >
-                    {/* <ConnectButton /> */}
-                </Stack>
-            </ToolbarStyle>
-        </RootStyle>
+                    <Stack
+                        direction="row"
+                        alignItems="center"
+                        spacing={{ xs: 0.5, sm: 1.5 }}
+                    >
+                        <ControlButton icon="queue" />
+                        <ControlButton icon="volume" />
+                        <Slider
+                            defaultValue={30}
+                            aria-label="Disabled slider"
+                            sx={{
+                                width: 100,
+                                "& .MuiSlider-thumb": {
+                                    width: "15px",
+                                    height: "15px",
+                                },
+                            }}
+                            color="secondary"
+                        />
+                    </Stack>
+                </ToolbarStyle>
+            </RootStyle>
+        )
     );
 };
 

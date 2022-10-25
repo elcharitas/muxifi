@@ -1,19 +1,12 @@
 import NextLink from "next/link";
+import { forwardRef } from "react";
 import { Link, Stack, Typography } from "@mui/material";
 import { SvgIcon } from "./SvgIcon";
 
-export const Anchor = ({
-    children,
-    href = "",
-    label,
-    icon,
-    sx,
-    labelProps,
-    ...props
-}) => {
-    return (
+const Anchor = forwardRef(
+    ({ children, href = "", label, icon, sx, labelProps, ...props }, ref) => (
         <NextLink href={href} passHref>
-            <Link sx={{ textDecoration: "none", ...sx }} {...props}>
+            <Link ref={ref} sx={{ textDecoration: "none", ...sx }} {...props}>
                 <Stack direction="row" alignItems="center" spacing={1.5}>
                     {icon && <SvgIcon name={icon} />}
                     {label && <Typography {...labelProps}>{label}</Typography>}
@@ -21,5 +14,9 @@ export const Anchor = ({
                 </Stack>
             </Link>
         </NextLink>
-    );
-};
+    ),
+);
+
+Anchor.displayName = "Anchor";
+
+export { Anchor };
