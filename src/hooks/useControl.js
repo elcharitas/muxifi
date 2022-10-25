@@ -6,7 +6,12 @@ export const useControl = () => {
     return {
         ready: ready && currentTrack.id !== 0,
         track: {
-            ...currentTrack,
+            id: Number(currentTrack.id),
+            playlist: {
+                id: Number(currentTrack.playlist),
+            },
+            position: Number(currentTrack.position),
+            isPlaying: Boolean(currentTrack.isPlaying),
             name: "Music Name",
             artiste: {
                 id: 1,
