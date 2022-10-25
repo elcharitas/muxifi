@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import { styled, Box } from "@mui/material";
+import { AudioPlayerProvider } from "react-use-audio-player";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import ControlBar from "./ControlBar";
@@ -42,7 +43,9 @@ const AppLayout = ({ title = "", children }) => {
                         isOpenSidebar={isOpenSidebar}
                         onCloseSidebar={() => setOpenSidebar(false)}
                     />
-                    <Wrapper>{children}</Wrapper>
+                    <Wrapper>
+                        <AudioPlayerProvider>{children}</AudioPlayerProvider>
+                    </Wrapper>
                 </RootStyle>
             </Box>
         </>
