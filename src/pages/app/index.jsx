@@ -1,17 +1,9 @@
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
+import { RootStyle } from "src/components/styles";
 import { PlayList, PlaylistItem } from "src/components/widgets";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
-
-const RootStyle = styled("div")(({ theme }) => ({
-    minHeight: "100%",
-    overflow: "hidden",
-    paddingLeft: 36,
-    paddingRight: 36,
-    paddingBottom: 36,
-    backgroundColor: theme.palette.background.default,
-}));
 
 export const getStaticProps = async ({ locale }) => ({
     props: {

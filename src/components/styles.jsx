@@ -45,3 +45,12 @@ export const ImgStyle = styled(({ $src, ...props }) => <Box {...props} />)(
         justifyContent: "end",
     }),
 );
+
+export const RootStyle = styled("div")(({ theme }) => ({
+    minHeight: "100%",
+    overflow: "hidden",
+    paddingLeft: 36,
+    paddingRight: 36,
+    paddingBottom: 36,
+    backgroundColor: theme.palette.background.default,
+}));
