@@ -99,6 +99,16 @@ export const theme = createTheme({
                         fontWeight: 700,
                     },
                 },
+                {
+                    props: {
+                        variant: "modal-title",
+                    },
+                    style: {
+                        fontSize: 34,
+                        fontWeight: 700,
+                        color: "#CCCECD",
+                    },
+                },
             ],
         },
         MuiButton: {

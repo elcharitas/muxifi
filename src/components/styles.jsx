@@ -54,3 +54,44 @@ export const RootStyle = styled("div")(({ theme }) => ({
     paddingBottom: 36,
     backgroundColor: theme.palette.background.default,
 }));
+
+export const SearchInput = styled("input")({
+    width: "95%",
+    outline: "none",
+    background: "transparent",
+    border: "none",
+    fontWeight: 300,
+    fontSize: "16.67px",
+});
+
+export const TextBox = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    border: "1px solid",
+    borderColor: theme.palette.tertiary.light,
+    padding: "12px",
+    marginBottom: 5,
+    borderRadius: 12,
+}));
+
+export const IconBox = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 360,
+    height: 360,
+    borderRadius: "50%",
+    backgroundColor: theme.palette.secondary.dark,
+}));
+
+export const MessageInput = styled("textarea")({
+    width: "95%",
+    height: 125,
+    outline: "none",
+    background: "transparent",
+    border: "none",
+    fontWeight: 300,
+    fontSize: "16.67px",
+    resize: "none",
+});
