@@ -1,29 +1,15 @@
 import AppLayout from "src/layouts/app";
 import { RootStyle } from "src/components/styles";
-import { CreaterPlaylistheader, PlaylistSmallCards } from "src/components/widgets";
-import { Box, styled, Typography } from "@mui/material";
+import { CreatePlaylistHeader, PlaylistSmallCards } from "src/components/widgets";
+import { Box, Typography } from "@mui/material";
 import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
-import SearchIcon from "src/assets/svgs/search-icon.svg";
-import CloseIcon from "src/assets/svgs/close-icon.svg";
+import { buildI18n } from "src/utils/i18n";
+import { Search } from "src/layouts/app/Search";
 
-const SearchBox = styled(Box)({
-    border: "1px dashed #565D5A",
-    margin: "0 0 36px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: 632,
-    padding: "14px",
-    borderRadius: 48,
-});
-
-const SearchInput = styled("input")({
-    width: "90%",
-    outline: "none",
-    background: "transparent",
-    border: "none",
-    fontWeight: 300,
-    fontSize: "16.67px",
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+        ...(await buildI18n(locale, ["playlist"])),
+    },
 });
 
 const CreateHomePage = () => {
@@ -35,7 +21,7 @@ const CreateHomePage = () => {
                     paddingRight: 0,
                 }}
             >
-                <CreaterPlaylistheader />
+                <CreatePlaylistHeader />
 
                 <Box sx={{ padding: "0 36px" }}>
                     <Box
@@ -55,11 +41,7 @@ const CreateHomePage = () => {
                         <BrokenClose />
                     </Box>
 
-                    <SearchBox>
-                        <SearchIcon />
-                        <SearchInput type="text" placeholder="Search for music" />
-                        <CloseIcon />
-                    </SearchBox>
+                    <Search />
 
                     <PlaylistSmallCards />
                     {/* FIXME: Remove lines below */}

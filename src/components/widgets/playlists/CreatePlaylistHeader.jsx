@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
-import MusicIcon from "src/assets/svgs/music-icon.svg";
 import EditIcon from "src/assets/svgs/edit-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
+import NoteIcon from "src/assets/svgs/note-icon.svg";
 import Dots from "src/assets/svgs/dots.svg";
-import { useState } from "react";
 import { BasicModal } from "src/layouts/app/Modal";
+import { IconBox } from "src/components/styles";
 
 const GridContainer = styled("div")({
     display: "grid",
@@ -16,12 +17,6 @@ const GridContainer = styled("div")({
     height: 360,
     background: "#010C07",
     cursor: "pointer",
-});
-
-const GridItemOne = styled("div")({
-    position: "absolute",
-    left: "36px",
-    top: "72px",
 });
 
 const GridItemTwo = styled("div")({
@@ -41,7 +36,7 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const CreaterPlaylistheader = () => {
+export const CreatePlaylistHeader = () => {
     const [isHover, setIsHover] = useState(false);
     const onMouseEnter = () => setIsHover(true);
     const onMouseLeave = () => setIsHover(false);
@@ -53,10 +48,17 @@ export const CreaterPlaylistheader = () => {
     return (
         <Box>
             <GridContainer onClick={handleOpen}>
-                <BasicModal onClose={handleClose} open={open} />
-                <GridItemOne onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                    {isHover ? <EditIcon /> : <MusicIcon />}
-                </GridItemOne>
+                <IconBox
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                    sx={{
+                        position: "absolute",
+                        left: "36px",
+                        top: "72px",
+                    }}
+                >
+                    {isHover ? <EditIcon /> : <NoteIcon />}
+                </IconBox>
 
                 <GridItemTwo>
                     <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>Owner</Typography>
@@ -101,6 +103,7 @@ export const CreaterPlaylistheader = () => {
                     </Button>
                 </GridItemThree>
             </GridContainer>
+            <BasicModal onClose={handleClose} open={open} />
 
             <Box
                 sx={{

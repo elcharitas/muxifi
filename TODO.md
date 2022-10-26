@@ -5,4 +5,6 @@
 
 
 - [ ] Ensure to remove hover style for PlaylistSmallCard.jsx and CreatePlaylistHeader.jsx - Ask for explaination of nexti8 on PlayList.jsx
-- [ ] fix modal issue (modal not closing)
+- [x] fix modal issue (modal not closing)
+
+- [ ] Remove all FIXME, TODO notes
