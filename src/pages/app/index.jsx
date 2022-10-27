@@ -22,12 +22,11 @@ const AppHomePage = () => {
                         size="hero-title"
                     />
                     <Grid container spacing="13px">
-                        <PlaylistItem title="Recent Playlist" />
-                        <PlaylistItem title="Recent Playlist" />
-                        <PlaylistItem title="Recent Playlist" />
-                        <PlaylistItem title="Recent Playlist" />
-                        <PlaylistItem title="Recent Playlist" />
-                        <PlaylistItem title="Recent Playlist" />
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(
+                            (item) => (
+                                <PlaylistItem title="Recent Playlist" key={item} />
+                            ),
+                        )}
                     </Grid>
                 </Box>
 

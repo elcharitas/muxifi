@@ -43,17 +43,11 @@ const CreateHomePage = () => {
 
                     <Search />
 
-                    <PlaylistSmallCards />
-                    {/* FIXME: Remove lines below */}
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
-                    <PlaylistSmallCards />
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
+                        (item) => (
+                            <PlaylistSmallCards key={item} />
+                        ),
+                    )}
 
                 </Box>
             </RootStyle>
