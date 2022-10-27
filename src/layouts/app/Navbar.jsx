@@ -43,7 +43,7 @@ const Navbar = ({ onOpenSidebar }) => {
                     items={[
                         {
                             label: t("nav.playlist"),
-                            href: "/app",
+                            href: "/app/playlists",
                         },
                         {
                             label: t("nav.podcast"),

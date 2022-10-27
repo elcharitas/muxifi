@@ -47,6 +47,7 @@ export const PlayList = ({ title, size }) => {
                     <PlaylistCard
                         key={item}
                         title="Playlist Title"
+                        desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         image={PlayListImg}
                         handlePlay={() => setTrack("id", item)}
                     />

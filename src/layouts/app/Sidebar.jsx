@@ -101,7 +101,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
                 <Anchor
                     icon="collections"
-                    href="/app/play"
+                    href="/app/playlist"
                     label="Collections"
                     sx={{
                         fontSize: "18px",
