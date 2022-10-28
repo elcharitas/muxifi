@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import IPFS from "ipfs";
+import { create } from "ipfs";
 
 // window.ipfsLoaded hack to keep a global ipfs instance
 export const useIPFS = (config) => {
@@ -11,7 +11,7 @@ export const useIPFS = (config) => {
             return;
         }
 
-        const ipfsInstance = await IPFS.create(config);
+        const ipfsInstance = await create(config);
         if (typeof window !== "undefined") window.ipfsLoaded = ipfsInstance;
         // const peerId = (await ipfs.id()).id;
         setIpfs(ipfsInstance);
