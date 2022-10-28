@@ -13,7 +13,7 @@ jobs:
         id: lint-commits
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          regex: '^\w+(\(ui|web3|api\)*): .+' # e.g.) "feat(api): Add /users/get"
+          regex: '^(feat|chore|fix|refactor|docs|style)(\(ui|web3|api|ops\))*: .+' # e.g.) "feat(api): Add /users/get"
           format: markdown
 
       - name: Post warning comment
