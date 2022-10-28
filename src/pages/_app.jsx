@@ -1,11 +1,13 @@
 import { appWithTranslation } from "next-i18next";
-import { AuthProvider, ThemeProvider } from "src/providers";
+import { AuthProvider, OrbitDBProvider, ThemeProvider } from "src/providers";
 
 const MuxiApp = ({ Component, pageProps }) => {
     return (
         <ThemeProvider>
             <AuthProvider>
-                <Component {...pageProps} />
+                <OrbitDBProvider>
+                    <Component {...pageProps} />
+                </OrbitDBProvider>
             </AuthProvider>
         </ThemeProvider>
     );
