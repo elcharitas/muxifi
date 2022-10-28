@@ -1,66 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/finance/PaymentSplitter.sol";
-import "./MuxifyAlbum.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 /**
- * @title Muxify
- * @dev Muxify is a contract for managing a collection of albums.
- * MuxifyAlbums are ERC1155s that can be minted and sold.
- * MuxifyAlbums are minted by Muxify and sold on behalf of the owner.
- * MuxifyAlbums are sold for a fixed price of 1 ETH.
+ * @title MuxifiCreator
+ * @dev creator contract used to mint unique nfts to users
+ * Only holders of this NFT can create albums and such.
  */
-contract MuxifyCreator {
-    // amount required to mint per album
-    uint256 public constant MINT_FEE = 35000 gwei;
+contract MuxifiCreator is ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _creatorIds;
 
-    /**
-     * @dev Emitted when a new album is minted.
-     * @param owner The address of the owner of the album.
-     * @param album The address of the album.
-     */
-    event AlbumCreated(address indexed owner, address album);
+    constructor() ERC721("MuxifiCreator", "MCRT") {}
 
-    /**
-     * @dev a mapping of album addresses to their payment split contract
-     * addresses. This is used to keep track of the payment split contracts
-     */
-    mapping(address => address) public splitter;
+    function join(address _creator, string memory _metaCID)
+        external
+        returns (uint256)
+    {
+        uint256 _creatorId = _creatorIds.current();
+        _mint(_creator, _creatorId);
+        _setTokenURI(_creatorId, _metaCID);
 
-    /**
-     * @dev Create a new album.
-     * @param count The number of songs in the album.
-     * @return album The address of the album.
-     */
-    function createAlbum(uint8 count) external payable returns (address) {
-        require(
-            msg.value >= (count > 1 ? MINT_FEE * 2 : MINT_FEE),
-            "You have sent an insufficient creation fee! Please try again"
-        );
-
-        // create and mint albums to creator
-        address album = address(new MuxifyAlbum(msg.sender, count));
-
-        // create the splitter to handle payments
-        _createSplitter(album);
-
-        emit AlbumCreated(msg.sender, album);
-
-        return album;
-    }
-
-    function _createSplitter(address album) internal {
-        address[] memory payees;
-        uint256[] memory shares;
-
-        payees[0] = address(this);
-        payees[1] = msg.sender;
-
-        shares[0] = 30;
-        shares[1] = 70;
-        // initiate the payment splitter
-        splitter[album] = address(new PaymentSplitter(payees, shares));
+        return _creatorId;
     }
 
     fallback() external payable {
