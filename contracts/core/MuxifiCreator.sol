@@ -15,12 +15,14 @@ contract MuxifiCreator is ERC721URIStorage {
 
     constructor() ERC721("MuxifiCreator", "MCRT") {}
 
-    function join(address _creator, string memory _metaCID)
-        external
-        returns (uint256)
-    {
+    function join(string memory _metaCID) external returns (uint256) {
+        require(
+            balanceOf(msg.sender) == 0,
+            "Sorry, you can only join the program once."
+        );
+
         uint256 _creatorId = _creatorIds.current();
-        _mint(_creator, _creatorId);
+        _mint(msg.sender, _creatorId);
         _setTokenURI(_creatorId, _metaCID);
 
         return _creatorId;
