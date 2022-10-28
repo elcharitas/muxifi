@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { orbit as orbitContext } from "src/providers/orbitdb/orbit-context";
 
-const createDb = async (path, orbit, orbitDb, opts, refreshDb) => {
+const createDb = async (path, orbit, opts, refreshDb) => {
     const options = {
         indexBy: "id",
         create: true,
@@ -11,7 +11,7 @@ const createDb = async (path, orbit, orbitDb, opts, refreshDb) => {
         accessController: {
             ...(opts.create && opts.public
                 ? { write: ["*"], admin: ["*"] }
-                : { write: [orbitDb.identity.id] }),
+                : { write: [orbit.identity.id] }),
         },
     };
     const dbAddress = await orbit.determineAddress(path, options.type, options);
@@ -36,7 +36,7 @@ const createDb = async (path, orbit, orbitDb, opts, refreshDb) => {
     await refreshDb(db);
 };
 
-const useOrbitDb = (path, opts = {}) => {
+export const useOrbitDb = (path, opts = {}) => {
     const orbit = useContext(orbitContext);
     const [records, setRecords] = useState(null);
     const [orbitDb, setDb] = useState(null);
@@ -47,7 +47,7 @@ const useOrbitDb = (path, opts = {}) => {
         }
 
         const refreshDb = async (db) => {
-            await db.load();
+            await db.load().catch(() => null);
             if (!orbitDb) {
                 setDb(db);
             }
@@ -66,10 +66,10 @@ const useOrbitDb = (path, opts = {}) => {
             }
         };
         if (orbit && !orbitDb) {
-            createDb(path, orbit, orbitDb, opts, refreshDb);
+            createDb(path, orbit, opts, refreshDb);
         }
         return () => {
-            if (orbitDb) {
+            if (orbitDb && !orbitDb.closed) {
                 orbitDb.close();
             }
         };
@@ -82,5 +82,3 @@ const useOrbitDb = (path, opts = {}) => {
     }
     return state;
 };
-
-export default useOrbitDb;
