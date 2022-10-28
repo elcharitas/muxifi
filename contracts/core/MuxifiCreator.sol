@@ -25,6 +25,14 @@ contract MuxifiCreator is ERC721URIStorage {
         _mint(msg.sender, _creatorId);
         _setTokenURI(_creatorId, _metaCID);
 
+        _creatorIds.increment();
         return _creatorId;
+    }
+
+	/**
+	 * @dev Gets the count of creators
+	 */
+    function count() external view returns (uint256) {
+        return _creatorIds.current();
     }
 }
