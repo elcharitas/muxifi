@@ -2,12 +2,14 @@ import { useLocalStorage, useIsMounted, useIsClient } from "usehooks-ts";
 
 /** Initial state of the app's store */
 const INITIAL_STATE = {
-    appVersion: "1.0.0",
     currentTrack: {
         id: 0,
         playlist: 0,
         repeat: false,
         shuffle: false,
+    },
+    storage: {
+        path: "",
     },
 };
 
@@ -17,7 +19,7 @@ const INITIAL_STATE = {
  * @param {keyof INITIAL_STATE} path
  * @returns
  */
-export const useStore = (path = "appVersion") => {
+export const useStore = (path) => {
     const [store, setStore] = useLocalStorage("muxifi", INITIAL_STATE);
     const isMounted = useIsMounted();
     const isClient = useIsClient();
