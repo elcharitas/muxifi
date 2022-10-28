@@ -25,12 +25,4 @@ contract MuxifiCreator is ERC721URIStorage {
 
         return _creatorId;
     }
-
-    fallback() external payable {
-        // do nothing
-    }
-
-    receive() external payable {
-        // do nothing
-    }
 }

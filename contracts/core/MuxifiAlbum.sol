@@ -4,6 +4,7 @@ pragma solidity 0.8.17;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "./MuxifiCreator.sol";
 
 /**
  * @title MuxifiAlbum
@@ -17,6 +18,7 @@ contract MuxifiAlbum is ERC1155, ERC1155Burnable {
     Counters.Counter private _albumIds;
 
     address public immutable muxifi;
+    address public immutable muxifiCreator;
     uint256 public immutable mintFee;
 
     struct AlbumDetail {
@@ -26,9 +28,14 @@ contract MuxifiAlbum is ERC1155, ERC1155Burnable {
 
     mapping(uint256 => AlbumDetail) public metaData;
 
-    constructor(address _muxifi, uint256 _mintFee) ERC1155("") {
+    constructor(
+        address _muxifi,
+        address _muxifiCreator,
+        uint256 _mintFee
+    ) ERC1155("") {
         muxifi = _muxifi;
         mintFee = _mintFee;
+        muxifiCreator = _muxifiCreator;
     }
 
     /**
@@ -38,6 +45,11 @@ contract MuxifiAlbum is ERC1155, ERC1155Burnable {
         require(
             msg.value >= mintFee,
             "Sorry insufficient amount to create album"
+        );
+
+        require(
+            MuxifiCreator(muxifiCreator).balanceOf(msg.sender) > 0,
+            "Sorry, only creators can create albums"
         );
 
         uint256 albumId = _albumIds.current();
