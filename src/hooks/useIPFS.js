@@ -11,8 +11,10 @@ export const useIPFS = (config) => {
             return;
         }
 
-        const ipfsInstance = await create(config);
-        if (typeof window !== "undefined") window.ipfsLoaded = ipfsInstance;
+        const ipfsInstance = await create(config).catch(() => null);
+        if (typeof window !== "undefined" && ipfsInstance) {
+            window.ipfsLoaded = ipfsInstance;
+        }
         // const peerId = (await ipfs.id()).id;
         setIpfs(ipfsInstance);
     }, [config]);
@@ -22,5 +24,5 @@ export const useIPFS = (config) => {
         return () => ipfs?.stop();
     }, [ipfs, ipfsInit]);
 
-    return [ipfs];
+    return ipfs;
 };

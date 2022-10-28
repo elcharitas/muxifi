@@ -5,7 +5,7 @@ export const useOrbitInstance = (ipfs) => {
     const [orbit, setOrbit] = useState(null);
 
     const createInstance = useCallback(async () => {
-        if (orbit) return;
+        if (orbit || !ipfs) return;
         const instance = await OrbitDB.createInstance(ipfs);
         setOrbit(instance);
     }, [ipfs, orbit]);
