@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./MuxifiCreator.sol";
 
@@ -13,7 +12,7 @@ import "./MuxifiCreator.sol";
  * MuxifiAlbums are minted by Muxifi and sold on behalf of the owner.
  * Songs in MuxifiAlbums can be burned by the owner.
  */
-contract MuxifiAlbum is ERC1155, ERC1155Burnable {
+contract MuxifiAlbum is ERC1155URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _albumIds;
 
@@ -21,12 +20,7 @@ contract MuxifiAlbum is ERC1155, ERC1155Burnable {
     address public immutable muxifiCreator;
     uint256 public immutable mintFee;
 
-    struct AlbumDetail {
-        address owner;
-        string metaCID;
-    }
-
-    mapping(uint256 => AlbumDetail) public metaData;
+    mapping(uint256 => address) public albumOwner;
 
     constructor(
         address _muxifi,
@@ -53,8 +47,9 @@ contract MuxifiAlbum is ERC1155, ERC1155Burnable {
         );
 
         uint256 albumId = _albumIds.current();
-        metaData[albumId] = AlbumDetail(msg.sender, _metaCID);
+        albumOwner[albumId] = msg.sender;
 
+        _setURI(albumId, _metaCID);
         _mint(msg.sender, albumId, 1 ether, "");
 
         return albumId;
