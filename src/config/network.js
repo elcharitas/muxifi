@@ -20,10 +20,10 @@ const bnbChain = {
 const SUPPORTED_CHAINS = [bnbChain, chain.polygonMumbai];
 
 const CONTRACT_ADDRESSES = {
-    main: process.env.MUXIFI_ADDRESS,
-    creator: process.env.MUXIFI_CREATOR_ADDRESS,
-    playlist: process.env.MUXIFI_ALBUM_ADDRESS,
-    market: process.env.MUXIFI_MARKET_ADDRESS,
+    MUXIFY: process.env.MUXIFI_ADDRESS,
+    CREATOR: process.env.MUXIFI_CREATOR_ADDRESS,
+    ALBUM: process.env.MUXIFI_ALBUM_ADDRESS,
+    MARKET: process.env.MUXIFI_MARKET_ADDRESS,
 };
 
 export const WAGMI_CONFIG = {
