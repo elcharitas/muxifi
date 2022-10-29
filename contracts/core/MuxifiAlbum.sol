@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./MuxifiCreator.sol";
+import "./ERC2981Base.sol";
 
 /**
  * @title MuxifiAlbum
@@ -13,15 +14,24 @@ import "./MuxifiCreator.sol";
  * MuxifiAlbums are minted by Muxifi and sold on behalf of the owner.
  * Songs in MuxifiAlbums can be burned by the owner.
  */
-contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply {
+contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply, ERC2981Base {
     using Counters for Counters.Counter;
     Counters.Counter private _albumIds;
+    RoyaltyInfo private _royalties;
 
     address public immutable muxifi;
     address public immutable muxifiCreator;
     uint256 public immutable mintFee;
 
     mapping(uint256 => address) public albumOwner;
+
+    modifier isCreator() {
+        require(
+            MuxifiCreator(muxifiCreator).balanceOf(msg.sender) > 0,
+            "Sorry, only creators can create albums"
+        );
+        _;
+    }
 
     constructor(
         address _muxifi,
@@ -35,26 +45,57 @@ contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply {
 
     /**
      * @dev create an album
+     * @param _metaCID The CID to the album's metadata
+     * @param _royalty The amount to charge in percentage fron 100 - 10000
      */
-    function create(string memory _metaCID) external payable returns (uint256) {
+    function create(string memory _metaCID, uint256 _royalty)
+        external
+        payable
+        isCreator
+        returns (uint256)
+    {
         require(
             msg.value >= mintFee,
             "Sorry insufficient amount to create album"
-        );
-
-        require(
-            MuxifiCreator(muxifiCreator).balanceOf(msg.sender) > 0,
-            "Sorry, only creators can create albums"
         );
 
         uint256 albumId = _albumIds.current();
         albumOwner[albumId] = msg.sender;
 
         _setURI(albumId, _metaCID);
-        _mint(msg.sender, albumId, 1 ether, "");
+        _mint(msg.sender, albumId, 1 gwei, "");
+        _setRoyalties(msg.sender, _royalty);
         _albumIds.increment();
 
         return albumId;
+    }
+
+    function freeCreate(string memory _metaCID)
+        external
+        isCreator
+        returns (uint256)
+    {
+        uint256 albumId = _albumIds.current();
+        albumOwner[albumId] = msg.sender;
+
+        _setURI(albumId, _metaCID);
+        _mint(msg.sender, albumId, 1 gwei, "");
+        // since the user is creating an album freely, muxifi takes 30% royalty
+        _setRoyalties(muxifi, 3000);
+        _albumIds.increment();
+
+        return albumId;
+    }
+
+    function royaltyInfo(uint256, uint256 value)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
+        RoyaltyInfo memory royalties = _royalties;
+        receiver = royalties.recipient;
+        royaltyAmount = (value * royalties.amount) / 10000;
     }
 
     /**
@@ -86,6 +127,25 @@ contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply {
         returns (string memory)
     {
         return super.uri(_albumId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC1155, ERC2981Base)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    // Value is in basis points so 10000 = 100% , 100 = 1% etc
+    function _setRoyalties(address recipient, uint256 value) internal {
+        require(
+            value <= 10000,
+            "Sorry, but the percentage specified is too high"
+        );
+        _royalties = RoyaltyInfo(recipient, uint24(value));
     }
 
     function _beforeTokenTransfer(
