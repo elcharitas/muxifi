@@ -16,6 +16,7 @@ export const getAlbumsQuery = async ({
     type = "album",
 } = {}) => {
     const { result, pagination, next } = await getContractNFTs({
+        chain: CONFIG.WAGMI.DEFAULT_CHAIN,
         address: CONTRACT_ADDRESSES[type.toUpperCase()],
         limit: pageSize,
     });
@@ -37,8 +38,9 @@ export const getAccountAlbumsQuery = async ({
     type = "album",
 } = {}) => {
     const { result, pagination, next } = await getWalletNFTs({
-        tokenAddresses: [CONTRACT_ADDRESSES[type.toUpperCase()]],
         address: account,
+        chain: CONFIG.WAGMI.DEFAULT_CHAIN,
+        tokenAddresses: [CONTRACT_ADDRESSES[type.toUpperCase()]],
         limit: pageSize,
     });
     return { pagination, next, result: result.map((r) => r.toJSON()) };
