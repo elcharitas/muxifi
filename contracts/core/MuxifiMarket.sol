@@ -36,7 +36,15 @@ contract MuxifiMarket {
     }
 
     function collect(uint256 _albumId, uint256 _amount) external payable {
+        require(
+            msg.value >= prices[_albumId],
+            "Sorry, you have insufficient amount to collect this album"
+        );
         MuxifiAlbum album = MuxifiAlbum(muxifiAlbum);
+        require(
+            album.balanceOf(album.albumOwner(_albumId), _albumId) > 1, // ensure creator can still hold an album
+            "Sorry, but this album is no longer available for collection"
+        );
         album.safeTransferFrom(
             album.albumOwner(_albumId),
             msg.sender,
