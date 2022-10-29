@@ -104,6 +104,10 @@ contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply, ERC2981Base {
         isCreator
     {
         require(
+            _amount >= 1000,
+            "Sorry, but you can only add a minimum of 1000 songs"
+        );
+        require(
             msg.value >= mintFee * (_amount / 1000),
             "Sorry, there's an insufficient amount to add more songs"
         );
