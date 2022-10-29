@@ -1,17 +1,17 @@
 import { chain } from "wagmi";
 
 const bnbChain = {
-    id: 96,
+    id: 97,
     name: "Binance Testnet",
     network: "bnbt",
     nativeCurrency: {
-        name: "BNB",
-        symbol: "BNB",
+        name: "tBNB",
+        symbol: "tBNB",
         decimals: 18,
     },
     rpcUrls: {
-        default: "",
-        public: "",
+        default: "https://data-seed-prebsc-1-s3.binance.org:8545",
+        public: "https://data-seed-prebsc-1-s3.binance.org:8545",
     },
     testnet: true,
 };
