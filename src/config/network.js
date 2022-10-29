@@ -1,7 +1,23 @@
 import { chain } from "wagmi";
 
+const bnbChain = {
+    id: 96,
+    name: "Binance Testnet",
+    network: "bnbt",
+    nativeCurrency: {
+        name: "BNB",
+        symbol: "BNB",
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: "",
+        public: "",
+    },
+    testnet: true,
+};
+
 /** @type {import('wagmi').Chain[]} */
-const SUPPORTED_CHAINS = [chain.goerli, chain.polygon];
+const SUPPORTED_CHAINS = [bnbChain, chain.polygonMumbai];
 
 const CONTRACT_ADDRESSES = {
     main: process.env.MUXIFI_ADDRESS,
