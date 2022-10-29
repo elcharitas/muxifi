@@ -2,7 +2,7 @@ import Moralis from "moralis";
 import { CONFIG } from "src/config";
 
 const evmApi = Moralis.EvmApi;
-const { getContractNFTs, getWalletNFTs } = evmApi.nft;
+const { getContractNFTs, getWalletNFTs, searchNFTs } = evmApi.nft;
 
 const { CONTRACT_ADDRESSES } = CONFIG.WAGMI;
 
@@ -27,5 +27,21 @@ export const getAccountAlbumsQuery = async ({
         address: account,
         limit: pageSize,
     });
+    return { pagination, next, result: result.map((r) => r.toJSON()) };
+};
+
+export const getMatchingAlbumsQuery = async ({
+    query = "",
+    filter = "global",
+    pageSize = 30,
+}) => {
+    const { result, pagination, next } = await searchNFTs({
+        filter,
+        q: query,
+        chain: CONFIG.WAGMI.DEFAULT_CHAIN,
+        addresses: [CONTRACT_ADDRESSES.ALBUM, CONTRACT_ADDRESSES.PODCAST],
+        limit: pageSize,
+    });
+
     return { pagination, next, result: result.map((r) => r.toJSON()) };
 };
