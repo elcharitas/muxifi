@@ -13,8 +13,10 @@ contract MuxifiMarket {
 
     modifier isCreator(uint256 _ablumId) {
         require(
-            MuxifiCreator(muxifiCreator).balanceOf(msg.sender) > 0 &&
-                MuxifiAlbum(muxifiAlbum).albumOwner(_ablumId) == msg.sender,
+            msg.sender == muxifiAlbum ||
+                (MuxifiCreator(muxifiCreator).balanceOf(msg.sender) > 0 &&
+                    MuxifiAlbum(muxifiAlbum).albumOwner(_ablumId) ==
+                    msg.sender),
             "Sorry, only creators can list albums"
         );
         _;
