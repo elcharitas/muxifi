@@ -40,3 +40,7 @@ next-env.d.ts
 
 # prevent vscode settings from being modified
 .vscode
+
+# hardhat files
+artifacts
+cache
