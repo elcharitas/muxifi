@@ -23,6 +23,7 @@ const CONTRACT_ADDRESSES = {
     MUXIFY: process.env.MUXIFI_ADDRESS,
     CREATOR: process.env.MUXIFI_CREATOR_ADDRESS,
     ALBUM: process.env.MUXIFI_ALBUM_ADDRESS,
+    PODCAST: process.env.MUXIFI_PODCAST_ADDRESS,
     MARKET: process.env.MUXIFI_MARKET_ADDRESS,
 };
 

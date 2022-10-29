@@ -6,9 +6,12 @@ const { getContractNFTs, getWalletNFTs } = evmApi.nft;
 
 const { CONTRACT_ADDRESSES } = CONFIG.WAGMI;
 
-export const getAlbumsQuery = async ({ pageSize = 30 } = {}) => {
+export const getAlbumsQuery = async ({
+    pageSize = 30,
+    type = "album",
+} = {}) => {
     const { result, pagination, next } = await getContractNFTs({
-        address: CONTRACT_ADDRESSES.ALBUM,
+        address: CONTRACT_ADDRESSES[type.toUpperCase()],
         limit: pageSize,
     });
     return { pagination, next, result: result.map((r) => r.toJSON()) };
@@ -17,9 +20,10 @@ export const getAlbumsQuery = async ({ pageSize = 30 } = {}) => {
 export const getAccountAlbumsQuery = async ({
     account = "",
     pageSize = 30,
+    type = "album",
 } = {}) => {
     const { result, pagination, next } = await getWalletNFTs({
-        tokenAddresses: [CONTRACT_ADDRESSES.ALBUM],
+        tokenAddresses: [CONTRACT_ADDRESSES[type.toUpperCase()]],
         address: account,
         limit: pageSize,
     });
