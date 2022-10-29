@@ -1,0 +1,3 @@
+# ignore remix files
+.deps
+artifacts
