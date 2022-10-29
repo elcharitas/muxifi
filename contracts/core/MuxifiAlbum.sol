@@ -98,6 +98,23 @@ contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply, ERC2981Base {
         royaltyAmount = (value * royalties.amount) / 10000;
     }
 
+    function mint(uint256 _albumId, uint256 _amount)
+        external
+        payable
+        isCreator
+    {
+        require(
+            msg.value >= mintFee * (_amount / 1000),
+            "Sorry, there's an insufficient amount to add more songs"
+        );
+        require(
+            albumOwner[_albumId] == msg.sender,
+            "Sorry, only album creator can add more songs"
+        );
+
+        _mint(msg.sender, _albumId, _amount, "");
+    }
+
     /**
      * @dev called by an external contract to remove fees paid in
      */
