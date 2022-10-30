@@ -13,7 +13,7 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-const ArtistePage = () => {
+const AlbumsPage = () => {
     return (
         <AppLayout title="Artistes">
             <RootStyle>
@@ -51,4 +51,4 @@ const ArtistePage = () => {
     );
 };
 
-export default ArtistePage;
+export default AlbumsPage;
