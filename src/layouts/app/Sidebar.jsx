@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import { useMediaQuery, Box, Drawer, Stack } from "@mui/material";
 import { Anchor, SvgIcon } from "src/components";
@@ -12,6 +13,7 @@ const RootStyle = styled("div")(({ theme }) => ({
 }));
 
 const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
+    const { pathname } = useRouter();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
     useEffect(() => {
@@ -37,12 +39,18 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
             <Stack direction="column" spacing={3} sx={{ px: 6 }}>
                 <Anchor
-                    icon="home-selected"
+                    icon={`home${pathname === "/app" ? "-selected" : ""}`}
                     href="/app"
                     label="Home"
                     sx={{
                         fontSize: "18px",
-                        color: "tertiary.light",
+                        color:
+                            pathname === "/app"
+                                ? "tertiary.light"
+                                : "tertiary.main",
+                        "&:hover": {
+                            color: "tertiary.light",
+                        },
                     }}
                     labelProps={{
                         fontWeight: "bold",
@@ -50,12 +58,17 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 />
 
                 <Anchor
-                    icon="add-square"
+                    icon={`add-square${
+                        pathname === "/app/create" ? "-selected" : ""
+                    }`}
                     href="/app/create"
                     label="Create Playlist"
                     sx={{
                         fontSize: "18px",
-                        color: "tertiary.main",
+                        color:
+                            pathname === "/app/create"
+                                ? "tertiary.light"
+                                : "tertiary.main",
                         "&:hover": {
                             color: "tertiary.light",
                         },
@@ -100,12 +113,17 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 />
 
                 <Anchor
-                    icon="collections"
-                    href="/app/playlist"
+                    icon={`collections${
+                        pathname === "/app/playlists" ? "-selected" : ""
+                    }`}
+                    href="/app/playlists"
                     label="Collections"
                     sx={{
                         fontSize: "18px",
-                        color: "tertiary.main",
+                        color:
+                            pathname === "/app/playlists"
+                                ? "tertiary.light"
+                                : "tertiary.main",
                         "&:hover": {
                             color: "tertiary.light",
                         },
