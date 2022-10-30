@@ -13,7 +13,7 @@ const ImageBox = styled(Box)({
     transform: "rotate(15deg)",
 });
 
-export const SearchCard = ({ cardColor, img }) => {
+export const SearchCard = ({ cardColor, img, title }) => {
     return (
         <RootWidgetStyle
             sx={{
@@ -25,7 +25,7 @@ export const SearchCard = ({ cardColor, img }) => {
                 padding: "24px",
             }}
         >
-            <Typography variant="modal-title">Podcast
+            <Typography variant="modal-title" sx={{ textTransform: "capitalize" }}>{title}
             </Typography>
             <ImageBox>
                 <Image
