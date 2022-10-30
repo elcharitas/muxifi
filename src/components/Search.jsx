@@ -13,11 +13,16 @@ const SearchBox = styled(Box)(({ theme }) => ({
     borderRadius: 48,
 }));
 
-export const Search = ({ sx, ...props }) => {
+export const Search = ({ sx, handleChange, ...props }) => {
     return (
         <SearchBox sx={sx} {...props}>
             <SvgIcon name="search-icon" size="26" />
-            <SearchInput type="text" placeholder="Search..." sx={{ mx: 1 }} />
+            <SearchInput
+                type="text"
+                placeholder="Search..."
+                sx={{ mx: 1 }}
+                onChange={handleChange}
+            />
             <SvgIcon name="close-icon" size="26" />
         </SearchBox>
     );
