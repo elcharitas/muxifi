@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
 import { Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { CONFIG } from "src/config";
-import { ConnectButton } from "src/components";
+import { ConnectButton, Search } from "src/components";
 import { NavItems } from "../NavItems";
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
@@ -65,6 +65,7 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
+                    <Search />
                     <ConnectButton />
                 </Stack>
             </ToolbarStyle>

@@ -11,6 +11,8 @@
         "artiste": "Artiste",
         "album": "Album",
         "playlist": "Playlist",
-        "podcast": "Podcast"
+        "podcast": "Podcast",
+        "search": "Search...",
+        "community": "Community"
     }
 }

@@ -1,10 +1,13 @@
 import AppLayout from "src/layouts/app";
 import { RootStyle } from "src/components/styles";
-import { CreatePlaylistHeader, PlaylistSmallCards } from "src/components/widgets";
+import {
+    CreatePlaylistHeader,
+    PlaylistSmallCards,
+} from "src/components/widgets";
 import { Box, Typography } from "@mui/material";
 import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
 import { buildI18n } from "src/utils/i18n";
-import { Search } from "src/layouts/app/Search";
+import { Search } from "src/components/Search";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -33,22 +36,17 @@ const CreateHomePage = () => {
                             borderTop: "1px solid #2B3530",
                         }}
                     >
-                        <Typography
-                            variant="hero-title"
-                            color="tertiary.light"
-                        >Let find more songs for your playlist
+                        <Typography variant="hero-title" color="tertiary.light">
+                            Let find more songs for your playlist
                         </Typography>
                         <BrokenClose />
                     </Box>
 
-                    <Search />
+                    <Search sx={{ mb: 3, width: 600 }} />
 
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-                        (item) => (
-                            <PlaylistSmallCards key={item} />
-                        ),
-                    )}
-
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                        <PlaylistSmallCards key={item} />
+                    ))}
                 </Box>
             </RootStyle>
         </AppLayout>
