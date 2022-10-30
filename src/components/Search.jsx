@@ -1,26 +1,23 @@
-import React from "react";
-import SearchIcon from "src/assets/svgs/search-icon.svg";
-import CloseIcon from "src/assets/svgs/close-icon.svg";
 import { Box, styled } from "@mui/material";
 import { SearchInput } from "src/components/styles";
+import { SvgIcon } from "./SvgIcon";
 
 const SearchBox = styled(Box)({
     border: "1px dashed #565D5A",
-    margin: "0 0 36px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    width: 632,
-    padding: "14px",
+    width: 300,
+    padding: "10px 14px",
     borderRadius: 48,
 });
 
-export const Search = () => {
+export const Search = ({ sx, ...props }) => {
     return (
-        <SearchBox>
-            <SearchIcon />
-            <SearchInput type="text" placeholder="Search..." />
-            <CloseIcon />
+        <SearchBox sx={sx} {...props}>
+            <SvgIcon name="search-icon" size="26" />
+            <SearchInput type="text" placeholder="Search..." sx={{ mx: 1 }} />
+            <SvgIcon name="close-icon" size="26" />
         </SearchBox>
     );
 };
