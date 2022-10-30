@@ -5,3 +5,4 @@ export * from "./useOrbitDB";
 export * from "./useIPFS";
 export * from "./useAbi";
 export * from "./useCollection";
+export * from "./useNFTStorage";

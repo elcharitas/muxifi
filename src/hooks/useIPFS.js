@@ -21,7 +21,7 @@ export const useIPFS = (config) => {
 
     useEffect(() => {
         ipfsInit();
-        return () => ipfs?.stop();
+        // return () => ipfs?.stop();
     }, [ipfs, ipfsInit]);
 
     return ipfs;
