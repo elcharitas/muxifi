@@ -114,7 +114,12 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
                 <Anchor
                     icon={`collections${
-                        pathname === "/app/playlists" ? "-selected" : ""
+                        pathname === "/app/playlists"
+                        || pathname === "/app/podcasts"
+                        || pathname === "/app/albums"
+                        || pathname === "/app/artistes"
+                            ? "-selected"
+                            : ""
                     }`}
                     href="/app/playlists"
                     label="Collections"
@@ -122,6 +127,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         fontSize: "18px",
                         color:
                             pathname === "/app/playlists"
+                            || pathname === "/app/podcasts"
+                            || pathname === "/app/albums"
+                            || pathname === "/app/artistes"
                                 ? "tertiary.light"
                                 : "tertiary.main",
                         "&:hover": {
