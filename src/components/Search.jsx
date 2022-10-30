@@ -1,4 +1,5 @@
 import { Box, styled } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import { SearchInput } from "src/components/styles";
 import { SvgIcon } from "./SvgIcon";
 
@@ -14,12 +15,13 @@ const SearchBox = styled(Box)(({ theme }) => ({
 }));
 
 export const Search = ({ sx, handleChange, ...props }) => {
+    const { t } = useTranslation();
     return (
         <SearchBox sx={sx} {...props}>
             <SvgIcon name="search-icon" size="26" />
             <SearchInput
                 type="text"
-                placeholder="Search..."
+                placeholder={t("nav.search")}
                 sx={{ mx: 1 }}
                 onChange={handleChange}
             />
