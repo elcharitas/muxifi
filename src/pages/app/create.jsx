@@ -4,7 +4,7 @@ import { CreatePlaylistHeader, PlaylistSmallCards } from "src/components/widgets
 import { Box, Typography } from "@mui/material";
 import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
 import { buildI18n } from "src/utils/i18n";
-import { Search } from "src/layouts/app/Search";
+import { Search } from "src/components/Search";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {

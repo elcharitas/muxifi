@@ -19,7 +19,7 @@ export const Search = () => {
     return (
         <SearchBox>
             <SearchIcon />
-            <SearchInput type="text" placeholder="Search for music" />
+            <SearchInput type="text" placeholder="Search..." />
             <CloseIcon />
         </SearchBox>
     );
