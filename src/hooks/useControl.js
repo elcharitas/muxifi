@@ -8,7 +8,7 @@ export const useControl = () => {
         highRefreshRate: true,
     });
     const { ready: isPlayerReady, load, error, ...player } = useAudioPlayer({
-        src: currentTrack,
+        src: String(currentTrack.id),
         autoplay: false,
     });
 
