@@ -1,11 +1,11 @@
-import AppLayout from "src/layouts/app";
-import { RootStyle } from "src/components/styles";
+import React from "react";
 import { buildI18n } from "src/utils/i18n";
 import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
-import { CollectionCard } from "src/components/collections";
+import { RootStyle } from "src/components/styles";
+import AppLayout from "src/layouts/app";
+import ArtisteImg from "src/assets/img/artisteImg.png";
 import { PlaylistCard } from "src/components/widgets";
-import PlayListImg from "src/assets/img/trial2.png";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -13,34 +13,34 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-const PodcastPage = () => {
+const ArtistePage = () => {
     return (
-        <AppLayout title="Podcasts">
+        <AppLayout title="Artistes">
             <RootStyle>
                 <Box>
                     <Heading
                         sx={{ mb: "24px" }}
-                        title="Podcasts"
+                        title="Artistes"
                         size="modal-title"
                     />
 
                     <Grid container spacing="18px">
-                        <CollectionCard title="Favourite Episodes" sx={{ backgroundColor: "#CC0C0C" }} />
-
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
                             (item) => (
                                 <Grid
                                     item
                                     xs={12}
                                     sm={6}
+                                    md={4}
                                     lg={3}
                                     key={item}
                                 >
                                     <PlaylistCard
-                                        title="Playlist Title"
-                                        desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                        image={PlayListImg}
+                                        title="Artiste name"
+                                        desc="Artiste"
+                                        image={ArtisteImg}
                                         isCollected
+                                        sx={{ borderRadius: "50%" }}
                                     />
                                 </Grid>
                             ),
@@ -52,4 +52,4 @@ const PodcastPage = () => {
     );
 };
 
-export default PodcastPage;
+export default ArtistePage;
