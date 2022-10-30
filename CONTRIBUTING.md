@@ -6,7 +6,12 @@ These guidelines exist to ensure clean code practices are maintained whilst stil
 
 -   Ideally, contribution is access based and only [members of the team][1] have the **exclusive rights** to merge PRs without fail. Non-members would require at least 1 approval from a [team member][1] to contribute to this repo.
 
--   Ideally, All PR/Branch names should follow a general pattern `[type]/[descriptive-name]`. The accepted types include:
+- Ensure `husky` is properly installed and working
+
+-   Ideally, All branch names should follow a general pattern `[type]/[descriptive-name]`.
+-   Ideally, All commits should also follow this pattern `[type]([scope]): [some action taken]`.
+-   Ideally, PR titles should also follow a similar pattern `[type]([scope]): [some descriptive action]`.
+-   The accepted branch/commits/pr types include:
 
     -   `feat`: features additions
     -   `fix`: bug fixes
