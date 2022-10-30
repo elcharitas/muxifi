@@ -6,7 +6,6 @@ import { Heading } from "src/components";
 import { CollectionCard } from "src/components/collections";
 import { PlaylistCard } from "src/components/widgets";
 import PlayListImg from "src/assets/img/trial2.png";
-// import { useControl } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -15,8 +14,6 @@ export const getStaticProps = async ({ locale }) => ({
 });
 
 const PodcastPage = () => {
-    // const { setTrack } = useControl();
-
     return (
         <AppLayout title="Podcasts">
             <RootStyle>
@@ -43,6 +40,7 @@ const PodcastPage = () => {
                                         title="Playlist Title"
                                         desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                         image={PlayListImg}
+                                        isCollected
                                     />
                                 </Grid>
                             ),
