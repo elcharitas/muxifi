@@ -2,7 +2,7 @@
     "hero": {
         "entry": "Enjoy the Perfect Music experience.",
         "desc": "From country music to trending Afro beats, plug in to the best sounds in the world. ",
-        "cta": "Read more"
+        "cta": "Launch App"
     },
     "about": {
         "entry": "Catch up with your favourite podcasts. Join the conversation",
@@ -20,8 +20,8 @@
         "cta": "Get Started"
     },
     "features": {
-        "entry": "Everyone deserves to listen to grea Music",
-        "desc": "And it gets better when you can earn from it.",
+        "entry": "How we built MuxiFi",
+        "desc": "Maximizing the power of blockchain technology to emhance music experience.",
         "items": [
             {
                 "title": "Music",
