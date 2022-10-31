@@ -19,32 +19,30 @@ const PodcastPage = () => {
             <RootStyle>
                 <Box>
                     <Heading
-                        sx={{ mb: "24px" }}
+                        sx={{ mb: 6 }}
                         title="Podcasts"
                         size="modal-title"
                     />
 
-                    <Grid container spacing="18px">
-                        <CollectionCard title="Favourite Episodes" sx={{ backgroundColor: "#CC0C0C" }} />
+                    <Grid
+                        container
+                        spacing="18px"
+                        sx={{ "& > *": { margin: "1%!important" } }}
+                    >
+                        <CollectionCard
+                            title="Favourite Episodes"
+                            sx={{ backgroundColor: "#CC0C0C" }}
+                        />
 
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-                            (item) => (
-                                <Grid
-                                    item
-                                    xs={12}
-                                    sm={6}
-                                    lg={3}
-                                    key={item}
-                                >
-                                    <PlaylistCard
-                                        title="Playlist Title"
-                                        desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                        image={PlayListImg}
-                                        isCollected
-                                    />
-                                </Grid>
-                            ),
-                        )}
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                            <PlaylistCard
+                                key={item}
+                                title="Podcast Title"
+                                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                image={PlayListImg}
+                                isCollected
+                            />
+                        ))}
                     </Grid>
                 </Box>
             </RootStyle>
