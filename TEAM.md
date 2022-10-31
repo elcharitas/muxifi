@@ -13,7 +13,7 @@
 
 -   Daniel Onikola - [@Immortallitic][2]
 
-[0]: https://linkedin.com/in/
+[0]: https://www.linkedin.com/in/dadaoladimeji/
 [1]: https://github.com/oke-yomi
 [2]: https://github.com/Immortallitic
 [3]: https://github.com/elcharitas

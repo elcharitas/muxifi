@@ -61,7 +61,6 @@ export const SearchInput = styled("input")({
     background: "transparent",
     border: "none",
     fontWeight: 300,
-    fontSize: "16.67px",
 });
 
 export const TextBox = styled("div")(({ theme }) => ({

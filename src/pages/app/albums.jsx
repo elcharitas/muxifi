@@ -18,32 +18,22 @@ const AlbumsPage = () => {
         <AppLayout title="Artistes">
             <RootStyle>
                 <Box>
-                    <Heading
-                        sx={{ mb: "24px" }}
-                        title="Albums"
-                        size="modal-title"
-                    />
+                    <Heading sx={{ mb: 6 }} title="Albums" size="modal-title" />
 
-                    <Grid container spacing="18px">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
-                            (item) => (
-                                <Grid
-                                    item
-                                    xs={12}
-                                    sm={6}
-                                    md={4}
-                                    lg={3}
-                                    key={item}
-                                >
-                                    <PlaylistCard
-                                        title="Album name"
-                                        desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                        image={AlbumImg}
-                                        isCollected
-                                    />
-                                </Grid>
-                            ),
-                        )}
+                    <Grid
+                        container
+                        spacing="18px"
+                        sx={{ "& > *": { margin: "1%!important" } }}
+                    >
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                            <PlaylistCard
+                                key={item}
+                                title="Album name"
+                                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                image={AlbumImg}
+                                isCollected
+                            />
+                        ))}
                     </Grid>
                 </Box>
             </RootStyle>
