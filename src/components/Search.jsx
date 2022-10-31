@@ -10,7 +10,7 @@ const SearchBox = styled(Box)(({ theme }) => ({
     justifyContent: "space-between",
     alignItems: "center",
     width: 300,
-    padding: "10px 14px",
+    padding: "8px 12px",
     borderRadius: 48,
 }));
 
