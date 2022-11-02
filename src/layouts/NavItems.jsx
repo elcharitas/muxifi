@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { Anchor, Button, Stackable } from "src/components";
 
-export const NavItems = ({ items }) => {
+export const NavItems = ({ items, sx }) => {
     const router = useRouter();
     return (
-        <Stackable>
+        <Stackable sx={sx}>
             {items?.map((item) => (
                 <Button
                     key={item.href}

@@ -58,6 +58,7 @@ const Navbar = ({ onOpenSidebar }) => {
                             href: "/app/albums",
                         },
                     ]}
+                    sx={{ display: { xs: "none", md: "flex" } }}
                 />
 
                 <Stack
@@ -65,7 +66,7 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    <Search />
+                    <Search sx={{ display: { xs: "none", md: "flex" } }} />
                     <ConnectButton />
                 </Stack>
             </ToolbarStyle>
