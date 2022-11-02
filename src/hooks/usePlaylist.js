@@ -23,7 +23,7 @@ export const usePlaylist = () => {
     return {
         playlist: db,
         ...rest,
-        records: db?.query((doc) => doc.address === address),
+        created: db?.query((doc) => doc.address === address),
         addPlaylist,
         getPlaylist,
     };
