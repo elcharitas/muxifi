@@ -36,14 +36,14 @@ const createDb = async (path, orbit, opts, refreshDb) => {
     await refreshDb(db);
 };
 
-export const useOrbitDb = (path, opts = {}) => {
+export const useOrbitDb = (path, { handleError, ...opts }) => {
     const orbit = useContext(orbitContext);
     const [records, setRecords] = useState(null);
     const [orbitDb, setDb] = useState(null);
 
     useEffect(() => {
         if (!path) {
-            throw new Error("Database Path is required!");
+            return handleError?.("No path provided");
         }
 
         const refreshDb = async (db) => {
@@ -73,7 +73,7 @@ export const useOrbitDb = (path, opts = {}) => {
                 orbitDb.close();
             }
         };
-    }, [orbit, path, opts, orbitDb]);
+    }, [orbit, path, opts, orbitDb, handleError]);
 
     const state = { orbit, db: orbitDb, records };
     if (orbitDb && orbitDb.type === "counter") {
