@@ -5,7 +5,7 @@ import { useControl } from "src/hooks";
 import { Button } from "src/components/Button";
 import { Heading } from "src/components/Heading";
 import PlayListImg from "src/assets/img/trial2.png";
-import { PlaylistCard } from "./PlaylistCard";
+import { ItemCard } from "./ItemCard";
 
 const HeadingWrapper = styled("div")({
     display: "flex",
@@ -44,7 +44,7 @@ export const PlayList = ({ title, size }) => {
                 sx={{ "& > *": { margin: "1%!important" } }}
             >
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                    <PlaylistCard
+                    <ItemCard
                         key={item}
                         title="Playlist Title"
                         desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."

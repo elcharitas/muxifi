@@ -12,7 +12,7 @@ const Textbox = styled(Typography)({
     fontSize: { xs: 14, md: 18 },
 });
 
-export const PlaylistItem = ({ title }) => (
+export const ItemBoard = ({ title }) => (
     <Grid item xs={12} sm={4} md={3}>
         <RootWidgetStyle sx={{ width: { xs: "100%", md: 300 } }}>
             <Image alt="" src={Img} width="70" height="70" />

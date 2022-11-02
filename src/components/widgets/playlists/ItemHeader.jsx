@@ -36,7 +36,7 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const CreatePlaylistHeader = () => {
+export const ItemHeader = () => {
     const [isHover, setIsHover] = useState(false);
     const onMouseEnter = () => setIsHover(true);
     const onMouseLeave = () => setIsHover(false);
@@ -61,14 +61,23 @@ export const CreatePlaylistHeader = () => {
                 </IconBox>
 
                 <GridItemTwo>
-                    <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>Owner</Typography>
-                    <Typography variant="h3" sx={{ fontSize: 60, fontWeight: 700 }}>Playlist Name</Typography>
+                    <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>
+                        Owner
+                    </Typography>
+                    <Typography
+                        variant="h3"
+                        sx={{ fontSize: 60, fontWeight: 700 }}
+                    >
+                        Playlist Name
+                    </Typography>
                     <Text
                         sx={{
                             color: "tertiary.main",
                             marginBottom: "3px",
                         }}
-                    >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    >
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
                     </Text>
 
                     <Box sx={{ display: "flex" }}>
@@ -99,7 +108,7 @@ export const CreatePlaylistHeader = () => {
                             },
                         }}
                     >
-                    + Collect Playlist
+                        + Collect Playlist
                     </Button>
                 </GridItemThree>
             </GridContainer>

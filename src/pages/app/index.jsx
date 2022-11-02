@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
 import { RootStyle } from "src/components/styles";
-import { PlayList, PlaylistItem } from "src/components/widgets";
+import { PlayList, ItemBoard } from "src/components/widgets";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
 
@@ -22,11 +22,9 @@ const AppHomePage = () => {
                         size="hero-title"
                     />
                     <Grid container spacing="13px">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(
-                            (item) => (
-                                <PlaylistItem title="Recent Playlist" key={item} />
-                            ),
-                        )}
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                            <ItemBoard title="Recent Playlist" key={item} />
+                        ))}
                     </Grid>
                 </Box>
 
