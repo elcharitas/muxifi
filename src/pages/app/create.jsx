@@ -12,16 +12,16 @@ export const getStaticProps = async ({ locale }) => ({
 
 const CreatePlaylistPage = () => {
     const router = useRouter();
-    const playlist = usePlaylist();
+    const { db: playlist } = usePlaylist();
 
     const onNavigate = () => {
         if (playlist) {
             const newId = uid(20);
             playlist.put({
-                _id: newId,
+                id: newId,
                 title: "Playlist Name",
             });
-            router.push(`/playlist/${newId}`);
+            router.push(`/app/playlists/${newId}`);
         }
         return !!playlist;
     };
