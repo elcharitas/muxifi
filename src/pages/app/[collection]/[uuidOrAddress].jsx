@@ -1,10 +1,11 @@
+import React from "react";
 import AppLayout from "src/layouts/app";
-import { RootStyle } from "src/components/styles";
-import { ItemHeader, ItemBoardSmall } from "src/components/widgets";
-import { Box, Typography } from "@mui/material";
-import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
 import { buildI18n } from "src/utils/i18n";
-import { Search } from "src/components/Search";
+import { Box, Typography } from "@mui/material";
+import { Search } from "src/components";
+import { RootStyle } from "src/components/styles";
+import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
+import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -12,15 +13,17 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-const CreateHomePage = () => {
+export const getStaticPaths = async () => {
+    return {
+        paths: [],
+        fallback: true,
+    };
+};
+
+const CollectionListing = () => {
     return (
-        <AppLayout title="Create Playlist">
-            <RootStyle
-                sx={{
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                }}
-            >
+        <AppLayout title="Artistes">
+            <RootStyle>
                 <ItemHeader />
 
                 <Box sx={{ padding: "0 36px" }}>
@@ -50,4 +53,4 @@ const CreateHomePage = () => {
     );
 };
 
-export default CreateHomePage;
+export default CollectionListing;

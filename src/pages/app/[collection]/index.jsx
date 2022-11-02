@@ -13,7 +13,17 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-const PodcastPage = () => {
+export const getStaticPaths = async () => {
+    const collections = ["albums", "artists", "podcasts", "playlists"];
+    return {
+        paths: collections.map((collection) => ({
+            params: { collection },
+        })),
+        fallback: false,
+    };
+};
+
+const CollectionsPage = () => {
     return (
         <AppLayout title="Podcasts">
             <RootStyle>
@@ -50,4 +60,4 @@ const PodcastPage = () => {
     );
 };
 
-export default PodcastPage;
+export default CollectionsPage;
