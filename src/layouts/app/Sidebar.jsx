@@ -19,7 +19,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
     const { pathname, push } = useRouter();
     const { openConnectModal } = useConnectModal();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-    const { db: playlist } = usePlaylist();
+    const { playlist } = usePlaylist();
 
     useEffect(() => {
         if (isOpenSidebar) {

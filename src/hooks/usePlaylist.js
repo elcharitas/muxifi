@@ -4,16 +4,14 @@ import { useOrbitDb } from "./useOrbitDB";
 
 export const usePlaylist = () => {
     const { address } = useAccount();
-    const { db: muxifiDb } = useOrbitDb(CONFIG.ORBIT.DEFAULT_PATH, {
-        type: "keyvalue",
-        public: true,
-        create: true,
-    });
-
-    const dbName = muxifiDb?.get(address) || address;
-    return useOrbitDb(dbName, {
+    const { db, ...rest } = useOrbitDb(CONFIG.ORBIT.DEFAULT_PATH, {
         type: "docstore",
         public: true,
-        create: true,
     });
+
+    return {
+        playlist: db,
+        ...rest,
+        records: db?.query((doc) => doc.address === address),
+    };
 };
