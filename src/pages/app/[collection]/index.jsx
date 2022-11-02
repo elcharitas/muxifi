@@ -14,7 +14,7 @@ export const getStaticProps = async ({ locale }) => ({
 });
 
 export const getStaticPaths = async () => {
-    const collections = ["albums", "artists", "podcasts", "playlists"];
+    const collections = ["albums", "artistes", "podcasts", "playlists"];
     return {
         paths: collections.map((collection) => ({
             params: { collection },
