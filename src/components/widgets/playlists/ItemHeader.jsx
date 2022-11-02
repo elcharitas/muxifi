@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
+import { BasicModal } from "src/layouts/app/Modal";
+import { IconBox } from "src/components/styles";
+
 import EditIcon from "src/assets/svgs/edit-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
 import NoteIcon from "src/assets/svgs/note-icon.svg";
 import Dots from "src/assets/svgs/dots.svg";
-import { BasicModal } from "src/layouts/app/Modal";
-import { IconBox } from "src/components/styles";
 
 const GridContainer = styled("div")({
     display: "grid",
@@ -37,10 +38,6 @@ const Text = styled("p")(({ theme }) => ({
 }));
 
 export const ItemHeader = () => {
-    const [isHover, setIsHover] = useState(false);
-    const onMouseEnter = () => setIsHover(true);
-    const onMouseLeave = () => setIsHover(false);
-
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -49,15 +46,28 @@ export const ItemHeader = () => {
         <Box>
             <GridContainer onClick={handleOpen}>
                 <IconBox
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
                     sx={{
                         position: "absolute",
                         left: "36px",
                         top: "72px",
+                        "svg:first-of-type": {
+                            display: "block",
+                        },
+                        "svg:last-child": {
+                            display: "none",
+                        },
+                        "&:hover": {
+                            "svg:first-of-type": {
+                                display: "none",
+                            },
+                            "svg:last-child": {
+                                display: "block",
+                            },
+                        },
                     }}
                 >
-                    {isHover ? <EditIcon /> : <NoteIcon />}
+                    <EditIcon />
+                    <NoteIcon />
                 </IconBox>
 
                 <GridItemTwo>
