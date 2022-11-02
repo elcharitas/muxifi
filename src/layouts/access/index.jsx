@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 import { Box, Typography } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Button } from "src/components";
 import AppLayout from "../app";
 
 const AccessLayout = ({ onNavigate, title, children }) => {
-    const [hasAccess, setHasAccess] = useState(false);
+    const { address } = useAccount();
+    const [hasAccess, setHasAccess] = useState(true);
     const { openConnectModal } = useConnectModal();
+
+    useEffect(() => {
+        if (address) {
+            setHasAccess(true);
+        }
+    }, [address]);
 
     useEffect(() => {
         Promise.resolve(onNavigate?.())
             .then((access) => {
-                if (!access) openConnectModal();
+                if (!access) openConnectModal?.();
                 else setHasAccess(true);
             })
             .catch(openConnectModal);
