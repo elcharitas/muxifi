@@ -6,6 +6,7 @@ import { Heading } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemCard } from "src/components/widgets";
 import AlbumImg from "src/assets/img/albumImg.png";
+import { CollectionCard } from "src/components/collections";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -25,6 +26,10 @@ const AlbumsPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
+                        <CollectionCard
+                            title="Favorite Episodes"
+                            sx={{ backgroundColor: "#CC0C0C" }}
+                        />
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
                             <ItemCard
                                 key={item}

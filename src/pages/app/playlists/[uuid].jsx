@@ -5,7 +5,6 @@ import { Box, Typography } from "@mui/material";
 import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
 import { buildI18n } from "src/utils/i18n";
 import { Search } from "src/components/Search";
-import { usePlaylist } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -14,7 +13,6 @@ export const getStaticProps = async ({ locale }) => ({
 });
 
 const CreateHomePage = () => {
-    const records = usePlaylist();
     return (
         <AppLayout title="Create Playlist">
             <RootStyle

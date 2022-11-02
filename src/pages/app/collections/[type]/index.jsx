@@ -30,7 +30,7 @@ const PodcastPage = () => {
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
                         <CollectionCard
-                            title="Favourite Episodes"
+                            title="Favorite Episodes"
                             sx={{ backgroundColor: "#CC0C0C" }}
                         />
 
