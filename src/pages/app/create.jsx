@@ -16,7 +16,7 @@ const CreatePlaylistPage = () => {
 
     const onNavigate = () => {
         if (playlist) {
-            const newId = uid(20);
+            const newId = uid(32);
             playlist.put({
                 id: newId,
                 title: "Playlist Name",
