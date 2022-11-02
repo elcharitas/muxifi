@@ -9,9 +9,14 @@ export const usePlaylist = () => {
         public: true,
     });
 
+    const addPlaylist = (data) => {
+        db.put({ ...data, address });
+    };
+
     return {
         playlist: db,
         ...rest,
         records: db?.query((doc) => doc.address === address),
+        addPlaylist,
     };
 };
