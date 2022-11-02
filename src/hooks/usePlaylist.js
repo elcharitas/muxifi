@@ -10,7 +10,7 @@ export const usePlaylist = () => {
         create: true,
     });
 
-    const dbName = muxifiDb.get(address) || address;
+    const dbName = muxifiDb?.get(address) || address;
     const { records } = useOrbitDb(dbName, {
         type: "docs",
         public: true,
