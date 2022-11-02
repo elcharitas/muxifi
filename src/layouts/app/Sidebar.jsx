@@ -19,7 +19,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
     const { pathname, push } = useRouter();
     const { openConnectModal } = useConnectModal();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-    const { playlist, addPlaylist } = usePlaylist();
+    const { addPlaylist } = usePlaylist();
 
     useEffect(() => {
         if (isOpenSidebar) {
@@ -82,7 +82,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     }}
                     onClick={(e) => {
                         e?.preventDefault();
-                        if (playlist) {
+                        if (!openConnectModal) {
                             const newId = uid(32);
                             addPlaylist({
                                 id: newId,
@@ -91,7 +91,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                                     "such a great playlist to listen to",
                             });
                             push(`/app/playlists/${newId}`);
-                        } else openConnectModal?.();
+                        } else openConnectModal();
                     }}
                 />
 
