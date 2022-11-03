@@ -23,12 +23,12 @@ export const getStaticPaths = async () => {
 
 const CollectionListing = () => {
     const { query } = useRouter();
-    const { getPlaylist } = usePlaylist();
-    const [collection] = getPlaylist(query.uuidOrAddress);
+    const { read } = usePlaylist();
+    const [collection] = read(query.uuidOrAddress);
     return (
-        <AppLayout title="Artistes">
+        <AppLayout title={collection.title}>
             <RootStyle>
-                <ItemHeader collection={collection || {}} />
+                <ItemHeader collection={collection} />
                 <Box sx={{ paddingTop: 14 }}>
                     <Stack justifyContent="end" direction="row">
                         <Search sx={{ mb: 3, width: 400 }} />

@@ -1,6 +1,7 @@
 {
     "lorem": "Consequat exercitation ullamco Lorem qui est occaecat culpa.",
     "lorem.title": "Lorem ipsum dolor sit amet",
+    "liked": "Liked Songs",
     "nav": {
         "home": "Home",
         "about": "About Us",
@@ -14,5 +15,20 @@
         "podcast": "Podcast",
         "search": "Search...",
         "community": "Community"
+    },
+    "podcasts": {
+        "title": "Podcasts",
+        "fav": "Favorite Episodes"
+    },
+    "albums": {
+        "title": "Albums",
+        "fav": "Favorite Albums"
+    },
+    "playlists": {
+        "title": "Playlists",
+        "fav": "Favorite Playlists"
+    },
+    "artistes": {
+        "title": "Artistes"
     }
 }

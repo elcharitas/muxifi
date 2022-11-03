@@ -16,8 +16,16 @@ export const usePlaylist = () => {
         address,
     ]);
 
-    const getPlaylist = useCallback(
-        (id) => db?.query((doc) => doc.id === id) || [{}],
+    const read = useCallback(
+        (id, collection) => {
+            if (!db) return [{}];
+            if (collection) {
+                return db.query((doc) => {
+                    return doc.id === id && doc.collection === collection;
+                });
+            }
+            return db.query((doc) => doc.id === id);
+        },
         [db],
     );
 
@@ -26,6 +34,6 @@ export const usePlaylist = () => {
         ...rest,
         created: db?.query((doc) => doc.address === address),
         addPlaylist,
-        getPlaylist,
+        read,
     };
 };

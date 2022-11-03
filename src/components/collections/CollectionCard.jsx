@@ -1,8 +1,10 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "next-i18next";
 import { PlayButton } from "src/components/ControlButton";
 import { RootWidgetStyle } from "../styles";
 
 export const CollectionCard = ({ title, sx, liked = 25 }) => {
+    const { t } = useTranslation();
     return (
         <RootWidgetStyle
             sx={{
@@ -19,11 +21,12 @@ export const CollectionCard = ({ title, sx, liked = 25 }) => {
                     alignItems: "flex-end",
                 },
             }}
+            href="/app"
         >
             <Box>
                 <Typography variant="modal-title">{title}</Typography>
                 <Typography sx={{ fontWeight: 500 }}>
-                    {liked} Liked Songs
+                    {liked} {t("liked")}
                 </Typography>
             </Box>
             <div className="root-btn">

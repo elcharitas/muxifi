@@ -11,7 +11,7 @@ export const NavItems = ({ items, sx }) => {
                     variant="nav-item"
                     component={Anchor}
                     href={item.href}
-                    className={router.pathname === item.href ? "active" : ""}
+                    className={router.asPath === item.href ? "active" : ""}
                 >
                     {item.label}
                 </Button>

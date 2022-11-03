@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import AppLayout from "src/layouts/app";
 import { RootStyle } from "src/components/styles";
 import { buildI18n } from "src/utils/i18n";
@@ -6,6 +8,7 @@ import { Heading } from "src/components";
 import { CollectionCard } from "src/components/collections";
 import { ItemCard } from "src/components/widgets";
 import PlayListImg from "src/assets/img/trial2.png";
+import { usePlaylist } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -24,13 +27,19 @@ export const getStaticPaths = async () => {
 };
 
 const CollectionsPage = () => {
+    const { query } = useRouter();
+    const { records } = usePlaylist();
+    const { t } = useTranslation();
+    const { collection } = query;
+    const lang = t(collection, { returnObjects: true });
+
     return (
-        <AppLayout title="Podcasts">
+        <AppLayout title={lang.title}>
             <RootStyle>
                 <Box>
                     <Heading
                         sx={{ mb: 6 }}
-                        title="Podcasts"
+                        title={lang.title}
                         size="modal-title"
                     />
 
@@ -39,16 +48,19 @@ const CollectionsPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
-                        <CollectionCard
-                            title="Favorite Episodes"
-                            sx={{ backgroundColor: "#CC0C0C" }}
-                        />
+                        {collection !== "artistes" && (
+                            <CollectionCard
+                                title={lang.fav}
+                                sx={{ backgroundColor: "#CC0C0C" }}
+                            />
+                        )}
 
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                        {records.map((item) => (
                             <ItemCard
-                                key={item}
-                                title="Podcast Title"
-                                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                key={item.id}
+                                href={`/app/${collection}/${item.id}`}
+                                title={item.title}
+                                desc={item.description}
                                 image={PlayListImg}
                                 isCollected
                             />
