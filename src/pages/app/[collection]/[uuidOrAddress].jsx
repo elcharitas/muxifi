@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 const CollectionListing = () => {
     const { query } = useRouter();
     const { read } = usePlaylist();
-    const [collection] = read(query.uuidOrAddress);
+    const [collection] = read(query.uuidOrAddress, query.collection);
     return (
         <AppLayout title={collection.title}>
             <RootStyle>
