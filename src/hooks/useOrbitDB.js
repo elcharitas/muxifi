@@ -42,7 +42,7 @@ const createDb = async (path, orbit, opts, refreshDb) => {
 
 export const useOrbitDb = (path, { handleError, ...opts }) => {
     const orbit = useContext(orbitContext);
-    const [records, setRecords] = useState(null);
+    const [records, setRecords] = useState([]);
     const [orbitDb, setDb] = useState(null);
 
     useEffect(() => {
@@ -73,16 +73,11 @@ export const useOrbitDb = (path, { handleError, ...opts }) => {
             createDb(path, orbit, opts, refreshDb);
         }
         return () => {
-            if (orbitDb && !orbitDb.closed) {
-                orbitDb.close();
-            }
+            // if (orbitDb && !orbitDb.closed) {
+            //     orbitDb.close();
+            // }
         };
     }, [orbit, path, opts, orbitDb, handleError]);
 
-    const state = { orbit, db: orbitDb, records };
-    if (orbitDb && orbitDb.type === "counter") {
-        state.inc = orbitDb.inc.bind(orbitDb);
-        state.value = orbitDb.value;
-    }
-    return state;
+    return { orbit, db: orbitDb, records };
 };
