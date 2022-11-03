@@ -19,7 +19,7 @@ export const usePlaylist = () => {
     const read = useCallback(
         (id, collection) => {
             if (!db) return [{}];
-            if (collection) {
+            if (collection in CONFIG.APP.COLLECTIONS) {
                 return db.query((doc) => {
                     return doc.id === id && doc.collection === collection;
                 });

@@ -9,6 +9,7 @@ import { CollectionCard } from "src/components/collections";
 import { ItemCard } from "src/components/widgets";
 import PlayListImg from "src/assets/img/trial2.png";
 import { usePlaylist } from "src/hooks";
+import { CONFIG } from "src/config";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -17,9 +18,8 @@ export const getStaticProps = async ({ locale }) => ({
 });
 
 export const getStaticPaths = async () => {
-    const collections = ["albums", "artistes", "podcasts", "playlists"];
     return {
-        paths: collections.map((collection) => ({
+        paths: CONFIG.APP.COLLECTIONS.map((collection) => ({
             params: { collection },
         })),
         fallback: false,
