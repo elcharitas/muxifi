@@ -16,9 +16,10 @@ export const usePlaylist = () => {
         address,
     ]);
 
-    const getPlaylist = useCallback((id) => db?.query((doc) => doc.id === id), [
-        db,
-    ]);
+    const getPlaylist = useCallback(
+        (id) => db?.query((doc) => doc.id === id) || [{}],
+        [db],
+    );
 
     return {
         playlist: db,
