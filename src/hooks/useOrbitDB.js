@@ -14,7 +14,11 @@ const createDb = async (path, orbit, opts, refreshDb) => {
                 : { write: [orbit.identity.id] }),
         },
     };
-    const dbAddress = await orbit.determineAddress(path, options.type, options);
+    const dbAddress = await Promise.resolve(
+        path.split("/").length === 1
+            ? orbit.determineAddress(path, options.type, options)
+            : path,
+    );
 
     const db = await orbit.open(dbAddress, options);
 
