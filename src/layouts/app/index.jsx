@@ -22,9 +22,7 @@ const Wrapper = styled("div")(({ theme }) => ({
     marginTop: 60,
     paddingBottom: theme.spacing(10),
     [theme.breakpoints.up("lg")]: {
-        paddingTop: 80,
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(2),
+        padding: "50px 0",
     },
 }));
 

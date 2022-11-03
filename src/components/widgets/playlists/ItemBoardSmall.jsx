@@ -1,13 +1,12 @@
 import { Button } from "src/components/Button";
 import PlaylistImg from "src/assets/img/playListImg.png";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 export const ItemBoardSmall = () => {
     return (
-        <Paper
+        <Box
             sx={{
-                border: "0.5px solid #2B3530",
                 backgroundColor: "#010604",
                 display: "flex",
                 padding: "12px 36px",
@@ -56,6 +55,6 @@ export const ItemBoardSmall = () => {
                     </Button>
                 </div>
             </Box>
-        </Paper>
+        </Box>
     );
 };
