@@ -80,11 +80,11 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     labelProps={{
                         fontWeight: "bold",
                     }}
-                    onClick={(e) => {
+                    onClick={async (e) => {
                         e?.preventDefault();
                         if (!openConnectModal) {
                             const newId = uid(32);
-                            addPlaylist({
+                            await addPlaylist({
                                 id: newId,
                                 title: "Playlist Name",
                                 description:
