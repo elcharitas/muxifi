@@ -4,7 +4,15 @@ import { Button } from "src/components/Button";
 import { ImgStyle, RootWidgetStyle } from "src/components/styles";
 import { PlayButton } from "src/components";
 
-export const PlaylistCard = ({ title, href, desc, image, handlePlay, isCollected, sx }) => {
+export const ItemCard = ({
+    title,
+    href,
+    desc,
+    image,
+    handlePlay,
+    isCollected,
+    sx,
+}) => {
     const { t } = useTranslation("playlist");
     return (
         <RootWidgetStyle
@@ -38,10 +46,9 @@ export const PlaylistCard = ({ title, href, desc, image, handlePlay, isCollected
                             }}
                             variant="text"
                         >
-                        + {t("collect")}.
+                            + {t("collect")}.
                         </Button>
                     )}
-
                 </Box>
             </Box>
         </RootWidgetStyle>

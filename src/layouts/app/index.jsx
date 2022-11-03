@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { styled, Box } from "@mui/material";
 import { AudioPlayerProvider } from "react-use-audio-player";
+import { useIsMounted, useIsClient } from "usehooks-ts";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import ControlBar from "./ControlBar";
@@ -22,33 +23,36 @@ const Wrapper = styled("div")(({ theme }) => ({
     marginTop: 60,
     paddingBottom: theme.spacing(10),
     [theme.breakpoints.up("lg")]: {
-        paddingTop: 80,
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(2),
+        padding: "50px 0",
     },
 }));
 
 const AppLayout = ({ title = "", children }) => {
+    const isMounted = useIsMounted();
+    const isClient = useIsClient();
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     return (
-        <>
-            <Head>
-                <title>{`${title} | MuxiFi`}</title>
-            </Head>
-            <Box>
-                <RootStyle>
-                    <Navbar onOpenSidebar={() => setOpenSidebar(true)} />
-                    <AudioPlayerProvider>
-                        <ControlBar />
-                        <Sidebar
-                            isOpenSidebar={isOpenSidebar}
-                            onCloseSidebar={() => setOpenSidebar(false)}
-                        />
-                        <Wrapper>{children}</Wrapper>
-                    </AudioPlayerProvider>
-                </RootStyle>
-            </Box>
-        </>
+        isMounted
+        && isClient && (
+            <>
+                <Head>
+                    <title>{`${title} | MuxiFi`}</title>
+                </Head>
+                <Box>
+                    <RootStyle>
+                        <Navbar onOpenSidebar={() => setOpenSidebar(true)} />
+                        <AudioPlayerProvider>
+                            <ControlBar />
+                            <Sidebar
+                                isOpenSidebar={isOpenSidebar}
+                                onCloseSidebar={() => setOpenSidebar(false)}
+                            />
+                            <Wrapper>{children}</Wrapper>
+                        </AudioPlayerProvider>
+                    </RootStyle>
+                </Box>
+            </>
+        )
     );
 };
 

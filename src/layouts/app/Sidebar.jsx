@@ -1,7 +1,10 @@
 import { useEffect } from "react";
+import { uid } from "radash";
 import { useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import { useMediaQuery, Box, Drawer, Stack } from "@mui/material";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { usePlaylist } from "src/hooks";
 import { Anchor, SvgIcon } from "src/components";
 import { CONFIG } from "src/config";
 
@@ -13,8 +16,10 @@ const RootStyle = styled("div")(({ theme }) => ({
 }));
 
 const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
-    const { pathname } = useRouter();
+    const { pathname, push } = useRouter();
+    const { openConnectModal } = useConnectModal();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+    const { addPlaylist } = usePlaylist();
 
     useEffect(() => {
         if (isOpenSidebar) {
@@ -61,7 +66,6 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     icon={`add-square${
                         pathname === "/app/create" ? "-selected" : ""
                     }`}
-                    href="/app/create"
                     label="Create Playlist"
                     sx={{
                         fontSize: "18px",
@@ -75,6 +79,19 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                     }}
                     labelProps={{
                         fontWeight: "bold",
+                    }}
+                    onClick={async (e) => {
+                        e?.preventDefault();
+                        if (!openConnectModal) {
+                            const newId = uid(32);
+                            await addPlaylist({
+                                id: newId,
+                                title: "Playlist Name",
+                                description:
+                                    "such a great playlist to listen to",
+                            });
+                            push(`/app/playlists/${newId}`);
+                        } else openConnectModal();
                     }}
                 />
 

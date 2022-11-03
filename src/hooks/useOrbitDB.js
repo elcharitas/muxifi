@@ -14,7 +14,11 @@ const createDb = async (path, orbit, opts, refreshDb) => {
                 : { write: [orbit.identity.id] }),
         },
     };
-    const dbAddress = await orbit.determineAddress(path, options.type, options);
+    const dbAddress = await Promise.resolve(
+        path.split("/").length === 1
+            ? orbit.determineAddress(path, options.type, options)
+            : path,
+    );
 
     const db = await orbit.open(dbAddress, options);
 
@@ -36,14 +40,14 @@ const createDb = async (path, orbit, opts, refreshDb) => {
     await refreshDb(db);
 };
 
-export const useOrbitDb = (path, opts = {}) => {
+export const useOrbitDb = (path, { handleError, ...opts }) => {
     const orbit = useContext(orbitContext);
-    const [records, setRecords] = useState(null);
+    const [records, setRecords] = useState([]);
     const [orbitDb, setDb] = useState(null);
 
     useEffect(() => {
         if (!path) {
-            throw new Error("Database Path is required!");
+            return handleError?.("No path provided");
         }
 
         const refreshDb = async (db) => {
@@ -69,16 +73,11 @@ export const useOrbitDb = (path, opts = {}) => {
             createDb(path, orbit, opts, refreshDb);
         }
         return () => {
-            if (orbitDb && !orbitDb.closed) {
-                orbitDb.close();
-            }
+            // if (orbitDb && !orbitDb.closed) {
+            //     orbitDb.close();
+            // }
         };
-    }, [orbit, path, opts, orbitDb]);
+    }, [orbit, path, opts, orbitDb, handleError]);
 
-    const state = { orbit, db: orbitDb, records };
-    if (orbitDb && orbitDb.type === "counter") {
-        state.inc = orbitDb.inc.bind(orbitDb);
-        state.value = orbitDb.value;
-    }
-    return state;
+    return { orbit, db: orbitDb, records };
 };

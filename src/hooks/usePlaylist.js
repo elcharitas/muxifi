@@ -1,21 +1,39 @@
+import { useCallback } from "react";
 import { CONFIG } from "src/config";
 import { useAccount } from "wagmi";
 import { useOrbitDb } from "./useOrbitDB";
 
 export const usePlaylist = () => {
     const { address } = useAccount();
-    const { records: muxifiDb } = useOrbitDb(CONFIG.ORBIT.DEFAULT_PATH, {
-        type: "keyvalue",
+    const { db, ...rest } = useOrbitDb(CONFIG.ORBIT.DEFAULT_PATH, {
+        type: "docstore",
         public: true,
         create: true,
     });
 
-    const dbName = muxifiDb.get(address) || address;
-    const { records } = useOrbitDb(dbName, {
-        type: "docs",
-        public: true,
-        create: true,
-    });
+    const addPlaylist = useCallback((data) => db?.put({ ...data, address }), [
+        db,
+        address,
+    ]);
 
-    return records;
+    const read = useCallback(
+        (id, collection) => {
+            if (!db) return [{}];
+            if (collection in CONFIG.APP.COLLECTIONS) {
+                return db.query((doc) => {
+                    return doc.id === id && doc.collection === collection;
+                });
+            }
+            return db.query((doc) => doc.id === id);
+        },
+        [db],
+    );
+
+    return {
+        playlist: db,
+        ...rest,
+        created: db?.query((doc) => doc.address === address),
+        addPlaylist,
+        read,
+    };
 };

@@ -4,7 +4,7 @@ import { buildI18n } from "src/utils/i18n";
 import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
 import { RootStyle } from "src/components/styles";
-import { PlaylistCard } from "src/components/widgets";
+import { ItemCard } from "src/components/widgets";
 // import ArtisteImg from "src/assets/img/artisteImg.png";
 import PlayListImg from "src/assets/img/trial2.png";
 
@@ -89,7 +89,7 @@ const SearchPage = () => {
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
                         {[1, 2, 3].map((item) => (
-                            <PlaylistCard
+                            <ItemCard
                                 key={item}
                                 title="Album name"
                                 desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."

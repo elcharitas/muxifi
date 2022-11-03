@@ -57,6 +57,7 @@ const PageNavbar = ({ onOpenSidebar }) => {
                             href: "/contact",
                         },
                     ]}
+                    sx={{ display: { xs: "none", md: "flex" } }}
                 />
 
                 <Stack
