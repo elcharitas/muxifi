@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import { useTranslation } from "next-i18next";
@@ -31,9 +32,16 @@ const CollectionsPage = () => {
     const { address } = useAccount();
     const { query } = useRouter();
     const { records } = usePlaylist();
+    const [items, setItems] = useState([]);
     const { t } = useTranslation();
     const { collection } = query;
     const lang = t(collection, { returnObjects: true });
+
+    useEffect(() => {
+        if (query.collection === "playlists") {
+            setItems(records);
+        } else setItems([]);
+    }, [records, query]);
 
     return (
         <AppLayout title={lang.title}>
@@ -57,7 +65,7 @@ const CollectionsPage = () => {
                             />
                         )}
 
-                        {records.map((item) => (
+                        {items.map((item) => (
                             <ItemCard
                                 key={item.id}
                                 href={`/app/${collection}/${item.id}`}

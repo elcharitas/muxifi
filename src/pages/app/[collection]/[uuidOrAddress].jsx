@@ -1,4 +1,5 @@
 import React from "react";
+import { useAccount } from "wagmi";
 import { useRouter } from "next/router";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
@@ -22,13 +23,17 @@ export const getStaticPaths = async () => {
 };
 
 const CollectionListing = () => {
+    const { address } = useAccount();
     const { query } = useRouter();
     const { read } = usePlaylist();
     const [collection] = read(query.uuidOrAddress, query.collection);
     return (
         <AppLayout title={collection.title}>
             <RootStyle>
-                <ItemHeader collection={collection} />
+                <ItemHeader
+                    collection={collection}
+                    isOwner={collection.address === address}
+                />
                 <Box sx={{ paddingTop: 14 }}>
                     <Stack justifyContent="end" direction="row">
                         <Search sx={{ mb: 3, width: 400 }} />

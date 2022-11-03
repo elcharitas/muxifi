@@ -37,14 +37,16 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = ({ collection }) => {
+export const ItemHeader = ({ collection, isOwner }) => {
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleModal = () => {
+        if (!isOwner) return;
+        setOpen((prev) => !prev);
+    };
 
     return (
         <Box>
-            <GridContainer onClick={handleOpen}>
+            <GridContainer onClick={handleModal}>
                 <IconBox
                     sx={{
                         position: "absolute",
@@ -66,8 +68,8 @@ export const ItemHeader = ({ collection }) => {
                         },
                     }}
                 >
-                    <EditIcon />
                     <NoteIcon />
+                    <EditIcon />
                 </IconBox>
 
                 <GridItemTwo>
@@ -93,36 +95,40 @@ export const ItemHeader = ({ collection }) => {
                         <Text>3 Songs</Text>
                         <Text>16 mins 12 Secs</Text>
 
-                        <Box sx={{ display: "flex", alignItems: "center" }}>
-                            <span>
-                                <BinanceIcon />
-                            </span>
-                            <Text>12</Text>
-                        </Box>
+                        {collection.price && (
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                <span>
+                                    <BinanceIcon />
+                                </span>
+                                <Text>{collection.price}</Text>
+                            </Box>
+                        )}
                     </Box>
                 </GridItemTwo>
 
                 <GridItemThree>
-                    <Button
-                        sx={{
-                            backgroundColor: "background.default",
-                            color: "tertiary.light",
-                            borderStyle: "solid",
-                            borderWidth: "1px",
-                            borderColor: "tertiary.light",
-                            "&:hover": {
-                                border: "none",
-                                color: "tertiary.dark",
-                            },
-                        }}
-                    >
-                        + Collect Playlist
-                    </Button>
+                    {!isOwner && (
+                        <Button
+                            sx={{
+                                backgroundColor: "background.default",
+                                color: "tertiary.light",
+                                borderStyle: "solid",
+                                borderWidth: "1px",
+                                borderColor: "tertiary.light",
+                                "&:hover": {
+                                    border: "none",
+                                    color: "tertiary.dark",
+                                },
+                            }}
+                        >
+                            + Collect Playlist
+                        </Button>
+                    )}
                 </GridItemThree>
             </GridContainer>
             <BasicModal
-                onClose={handleClose}
                 open={open}
+                onClose={handleModal}
                 collection={collection}
             />
         </Box>
