@@ -7,3 +7,4 @@ export * from "./useAbi";
 export * from "./useCollection";
 export * from "./useNFTStorage";
 export * from "./usePlaylist";
+export * from "./useQuery";
