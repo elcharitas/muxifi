@@ -58,7 +58,7 @@ const CollectionsPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
-                        {collection !== "artistes" && (
+                        {lang.fav && (
                             <CollectionCard
                                 title={lang.fav}
                                 sx={{ backgroundColor: "#CC0C0C" }}
@@ -72,7 +72,7 @@ const CollectionsPage = () => {
                                 title={item.title}
                                 desc={item.description}
                                 image={PlayListImg}
-                                isCollected={item.address === address}
+                                isCollectible={item.address !== address}
                             />
                         ))}
                     </Grid>

@@ -10,7 +10,7 @@ export const ItemCard = ({
     desc,
     image,
     handlePlay,
-    isCollected,
+    isCollectible = false,
     sx,
 }) => {
     const { t } = useTranslation("playlist");
@@ -20,6 +20,9 @@ export const ItemCard = ({
                 width: { xs: "100%", md: "min-content" },
                 maxWidth: { xs: "100%", md: "min-content" },
                 justifyContent: "center",
+                "&:hover": {
+                    backgroundColor: "background.hover",
+                },
             }}
             href={href}
         >
@@ -38,7 +41,7 @@ export const ItemCard = ({
                 <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Typography variant="h5">{title}</Typography>
                     <Typography variant="body2">{desc}</Typography>
-                    {!isCollected && (
+                    {!isCollectible && (
                         <Button
                             sx={{
                                 borderRadius: 1,

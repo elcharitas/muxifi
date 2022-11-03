@@ -7,6 +7,9 @@ const INITIAL_STATE = {
         playlist: 0,
         repeat: false,
         shuffle: false,
+        playing: false,
+        current: 0,
+        volume: 0,
     },
     storage: {
         path: "",
