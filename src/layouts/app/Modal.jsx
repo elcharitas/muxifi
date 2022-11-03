@@ -4,7 +4,12 @@ import NoteIcon from "src/assets/svgs/note-icon.svg";
 import CloseIcon from "src/assets/svgs/close-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
 import { Button } from "src/components";
-import { IconBox, MessageInput, SearchInput, TextBox } from "src/components/styles";
+import {
+    IconBox,
+    MessageInput,
+    SearchInput,
+    TextBox,
+} from "src/components/styles";
 
 const style = {
     position: "absolute",
@@ -26,7 +31,7 @@ const NumberBox = styled("div")({
     marginRight: "8px",
 });
 
-export const BasicModal = ({ onClose, open }) => {
+export const BasicModal = ({ onClose, open, collection }) => {
     return (
         <div>
             <Modal
@@ -36,10 +41,8 @@ export const BasicModal = ({ onClose, open }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography
-                        variant="modal-title"
-                        marginBottom="48"
-                    >Edit Playlist
+                    <Typography variant="modal-title" marginBottom="48">
+                        Edit Playlist
                     </Typography>
 
                     <Box
@@ -56,12 +59,22 @@ export const BasicModal = ({ onClose, open }) => {
 
                         <Box sx={{ width: "418px", marginLeft: "36px" }}>
                             <TextBox>
-                                <SearchInput type="text" placeholder="My Playlist" sx={{ "&::placeholder": { color: "#AAAEAC" } }} />
+                                <SearchInput
+                                    type="text"
+                                    placeholder="My Playlist"
+                                    value={collection.title}
+                                    sx={{
+                                        "&::placeholder": { color: "#AAAEAC" },
+                                    }}
+                                />
                                 <CloseIcon />
                             </TextBox>
 
                             <TextBox sx={{ alignItems: "flex-start" }}>
-                                <MessageInput placeholder="Add an optional description" />
+                                <MessageInput
+                                    value={collection.description}
+                                    placeholder="Add an optional description"
+                                />
                                 <CloseIcon />
                             </TextBox>
 
@@ -77,16 +90,21 @@ export const BasicModal = ({ onClose, open }) => {
                             >
                                 <NumberBox>
                                     <BinanceIcon />
-                                    <SearchInput type="number" placeholder="12" />
+                                    <SearchInput
+                                        type="number"
+                                        placeholder="12"
+                                    />
                                 </NumberBox>
 
-                                <Button>Create Playlist
-                                </Button>
+                                <Button>Save Playlist</Button>
                             </TextBox>
                         </Box>
                     </Box>
 
-                    <Typography variant="body2">By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.
+                    <Typography variant="body2">
+                        By proceeding, you agree to give Muxifi access to the
+                        image you choose to upload. Please make sure you have
+                        the right to upload the image.
                     </Typography>
                 </Box>
             </Modal>

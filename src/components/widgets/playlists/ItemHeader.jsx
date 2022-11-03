@@ -3,11 +3,11 @@ import { Box, styled, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
 import { BasicModal } from "src/layouts/app/Modal";
 import { IconBox } from "src/components/styles";
+import { formatAddress } from "src/utils";
 
 import EditIcon from "src/assets/svgs/edit-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
 import NoteIcon from "src/assets/svgs/note-icon.svg";
-import Dots from "src/assets/svgs/dots.svg";
 
 const GridContainer = styled("div")({
     display: "grid",
@@ -37,7 +37,7 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = () => {
+export const ItemHeader = ({ collection }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -72,13 +72,13 @@ export const ItemHeader = () => {
 
                 <GridItemTwo>
                     <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>
-                        Owner
+                        {formatAddress(collection.address)}
                     </Typography>
                     <Typography
                         variant="h3"
                         sx={{ fontSize: 60, fontWeight: 700 }}
                     >
-                        Playlist Name
+                        {collection.title}
                     </Typography>
                     <Text
                         sx={{
@@ -86,8 +86,7 @@ export const ItemHeader = () => {
                             marginBottom: "3px",
                         }}
                     >
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
+                        {collection.description}
                     </Text>
 
                     <Box sx={{ display: "flex" }}>
@@ -114,7 +113,6 @@ export const ItemHeader = () => {
                             "&:hover": {
                                 border: "none",
                                 color: "tertiary.dark",
-                                // FIXME: enure to remove this
                             },
                         }}
                     >
@@ -122,19 +120,11 @@ export const ItemHeader = () => {
                     </Button>
                 </GridItemThree>
             </GridContainer>
-            <BasicModal onClose={handleClose} open={open} />
-
-            <Box
-                sx={{
-                    height: 270,
-                    padding: "66px",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-end",
-                }}
-            >
-                <Dots />
-            </Box>
+            <BasicModal
+                onClose={handleClose}
+                open={open}
+                collection={collection}
+            />
         </Box>
     );
 };

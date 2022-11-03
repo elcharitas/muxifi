@@ -1,11 +1,12 @@
 import React from "react";
+import { useRouter } from "next/router";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
-import { Box, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
-import BrokenClose from "src/assets/svgs/broken-close-icon.svg";
+import { usePlaylist } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -21,28 +22,17 @@ export const getStaticPaths = async () => {
 };
 
 const CollectionListing = () => {
+    const { query } = useRouter();
+    const { getPlaylist } = usePlaylist();
+    const [collection] = getPlaylist(query.uuidOrAddress);
     return (
         <AppLayout title="Artistes">
             <RootStyle>
-                <ItemHeader />
-
-                <Box sx={{ padding: "0 36px" }}>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            padding: "43px 0",
-                            borderTop: "1px solid #2B3530",
-                        }}
-                    >
-                        <Typography variant="hero-title" color="tertiary.light">
-                            Let find more songs for your playlist
-                        </Typography>
-                        <BrokenClose />
-                    </Box>
-
-                    <Search sx={{ mb: 3, width: 600 }} />
+                <ItemHeader collection={collection || {}} />
+                <Box sx={{ paddingTop: 14 }}>
+                    <Stack justifyContent="end" direction="row">
+                        <Search sx={{ mb: 3, width: 400 }} />
+                    </Stack>
 
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
                         <ItemBoardSmall key={item} />
