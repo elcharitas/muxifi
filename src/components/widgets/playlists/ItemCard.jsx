@@ -3,8 +3,10 @@ import { Box, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
 import { ImgStyle, RootWidgetStyle } from "src/components/styles";
 import { PlayButton } from "src/components";
+import { useControl } from "src/hooks";
 
 export const ItemCard = ({
+    id = "",
     title,
     href,
     desc,
@@ -14,6 +16,7 @@ export const ItemCard = ({
     sx,
 }) => {
     const { t } = useTranslation("playlist");
+    const { setTrack } = useControl();
     return (
         <RootWidgetStyle
             sx={{
@@ -32,7 +35,9 @@ export const ItemCard = ({
                     sx={{ mb: 1, width: { xs: 250, md: 200, ...sx } }}
                 >
                     <div className="root-btn">
-                        <PlayButton onClick={handlePlay} />
+                        <PlayButton
+                            onClick={handlePlay || (() => setTrack("id", id))}
+                        />
                     </div>
                 </ImgStyle>
                 <Box sx={{ display: { xs: "flex", md: "none" } }}>

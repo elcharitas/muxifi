@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
-import { BasicModal } from "src/layouts/app/Modal";
+import { ItemModal } from "src/components/widgets/playlists/ItemModal";
 import { IconBox } from "src/components/styles";
 import { formatAddress } from "src/utils";
 
@@ -126,7 +126,7 @@ export const ItemHeader = ({ collection, isOwner }) => {
                     )}
                 </GridItemThree>
             </GridContainer>
-            <BasicModal
+            <ItemModal
                 open={open}
                 onClose={handleModal}
                 collection={collection}

@@ -45,7 +45,7 @@ export const useControl = () => {
     }, [volume, currentTrack]);
 
     return {
-        ready,
+        ready: ready && currentTrack.id !== 0,
         track: {
             id: Number(currentTrack.id),
             name: "Music Name",

@@ -68,6 +68,7 @@ const CollectionsPage = () => {
                         {items.map((item) => (
                             <ItemCard
                                 key={item.id}
+                                id={item.id}
                                 href={`/app/${collection}/${item.id}`}
                                 title={item.title}
                                 desc={item.description}
