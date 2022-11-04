@@ -30,24 +30,29 @@ const Wrapper = styled("div")(({ theme }) => ({
 const AppLayout = ({ title = "", children }) => {
     const isMounted = useIsMounted();
     const isClient = useIsClient();
+    const show = isMounted && isClient;
     const [isOpenSidebar, setOpenSidebar] = useState(false);
+    const [search, setSearch] = useState("");
     return (
-        isMounted
-        && isClient && (
+        show && (
             <>
                 <Head>
                     <title>{`${title} | MuxiFi`}</title>
                 </Head>
                 <Box>
                     <RootStyle>
-                        <Navbar onOpenSidebar={() => setOpenSidebar(true)} />
+                        <Navbar
+                            onOpenSidebar={() => setOpenSidebar(true)}
+                            search={search}
+                            setSearch={setSearch}
+                        />
                         <AudioPlayerProvider>
                             <ControlBar />
                             <Sidebar
                                 isOpenSidebar={isOpenSidebar}
                                 onCloseSidebar={() => setOpenSidebar(false)}
                             />
-                            <Wrapper>{children}</Wrapper>
+                            <Wrapper>{search ? null : children}</Wrapper>
                         </AudioPlayerProvider>
                     </RootStyle>
                 </Box>

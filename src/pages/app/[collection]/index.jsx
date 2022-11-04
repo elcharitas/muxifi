@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAccount } from "wagmi";
 import { useTranslation } from "next-i18next";
 import AppLayout from "src/layouts/app";
 import { RootStyle } from "src/components/styles";
@@ -29,7 +28,6 @@ export const getStaticPaths = async () => {
 };
 
 const CollectionsPage = () => {
-    const { address } = useAccount();
     const { query } = useRouter();
     const { records } = usePlaylist();
     const [items, setItems] = useState([]);
@@ -58,7 +56,7 @@ const CollectionsPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
-                        {collection !== "artistes" && (
+                        {lang.fav && (
                             <CollectionCard
                                 title={lang.fav}
                                 sx={{ backgroundColor: "#CC0C0C" }}
@@ -68,11 +66,12 @@ const CollectionsPage = () => {
                         {items.map((item) => (
                             <ItemCard
                                 key={item.id}
+                                id={item.id}
                                 href={`/app/${collection}/${item.id}`}
                                 title={item.title}
                                 desc={item.description}
                                 image={PlayListImg}
-                                isCollected={item.address === address}
+                                owner={item.address}
                             />
                         ))}
                     </Grid>

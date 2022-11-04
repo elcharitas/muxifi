@@ -31,7 +31,7 @@ const NumberBox = styled("div")({
     marginRight: "8px",
 });
 
-export const BasicModal = ({ onClose, open, collection }) => {
+export const ItemModal = ({ onClose, open, collection }) => {
     return (
         <div>
             <Modal

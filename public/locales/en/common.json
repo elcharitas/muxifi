@@ -21,12 +21,11 @@
         "fav": "Favorite Episodes"
     },
     "albums": {
-        "title": "Albums",
-        "fav": "Favorite Albums"
+        "title": "Albums"
     },
     "playlists": {
         "title": "Playlists",
-        "fav": "Favorite Playlists"
+        "fav": "Favorite Songs"
     },
     "artistes": {
         "title": "Artistes"

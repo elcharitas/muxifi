@@ -28,7 +28,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 }));
 
 const ControlBar = () => {
-    const { track, ready } = useControl();
+    const { track, setTrack, ready, repeat, shuffle, volume } = useControl();
     return (
         ready && (
             <RootStyle>
@@ -58,11 +58,24 @@ const ControlBar = () => {
                             justifyContent="center"
                             spacing={{ xs: 0.5, sm: 1.5 }}
                         >
-                            <ControlButton icon="shuffle" />
+                            <ControlButton
+                                icon="shuffle"
+                                color={shuffle ? "primary" : "secondary"}
+                                onClick={() => setTrack("shuffle", !shuffle)}
+                            />
                             <ControlButton icon="prev" />
-                            <PlayButton />
+                            <PlayButton
+                                isPlaying={track.playing}
+                                onClick={() => {
+                                    setTrack("playing", !track.playing);
+                                }}
+                            />
                             <ControlButton icon="next" />
-                            <ControlButton icon="repeat" />
+                            <ControlButton
+                                icon="repeat"
+                                color={repeat ? "primary" : "secondary"}
+                                onClick={() => setTrack("repeat", !repeat)}
+                            />
                         </Stack>
                         <Stack
                             direction="row"
@@ -72,7 +85,7 @@ const ControlBar = () => {
                         >
                             <Typography variant="body2">0:0</Typography>
                             <Slider
-                                defaultValue={track.position}
+                                value={track.position}
                                 aria-label="Disabled slider"
                                 sx={{
                                     width: 350,
@@ -82,6 +95,7 @@ const ControlBar = () => {
                                     },
                                 }}
                                 color="secondary"
+                                onChange={(e) => track.goto(e.target.value)}
                             />
                             <Typography variant="body2">0:0</Typography>
                         </Stack>
@@ -95,7 +109,7 @@ const ControlBar = () => {
                         <ControlButton icon="queue" />
                         <ControlButton icon="volume" />
                         <Slider
-                            defaultValue={30}
+                            value={volume}
                             aria-label="Disabled slider"
                             sx={{
                                 width: 100,
@@ -105,6 +119,7 @@ const ControlBar = () => {
                                 },
                             }}
                             color="secondary"
+                            onChange={(e) => track.volume(e.target.value)}
                         />
                     </Stack>
                 </ToolbarStyle>

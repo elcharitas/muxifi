@@ -11,10 +11,21 @@ export const usePlaylist = () => {
         create: true,
     });
 
-    const addPlaylist = useCallback((data) => db?.put({ ...data, address }), [
-        db,
-        address,
-    ]);
+    const addPlaylist = useCallback(
+        (data) => {
+            return db?.put(
+                {
+                    id: data.id,
+                    title: data.title,
+                    description: data.description,
+                    tags: data.tags || data.title.toLowerCase().split(" "),
+                    address,
+                },
+                { pin: true },
+            );
+        },
+        [db, address],
+    );
 
     const read = useCallback(
         (id, collection) => {

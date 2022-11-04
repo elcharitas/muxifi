@@ -1,25 +1,33 @@
+import { useAccount } from "wagmi";
 import { useTranslation } from "next-i18next";
 import { Box, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
 import { ImgStyle, RootWidgetStyle } from "src/components/styles";
 import { PlayButton } from "src/components";
+import { useControl } from "src/hooks";
 
 export const ItemCard = ({
+    id = "",
     title,
     href,
     desc,
     image,
     handlePlay,
-    isCollected,
+    owner,
     sx,
 }) => {
+    const { address } = useAccount();
     const { t } = useTranslation("playlist");
+    const { setTrack } = useControl();
     return (
         <RootWidgetStyle
             sx={{
                 width: { xs: "100%", md: "min-content" },
                 maxWidth: { xs: "100%", md: "min-content" },
                 justifyContent: "center",
+                "&:hover": {
+                    backgroundColor: "background.hover",
+                },
             }}
             href={href}
         >
@@ -29,7 +37,9 @@ export const ItemCard = ({
                     sx={{ mb: 1, width: { xs: 250, md: 200, ...sx } }}
                 >
                     <div className="root-btn">
-                        <PlayButton onClick={handlePlay} />
+                        <PlayButton
+                            onClick={handlePlay || (() => setTrack("id", id))}
+                        />
                     </div>
                 </ImgStyle>
                 <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -38,7 +48,7 @@ export const ItemCard = ({
                 <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Typography variant="h5">{title}</Typography>
                     <Typography variant="body2">{desc}</Typography>
-                    {!isCollected && (
+                    {owner !== address && !!address && (
                         <Button
                             sx={{
                                 borderRadius: 1,

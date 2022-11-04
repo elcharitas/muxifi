@@ -34,7 +34,7 @@ const ArtistePage = () => {
                                 title="Artiste name"
                                 desc="Artiste"
                                 image={ArtisteImg}
-                                isCollected
+                                isCollectible
                                 sx={{ borderRadius: "50%" }}
                             />
                         ))}

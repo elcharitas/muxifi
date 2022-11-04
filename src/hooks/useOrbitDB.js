@@ -23,7 +23,7 @@ const createDb = async (path, orbit, opts, refreshDb) => {
     const db = await orbit.open(dbAddress, options);
 
     db.events.on("replicate", () => {
-        // refreshDb();
+        refreshDb(db);
     });
 
     db.events.on("replicated", () => {
@@ -51,6 +51,7 @@ export const useOrbitDb = (path, { handleError, ...opts }) => {
         }
 
         const refreshDb = async (db) => {
+            await db.sync().catch(() => null);
             await db.load().catch(() => null);
             if (!orbitDb) {
                 setDb(db);
