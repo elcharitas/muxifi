@@ -7,6 +7,7 @@ export const useControl = () => {
     const { currentTrack, set, ready } = useStore("currentTrack");
     const { read } = usePlaylist();
     const [playlist] = read(currentTrack.id);
+    const currentList = playlist?.queue?.[currentTrack.current] || {};
     const { percentComplete, ...position } = useAudioPosition({
         highRefreshRate: true,
     });
@@ -17,7 +18,7 @@ export const useControl = () => {
         volume,
         ...player
     } = useAudioPlayer({
-        src: String(playlist?.queue?.[currentTrack.current]?.src),
+        src: String(currentList?.src),
         autoplay: false,
     });
 
@@ -48,10 +49,10 @@ export const useControl = () => {
         ready: ready && currentTrack.id !== 0,
         track: {
             id: Number(currentTrack.id),
-            name: "Music Name",
-            artiste: {
-                id: 1,
-                name: "Artiste",
+            name: currentList?.title || "------",
+            artiste: currentList?.artiste || {
+                id: 0,
+                name: "----",
             },
             favorite: false,
             position: percentComplete,

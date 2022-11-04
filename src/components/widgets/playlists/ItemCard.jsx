@@ -1,3 +1,4 @@
+import { useAccount } from "wagmi";
 import { useTranslation } from "next-i18next";
 import { Box, Typography } from "@mui/material";
 import { Button } from "src/components/Button";
@@ -12,9 +13,10 @@ export const ItemCard = ({
     desc,
     image,
     handlePlay,
-    isCollectible = false,
+    owner,
     sx,
 }) => {
+    const { address } = useAccount();
     const { t } = useTranslation("playlist");
     const { setTrack } = useControl();
     return (
@@ -46,7 +48,7 @@ export const ItemCard = ({
                 <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Typography variant="h5">{title}</Typography>
                     <Typography variant="body2">{desc}</Typography>
-                    {!isCollectible && (
+                    {owner !== address && !!address && (
                         <Button
                             sx={{
                                 borderRadius: 1,

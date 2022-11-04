@@ -8,6 +8,7 @@ import { formatAddress } from "src/utils";
 import EditIcon from "src/assets/svgs/edit-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
 import NoteIcon from "src/assets/svgs/note-icon.svg";
+import { useAccount } from "wagmi";
 
 const GridContainer = styled("div")({
     display: "grid",
@@ -37,7 +38,9 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = ({ collection, isOwner }) => {
+export const ItemHeader = ({ collection }) => {
+    const { address } = useAccount();
+    const isOwner = collection.address !== address;
     const [open, setOpen] = useState(false);
     const handleModal = () => {
         if (!isOwner) return;
@@ -52,24 +55,28 @@ export const ItemHeader = ({ collection, isOwner }) => {
                         position: "absolute",
                         left: "36px",
                         top: "72px",
+                        cursor: "none",
                         "svg:first-of-type": {
                             display: "block",
                         },
-                        "svg:last-child": {
-                            display: "none",
-                        },
-                        "&:hover": {
-                            "svg:first-of-type": {
+                        ...(isOwner && {
+                            cursor: "pointer",
+                            "svg:last-child": {
                                 display: "none",
                             },
-                            "svg:last-child": {
-                                display: "block",
+                            "&:hover": {
+                                "svg:first-of-type": {
+                                    display: "none",
+                                },
+                                "svg:last-child": {
+                                    display: "block",
+                                },
                             },
-                        },
+                        }),
                     }}
                 >
                     <NoteIcon />
-                    <EditIcon />
+                    {isOwner && <EditIcon />}
                 </IconBox>
 
                 <GridItemTwo>
@@ -107,7 +114,7 @@ export const ItemHeader = ({ collection, isOwner }) => {
                 </GridItemTwo>
 
                 <GridItemThree>
-                    {!isOwner && (
+                    {!isOwner && !!address && (
                         <Button
                             sx={{
                                 backgroundColor: "background.default",

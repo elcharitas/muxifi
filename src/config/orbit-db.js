@@ -5,6 +5,9 @@ export const ORBIT_CONFIG = {
         KEY: process.env.NEXT_PUBLIC_ORBITDB_IDENTITY_KEY,
     },
     get DEFAULT_PATH() {
-        return this.PATHS[0];
+        return this.PATHS[0] || "muxifi";
+    },
+    get SONGS_PATH() {
+        return this.PATHS[1] || "muxifi_songs";
     },
 };

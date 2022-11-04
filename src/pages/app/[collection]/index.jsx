@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAccount } from "wagmi";
 import { useTranslation } from "next-i18next";
 import AppLayout from "src/layouts/app";
 import { RootStyle } from "src/components/styles";
@@ -29,7 +28,6 @@ export const getStaticPaths = async () => {
 };
 
 const CollectionsPage = () => {
-    const { address } = useAccount();
     const { query } = useRouter();
     const { records } = usePlaylist();
     const [items, setItems] = useState([]);
@@ -73,7 +71,7 @@ const CollectionsPage = () => {
                                 title={item.title}
                                 desc={item.description}
                                 image={PlayListImg}
-                                isCollectible={item.address !== address}
+                                owner={item.address}
                             />
                         ))}
                     </Grid>

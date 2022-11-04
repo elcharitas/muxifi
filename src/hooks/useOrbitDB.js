@@ -23,7 +23,7 @@ const createDb = async (path, orbit, opts, refreshDb) => {
     const db = await orbit.open(dbAddress, options);
 
     db.events.on("replicate", () => {
-        // refreshDb();
+        refreshDb(db);
     });
 
     db.events.on("replicated", () => {
