@@ -51,6 +51,7 @@ export const useOrbitDb = (path, { handleError, ...opts }) => {
         }
 
         const refreshDb = async (db) => {
+            await db.sync().catch(() => null);
             await db.load().catch(() => null);
             if (!orbitDb) {
                 setDb(db);

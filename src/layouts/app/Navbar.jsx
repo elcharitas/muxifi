@@ -23,7 +23,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     },
 }));
 
-const Navbar = ({ onOpenSidebar }) => {
+const Navbar = ({ onOpenSidebar, search, setSearch }) => {
     const { t } = useTranslation();
     return (
         <RootStyle>
@@ -66,7 +66,11 @@ const Navbar = ({ onOpenSidebar }) => {
                     alignItems="center"
                     spacing={{ xs: 0.5, sm: 1.5 }}
                 >
-                    <Search sx={{ display: { xs: "none", md: "flex" } }} />
+                    <Search
+                        sx={{ display: { xs: "none", md: "flex" } }}
+                        search={search}
+                        setSearch={setSearch}
+                    />
                     <ConnectButton />
                 </Stack>
             </ToolbarStyle>

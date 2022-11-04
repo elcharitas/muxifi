@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Box, IconButton, styled } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { SearchInput } from "src/components/styles";
@@ -15,9 +14,9 @@ const SearchBox = styled(Box)(({ theme }) => ({
     borderRadius: 48,
 }));
 
-export const Search = ({ sx, handleChange, ...props }) => {
+export const Search = ({ sx, search, setSearch, ...props }) => {
     const { t } = useTranslation();
-    const [search, setSearch] = useState("");
+
     return (
         <SearchBox sx={sx} {...props}>
             <IconButton size="small">
@@ -29,7 +28,6 @@ export const Search = ({ sx, handleChange, ...props }) => {
                 value={search}
                 onChange={(event) => {
                     setSearch(event.target.value);
-                    handleChange?.(event.target.value);
                 }}
             />
             <IconButton size="small" onClick={() => setSearch("")}>
