@@ -19,7 +19,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
     const { pathname, push } = useRouter();
     const { openConnectModal } = useConnectModal();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-    const { addPlaylist } = usePlaylist();
+    const { savePlaylist } = usePlaylist();
 
     useEffect(() => {
         if (isOpenSidebar) {
@@ -84,7 +84,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         e?.preventDefault();
                         if (!openConnectModal) {
                             const newId = uid(32);
-                            await addPlaylist({
+                            await savePlaylist({
                                 id: newId,
                                 title: "Playlist Name",
                                 description:

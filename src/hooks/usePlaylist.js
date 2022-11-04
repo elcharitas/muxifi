@@ -11,7 +11,7 @@ export const usePlaylist = () => {
         create: true,
     });
 
-    const addPlaylist = useCallback(
+    const savePlaylist = useCallback(
         (data) => {
             return db?.put(
                 {
@@ -44,7 +44,7 @@ export const usePlaylist = () => {
         playlist: db,
         ...rest,
         created: db?.query((doc) => doc.address === address),
-        addPlaylist,
+        savePlaylist,
         read,
     };
 };
