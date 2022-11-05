@@ -15,12 +15,17 @@ const AuthProvider = ({ children }) => (
                 appName: CONFIG.APP.NAME,
                 disclaimer: Disclaimer,
             }}
-            theme={darkTheme({
-                accentColor: CONFIG.THEME.DEFAULT_COLOR,
-                accentColorForeground: "white",
-                fontStack: CONFIG.THEME.DEFAULT_FONT,
-                overlayBlur: "small",
-            })}
+            theme={{
+                ...darkTheme({
+                    accentColor: CONFIG.THEME.DEFAULT_COLOR,
+                    accentColorForeground: "white",
+                    fontStack: CONFIG.THEME.DEFAULT_FONT,
+                    overlayBlur: "small",
+                }),
+                fonts: {
+                    body: CONFIG.THEME.DEFAULT_FONT,
+                },
+            }}
         >
             {children}
         </RainbowKitProvider>
