@@ -5,9 +5,11 @@ import "./MuxifiAlbum.sol";
 import "./MuxifiCreator.sol";
 
 contract MuxifiMarket {
-    address public immutable muxifiCreator;
-    address public immutable muxifiAlbum;
+    address private immutable muxifiCreator;
+    address private immutable muxifiAlbum;
+    address private immutable muxifi;
     mapping(uint256 => uint256) public prices;
+    mapping(address => uint256) public balances;
 
     event PriceSet(uint256 albumId, uint256 price);
 
@@ -22,7 +24,12 @@ contract MuxifiMarket {
         _;
     }
 
-    constructor(address _muxifiCreator, address _muxifiAlbum) {
+    constructor(
+        address _muxifi,
+        address _muxifiCreator,
+        address _muxifiAlbum
+    ) {
+        muxifi = _muxifi;
         muxifiCreator = _muxifiCreator;
         muxifiAlbum = _muxifiAlbum;
     }
@@ -45,6 +52,7 @@ contract MuxifiMarket {
             album.balanceOf(album.albumOwner(_albumId), _albumId) > 1, // ensure creator can still hold an album
             "Sorry, but this album is no longer available for collection"
         );
+        balances[msg.sender] = balances[msg.sender] + msg.value;
         album.safeTransferFrom(
             album.albumOwner(_albumId),
             msg.sender,
@@ -52,5 +60,30 @@ contract MuxifiMarket {
             _amount,
             ""
         );
+    }
+
+    function withdraw(uint256 _albumId) external isCreator(_albumId) {
+        uint256 amount = balances[msg.sender];
+        require(amount > 0, "Sorry, your balance is empty");
+
+        balances[msg.sender] = 0;
+
+        (bool success, ) = payable(msg.sender).call{value: amount}("");
+        require(success, "Sorry, an error occured while paying out");
+    }
+
+    /**
+     * @dev called by an external contract to remove fees paid in
+     */
+    function withdraw() external {
+        require(
+            msg.sender == muxifi,
+            "You are not authorised to call this function"
+        );
+        (bool success, ) = payable(muxifi).call{value: address(this).balance}(
+            ""
+        );
+
+        require(success, "Something went wrong while withdrawing");
     }
 }
