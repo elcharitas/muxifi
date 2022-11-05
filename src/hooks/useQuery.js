@@ -4,6 +4,7 @@ import * as queries from "src/utils/query";
 
 export const useQuery = (query, args) => {
     return useSWR(query, async () => {
+        if (args.skip) return null;
         return queries[`get${pascal(query)}Query`]?.(args);
     });
 };

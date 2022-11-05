@@ -3,6 +3,7 @@ import { useState } from "react";
 import { styled, Box } from "@mui/material";
 import { AudioPlayerProvider } from "react-use-audio-player";
 import { useIsMounted, useIsClient } from "usehooks-ts";
+import { useQuery } from "src/hooks";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import ControlBar from "./ControlBar";
@@ -33,6 +34,13 @@ const AppLayout = ({ title = "", children }) => {
     const show = isMounted && isClient;
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     const [search, setSearch] = useState("");
+    const { data: results, error } = useQuery("matching_albums", {
+        query: search,
+        skip: !search,
+    });
+
+    console.log(results, error);
+
     return (
         show && (
             <>

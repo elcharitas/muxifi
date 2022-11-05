@@ -52,11 +52,12 @@ export const getMatchingAlbumsQuery = async ({
     filter = "global",
     pageSize = 30,
 }) => {
+    console.log(query);
     const { result, pagination, next } = await searchNFTs({
         filter,
         q: query,
         chain: chainId,
-        addresses: [CONTRACT_ADDRESSES.ALBUM, CONTRACT_ADDRESSES.PODCAST],
+        addresses: [CONTRACT_ADDRESSES.ALBUM],
         limit: pageSize,
     });
 
