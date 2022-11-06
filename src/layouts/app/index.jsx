@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled, Box } from "@mui/material";
 import { AudioPlayerProvider } from "react-use-audio-player";
 import { useIsMounted, useIsClient } from "usehooks-ts";
+import { useRouter } from "next/router";
 import { useQuery } from "src/hooks";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
@@ -34,10 +35,17 @@ const AppLayout = ({ title = "", children }) => {
     const show = isMounted && isClient;
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     const [search, setSearch] = useState("");
+    const { asPath } = useRouter();
     const { data: results } = useQuery("matching_albums", {
         query: search,
         skip: !search,
     });
+
+    useEffect(() => {
+        if (search && asPath !== "/app/search") {
+            setSearch("");
+        }
+    }, [asPath, search]);
 
     return (
         show && (
