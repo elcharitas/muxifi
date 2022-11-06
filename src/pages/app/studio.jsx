@@ -1,12 +1,15 @@
+import { useEffect, useState } from "react";
 import { useImmer } from "use-immer";
 import { Box, TextField } from "@mui/material";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { pascal } from "radash";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
 import { Button, Heading } from "src/components";
-import { useCollection, useCollectionRead } from "src/hooks";
+import { useCollection, useCollectionRead, useNFTStorage } from "src/hooks";
 import { FileUpload } from "src/components/FileUpload";
 import { useAccount } from "wagmi";
+import { CreatorModal } from "src/components/widgets/studio/CreatorModal";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -24,6 +27,7 @@ const ALBUM_FIELDS = {
 
 const StudioPage = () => {
     const { address } = useAccount();
+    const { openConnectModal } = useConnectModal();
     const [album, dispatch] = useImmer({
         title: "",
         artist: address,
@@ -33,15 +37,27 @@ const StudioPage = () => {
         audio: "",
         tags: "",
     });
+    const [albumData, setAlbumData] = useState();
     const { data: creatorData } = useCollectionRead({
-        type: "album",
-        method: "count",
-        args: [],
+        type: "creator",
+        method: "balanceOf",
+        args: [address],
     });
-    const { data: albumData } = useCollection({
+    const creatorId = creatorData?.toNumber();
+    const { metadata } = useNFTStorage(albumData);
+    const { writeAsync } = useCollection({
         method: "create",
-        args: [],
+        args: metadata?.url ? [metadata?.url, 30000] : [],
     });
+
+    useEffect(() => {
+        openConnectModal?.();
+    }, [openConnectModal]);
+
+    useEffect(() => {
+        writeAsync?.().finally(() => setAlbumData(undefined));
+    }, [writeAsync]);
+
     return (
         <AppLayout title="Creator Studio">
             <Heading
@@ -67,6 +83,12 @@ const StudioPage = () => {
                                 exts={
                                     key === "audio" ? ["mp3", "wav"] : undefined
                                 }
+                                onChange={(value) => {
+                                    dispatch((draft) => {
+                                        // eslint-disable-next-line no-param-reassign
+                                        draft[key] = value;
+                                    });
+                                }}
                             />
                         );
                     }
@@ -87,10 +109,27 @@ const StudioPage = () => {
                         />
                     );
                 })}
-                <Button variant="contained" color="primary">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                        setAlbumData({
+                            name: album.title,
+                            description: album.description,
+                            image: album.image,
+                        });
+                    }}
+                    isLoading={!!albumData}
+                >
                     Mint Album
                 </Button>
             </Box>
+            {!creatorId && (
+                <CreatorModal
+                    creator={{}}
+                    open={!creatorId && !openConnectModal}
+                />
+            )}
         </AppLayout>
     );
 };

@@ -11,7 +11,8 @@ export const useCollection = ({ method, args, type = "album" }) => {
     const { abi } = useAbi({ type });
     const { config } = usePrepareContractWrite({
         contractInterface: new ethers.utils.Interface(abi),
-        address: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
+        addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
+        onError: () => {},
         ...(abi.length && {
             functionName: method,
             args,
@@ -25,7 +26,10 @@ export const useCollectionRead = ({ method, args, type = "album" }) => {
     return useContractRead({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
-        functionName: method,
-        args,
+        onError: () => {},
+        ...(abi.length && {
+            functionName: method,
+            args,
+        }),
     });
 };
