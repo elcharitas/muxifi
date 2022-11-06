@@ -39,7 +39,7 @@ const AppLayout = ({ title = "", children }) => {
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     const [search, setSearch] = useState("");
     const { asPath } = useRouter();
-    const { data: results } = useQuery("matching_albums", {
+    const { data: results, isLoading } = useQuery("matching_albums", {
         query: search,
         skip: !search,
     });
@@ -94,8 +94,9 @@ const AppLayout = ({ title = "", children }) => {
                                                 />
                                             )) ?? (
                                                 <Typography>
-                                                    Sorry, There were no
-                                                    matching results.
+                                                    {!isLoading
+                                                        ? "Sorry, There were no matching results."
+                                                        : "Loadinf"}
                                                 </Typography>
                                             )}
                                         </Grid>
