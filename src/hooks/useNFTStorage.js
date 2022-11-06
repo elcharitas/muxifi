@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NFTStorage, File } from "nft.storage";
 import { CONFIG } from "src/config";
 
-const client = new NFTStorage({ token: CONFIG });
+const client = new NFTStorage({ token: CONFIG.WAGMI.NFT_STORAGE });
 
 export const useNFTStorage = (metadata) => {
     const [meta, setMeta] = useState(null);

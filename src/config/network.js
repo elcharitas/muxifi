@@ -34,4 +34,5 @@ export const WAGMI_CONFIG = {
     get DEFAULT_CHAIN() {
         return SUPPORTED_CHAINS[0];
     },
+    NFT_STORAGE: process.env.NEXT_PUBLIC_NFT_STORAGE_KEY,
 };
