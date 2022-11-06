@@ -32,7 +32,7 @@ const NumberBox = styled("div")({
     marginRight: "8px",
 });
 
-export const ItemModal = ({ onClose, open, collection, handleSave }) => {
+export const ItemModal = ({ onClose, open, collection, type, handleSave }) => {
     const titleRef = useRef(collection.title);
     const descriptionRef = useRef(collection.description);
     return (
@@ -100,13 +100,15 @@ export const ItemModal = ({ onClose, open, collection, handleSave }) => {
                                     borderRadius: 0,
                                 }}
                             >
-                                <NumberBox>
-                                    <BinanceIcon />
-                                    <SearchInput
-                                        type="number"
-                                        placeholder="12"
-                                    />
-                                </NumberBox>
+                                {type === "albums" && (
+                                    <NumberBox>
+                                        <BinanceIcon />
+                                        <SearchInput
+                                            type="number"
+                                            placeholder="12"
+                                        />
+                                    </NumberBox>
+                                )}
 
                                 <Button
                                     onClick={() => {

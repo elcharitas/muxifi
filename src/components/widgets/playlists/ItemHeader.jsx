@@ -38,9 +38,9 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = ({ collection, handleSave }) => {
+export const ItemHeader = ({ collection, type, handleSave }) => {
     const { address } = useAccount();
-    const isOwner = collection.address === address;
+    const isOwner = type === "playlists" && collection.address === address;
     const [open, setOpen] = useState(false);
     const handleModal = () => {
         if (!isOwner) return;
@@ -136,6 +136,7 @@ export const ItemHeader = ({ collection, handleSave }) => {
             </GridContainer>
             <ItemModal
                 open={open}
+                type={type}
                 onClose={handleModal}
                 collection={collection}
                 handleSave={handleSave}

@@ -24,13 +24,13 @@ export const getAlbumsQuery = async ({
     return { pagination, next, result: result.map((r) => r.toJSON()) };
 };
 
-export const getAlbumMetaQuery = async ({ address, id }) => {
+export const getAlbumMetaQuery = async ({ type = "album", id }) => {
     const { result } = await getNFTMetadata({
-        address,
+        address: CONTRACT_ADDRESSES[type.toUpperCase()],
         tokenId: id,
         chain: chainId,
     });
-    return result.toJSON();
+    return { result: [result.toJSON()] };
 };
 
 export const getAccountAlbumsQuery = async ({

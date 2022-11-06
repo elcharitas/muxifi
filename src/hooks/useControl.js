@@ -1,13 +1,19 @@
 import { useCallback, useEffect } from "react";
 import { useAudioPlayer, useAudioPosition } from "react-use-audio-player";
+import { useQuery } from "./useQuery";
 import { usePlaylist } from "./usePlaylist";
 import { useStore } from "./useStore";
 
 export const useControl = () => {
     const { currentTrack, set, ready } = useStore("currentTrack");
     const { read } = usePlaylist();
-    const [playlist] = read(currentTrack.id);
-    const currentList = playlist?.queue?.[currentTrack.current] || {};
+    const { data: albumData } = useQuery("album_meta", {
+        id: currentTrack.id,
+        skip: !currentTrack.type || currentTrack.type === "playlists",
+    });
+    const [playlist] = read(currentTrack.id, currentTrack.type);
+    const queue = (albumData?.[0] || playlist)?.queue || [];
+    const current = queue[currentTrack.current] || {};
     const { percentComplete, ...position } = useAudioPosition({
         highRefreshRate: true,
     });
@@ -18,15 +24,17 @@ export const useControl = () => {
         volume,
         ...player
     } = useAudioPlayer({
-        src: String(currentList?.src),
+        src: String(current?.src),
         autoplay: false,
     });
 
     const goto = useCallback(
         (percent) => {
             const newPosition = position.duration * percent;
-            position.seek(newPosition);
-            set("position", newPosition);
+            if (newPosition > 0) {
+                position.seek(newPosition);
+                set("position", newPosition);
+            }
         },
         [position, set],
     );
@@ -48,9 +56,10 @@ export const useControl = () => {
     return {
         ready: ready && currentTrack.id !== 0,
         track: {
+            ...current,
             id: Number(currentTrack.id),
-            name: currentList?.title || "------",
-            artiste: currentList?.artiste || {
+            name: current?.title || "------",
+            artiste: current?.artiste || {
                 id: 0,
                 name: "----",
             },
@@ -67,6 +76,7 @@ export const useControl = () => {
         shuffle: currentTrack.shuffle,
         volume: currentTrack.volume,
         setTrack: set,
+        queue,
         error,
         load,
     };

@@ -38,6 +38,7 @@ const CollectionListing = () => {
                     handleSave={(data) => {
                         savePlaylist({ ...collection, ...data });
                     }}
+                    type={query.collection}
                 />
                 <Box sx={{ paddingTop: 14 }}>
                     <Stack justifyContent="end" direction="row">
