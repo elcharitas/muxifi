@@ -99,8 +99,8 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
                 <Anchor
                     icon="game"
-                    href="/app/play"
-                    label="Games"
+                    href="/app/coming-soon"
+                    label="Stake and Earn"
                     sx={{
                         fontSize: "18px",
                         color: "tertiary.main",
@@ -117,11 +117,14 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
             <Stack direction="column" spacing={3} sx={{ px: 6, mt: 8 }}>
                 <Anchor
                     icon="profile-circle"
-                    href="/app/create"
+                    href="/app/studio"
                     label="Creator"
                     sx={{
                         fontSize: "18px",
-                        color: "tertiary.main",
+                        color:
+                            pathname === "/app/studio"
+                                ? "tertiary.light"
+                                : "tertiary.main",
                         "&:hover": {
                             color: "tertiary.light",
                         },
