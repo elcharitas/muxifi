@@ -63,6 +63,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 />
 
                 <Anchor
+                    href="/app"
                     icon={`add-square${
                         pathname === "/app/create" ? "-selected" : ""
                     }`}
@@ -117,7 +118,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 <Anchor
                     icon="profile-circle"
                     href="/app/create"
-                    label="Become a Creator"
+                    label="Creator"
                     sx={{
                         fontSize: "18px",
                         color: "tertiary.main",
@@ -132,22 +133,14 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
                 <Anchor
                     icon={`collections${
-                        pathname === "/app/playlists"
-                        || pathname === "/app/podcasts"
-                        || pathname === "/app/albums"
-                        || pathname === "/app/artistes"
-                            ? "-selected"
-                            : ""
+                        pathname === "/app/[collection]" ? "-selected" : ""
                     }`}
                     href="/app/playlists"
                     label="Collections"
                     sx={{
                         fontSize: "18px",
                         color:
-                            pathname === "/app/playlists"
-                            || pathname === "/app/podcasts"
-                            || pathname === "/app/albums"
-                            || pathname === "/app/artistes"
+                            pathname === "/app/[collection]"
                                 ? "tertiary.light"
                                 : "tertiary.main",
                         "&:hover": {
