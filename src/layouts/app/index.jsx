@@ -96,7 +96,7 @@ const AppLayout = ({ title = "", children }) => {
                                                 <Typography>
                                                     {!isLoading
                                                         ? "Sorry, There were no matching results."
-                                                        : "Loadinf"}
+                                                        : "Loading..."}
                                                 </Typography>
                                             )}
                                         </Grid>

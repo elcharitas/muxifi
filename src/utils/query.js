@@ -56,7 +56,7 @@ export const getMatchingAlbumsQuery = async ({
         filter,
         q: query,
         chain: chainId,
-        addresses: [CONTRACT_ADDRESSES.ALBUM],
+        addresses: [CONTRACT_ADDRESSES.ALBUM, CONTRACT_ADDRESSES.CREATOR],
         limit: pageSize,
     });
 
