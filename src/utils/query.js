@@ -52,7 +52,6 @@ export const getMatchingAlbumsQuery = async ({
     filter = "global",
     pageSize = 30,
 }) => {
-    console.log(query);
     const { result, pagination, next } = await searchNFTs({
         filter,
         q: query,

@@ -15,14 +15,11 @@ const IPFS_CONFIG = {
     },
     EXPERIMENTAL: { pubsub: true },
     config: {
-        Bootstrap: [
-            "/dns4/ipfs-ws.vps.revolunet.com/tcp/443/wss/ipfs/QmSEbJSiV8TXyaG9oBJRs2sJ5sttrNQJvbSeGe7Vt8ZBqt",
-        ],
         Addresses: {
             Swarm: [
-                "/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star",
-                "/dns4/star-signal.cloud.ipfs.team/tcp/443/wss/p2p-webrtc-star",
-                "/dns4/libp2p-rdv.vps.revolunet.com/tcp/443/wss/p2p-webrtc-star",
+                "/dns4/wrtc-star1.par.dwebops.pub/tcp/443/wss/p2p-webrtc-star/",
+                "/dns4/wrtc-star2.sjc.dwebops.pub/tcp/443/wss/p2p-webrtc-star/",
+                "/dns4/webrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/",
             ],
         },
     },

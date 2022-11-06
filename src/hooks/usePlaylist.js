@@ -21,7 +21,9 @@ export const usePlaylist = () => {
                     tags: data.tags || data.title.toLowerCase().split(" "),
                     address,
                 },
-                { pin: true },
+                {
+                    pin: true,
+                },
             );
         },
         [db, address],

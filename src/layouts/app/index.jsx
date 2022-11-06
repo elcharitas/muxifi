@@ -34,12 +34,10 @@ const AppLayout = ({ title = "", children }) => {
     const show = isMounted && isClient;
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     const [search, setSearch] = useState("");
-    const { data: results, error } = useQuery("matching_albums", {
+    const { data: results } = useQuery("matching_albums", {
         query: search,
         skip: !search,
     });
-
-    console.log(results, error);
 
     return (
         show && (

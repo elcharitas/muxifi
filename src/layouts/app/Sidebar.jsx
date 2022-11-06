@@ -89,8 +89,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                                 title: "Playlist Name",
                                 description:
                                     "such a great playlist to listen to",
+                            })?.then(() => {
+                                push(`/app/playlists/${newId}`);
                             });
-                            push(`/app/playlists/${newId}`);
                         } else openConnectModal();
                     }}
                 />
