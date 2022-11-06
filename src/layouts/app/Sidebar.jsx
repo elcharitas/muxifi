@@ -116,7 +116,9 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
             <Stack direction="column" spacing={3} sx={{ px: 6, mt: 8 }}>
                 <Anchor
-                    icon="profile-circle"
+                    icon={`profile-circle${
+                        pathname === "/app/studio" ? "-selected" : ""
+                    }`}
                     href="/app/studio"
                     label="Creator"
                     sx={{
