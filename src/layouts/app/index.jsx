@@ -1,8 +1,11 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { styled, Box } from "@mui/material";
+import { styled, Box, Grid, Typography } from "@mui/material";
 import { AudioPlayerProvider } from "react-use-audio-player";
 import { useIsMounted, useIsClient } from "usehooks-ts";
+import { ItemCard } from "src/components/widgets";
+import { RootStyle as PageStyle } from "src/components/styles";
+import { Heading } from "src/components";
 import { useRouter } from "next/router";
 import { useQuery } from "src/hooks";
 import Sidebar from "./Sidebar";
@@ -42,10 +45,8 @@ const AppLayout = ({ title = "", children }) => {
     });
 
     useEffect(() => {
-        if (search && asPath !== "/app/search") {
-            setSearch("");
-        }
-    }, [asPath, search]);
+        setSearch("");
+    }, [asPath]);
 
     return (
         show && (
@@ -66,7 +67,43 @@ const AppLayout = ({ title = "", children }) => {
                                 isOpenSidebar={isOpenSidebar}
                                 onCloseSidebar={() => setOpenSidebar(false)}
                             />
-                            <Wrapper>{search ? null : children}</Wrapper>
+                            <Wrapper>
+                                {search ? (
+                                    <PageStyle>
+                                        <Heading
+                                            sx={{ mb: 6 }}
+                                            title="Search"
+                                            size="modal-title"
+                                        />
+                                        <Grid
+                                            container
+                                            spacing="18px"
+                                            sx={{
+                                                "& > *": {
+                                                    margin: "1%!important",
+                                                },
+                                            }}
+                                        >
+                                            {results?.map?.((item) => (
+                                                <ItemCard
+                                                    key={item.id}
+                                                    title={item.title}
+                                                    desc={item.description}
+                                                    image={item.image}
+                                                    owner={item.address}
+                                                />
+                                            )) ?? (
+                                                <Typography>
+                                                    Sorry, There were no
+                                                    matching results.
+                                                </Typography>
+                                            )}
+                                        </Grid>
+                                    </PageStyle>
+                                ) : (
+                                    children
+                                )}
+                            </Wrapper>
                         </AudioPlayerProvider>
                     </RootStyle>
                 </Box>

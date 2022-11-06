@@ -25,7 +25,7 @@ export const getStaticPaths = async () => {
 const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
-    const { read } = usePlaylist();
+    const { read, savePlaylist } = usePlaylist();
     const [collection] = read(query.uuidOrAddress, query.collection);
 
     if (!collection) return <NotFoundPage />;
@@ -35,6 +35,9 @@ const CollectionListing = () => {
                 <ItemHeader
                     collection={collection}
                     isOwner={collection.address === address}
+                    handleSave={(data) => {
+                        savePlaylist({ ...collection, ...data });
+                    }}
                 />
                 <Box sx={{ paddingTop: 14 }}>
                     <Stack justifyContent="end" direction="row">

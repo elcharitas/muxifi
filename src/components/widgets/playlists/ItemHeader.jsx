@@ -38,9 +38,9 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = ({ collection }) => {
+export const ItemHeader = ({ collection, handleSave }) => {
     const { address } = useAccount();
-    const isOwner = collection.address !== address;
+    const isOwner = collection.address === address;
     const [open, setOpen] = useState(false);
     const handleModal = () => {
         if (!isOwner) return;
@@ -49,18 +49,19 @@ export const ItemHeader = ({ collection }) => {
 
     return (
         <Box>
-            <GridContainer onClick={handleModal}>
+            <GridContainer
+                sx={{ cursor: isOwner ? "pointer" : "default" }}
+                onClick={handleModal}
+            >
                 <IconBox
                     sx={{
                         position: "absolute",
                         left: "36px",
                         top: "72px",
-                        cursor: "none",
                         "svg:first-of-type": {
                             display: "block",
                         },
                         ...(isOwner && {
-                            cursor: "pointer",
                             "svg:last-child": {
                                 display: "none",
                             },
@@ -137,6 +138,7 @@ export const ItemHeader = ({ collection }) => {
                 open={open}
                 onClose={handleModal}
                 collection={collection}
+                handleSave={handleSave}
             />
         </Box>
     );

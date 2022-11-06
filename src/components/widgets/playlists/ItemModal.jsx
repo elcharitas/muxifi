@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import NoteIcon from "src/assets/svgs/note-icon.svg";
@@ -31,7 +32,9 @@ const NumberBox = styled("div")({
     marginRight: "8px",
 });
 
-export const ItemModal = ({ onClose, open, collection }) => {
+export const ItemModal = ({ onClose, open, collection, handleSave }) => {
+    const titleRef = useRef(collection.title);
+    const descriptionRef = useRef(collection.description);
     return (
         <div>
             <Modal
@@ -39,6 +42,9 @@ export const ItemModal = ({ onClose, open, collection }) => {
                 onClose={onClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                sx={{
+                    zIndex: 10000,
+                }}
             >
                 <Box sx={style}>
                     <Typography variant="modal-title" marginBottom="48">
@@ -62,7 +68,10 @@ export const ItemModal = ({ onClose, open, collection }) => {
                                 <SearchInput
                                     type="text"
                                     placeholder="My Playlist"
-                                    value={collection.title}
+                                    defaultValue={collection.title}
+                                    onChange={(e) => {
+                                        titleRef.current = e.target.value;
+                                    }}
                                     sx={{
                                         "&::placeholder": { color: "#AAAEAC" },
                                     }}
@@ -72,7 +81,10 @@ export const ItemModal = ({ onClose, open, collection }) => {
 
                             <TextBox sx={{ alignItems: "flex-start" }}>
                                 <MessageInput
-                                    value={collection.description}
+                                    defaultValue={collection.description}
+                                    onChange={(e) => {
+                                        descriptionRef.current = e.target.value;
+                                    }}
                                     placeholder="Add an optional description"
                                 />
                                 <CloseIcon />
@@ -96,7 +108,16 @@ export const ItemModal = ({ onClose, open, collection }) => {
                                     />
                                 </NumberBox>
 
-                                <Button>Save Playlist</Button>
+                                <Button
+                                    onClick={() => {
+                                        handleSave({
+                                            title: titleRef.current,
+                                            description: descriptionRef.current,
+                                        });
+                                    }}
+                                >
+                                    Save Playlist
+                                </Button>
                             </TextBox>
                         </Box>
                     </Box>
