@@ -12,7 +12,8 @@ export const useControl = () => {
         skip: !currentTrack.type || currentTrack.type === "playlists",
     });
     const [playlist] = read(currentTrack.id, currentTrack.type);
-    const queue = (albumData?.[0] || playlist)?.queue || [];
+    const item = albumData?.[0] || playlist || {};
+    const queue = item?.queue || [];
     const current = queue[currentTrack.current] || {};
     const { percentComplete, ...position } = useAudioPosition({
         highRefreshRate: true,
@@ -69,6 +70,7 @@ export const useControl = () => {
             goto,
             volume: setVolume,
             playing: currentTrack.playing,
+            item,
             ...player,
             ...position,
         },
