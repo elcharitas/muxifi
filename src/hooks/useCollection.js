@@ -1,16 +1,31 @@
+import { ethers } from "ethers";
 import { CONFIG } from "src/config";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import {
+    useContractRead,
+    useContractWrite,
+    usePrepareContractWrite,
+} from "wagmi";
 import { useAbi } from "./useAbi";
 
 export const useCollection = ({ method, args, type = "album" }) => {
     const { abi } = useAbi({ type });
     const { config } = usePrepareContractWrite({
-        abi,
-        address: CONFIG.WAGMI.CONTRACT_ADDRESSES.ALBUM,
-        ...(Object.values(abi).length && {
+        contractInterface: new ethers.utils.Interface(abi),
+        address: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
+        ...(abi.length && {
             functionName: method,
             args,
         }),
     });
     return useContractWrite(config);
+};
+
+export const useCollectionRead = ({ method, args, type = "album" }) => {
+    const { abi } = useAbi({ type });
+    return useContractRead({
+        contractInterface: new ethers.utils.Interface(abi),
+        addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
+        functionName: method,
+        args,
+    });
 };
