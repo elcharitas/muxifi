@@ -120,7 +120,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         pathname === "/app/studio" ? "-selected" : ""
                     }`}
                     href="/app/studio"
-                    label="Creator"
+                    label="Creator Studio"
                     sx={{
                         fontSize: "18px",
                         color:

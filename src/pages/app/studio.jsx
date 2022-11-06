@@ -11,7 +11,12 @@ export const getStaticProps = async ({ locale }) => ({
 const StudioPage = () => {
     return (
         <AppLayout title="Creator Studio">
-            <Heading title="Studio" />
+            <Heading
+                sx={{ mb: 6 }}
+                title="Creator Studio"
+                subtitle="Mint/Upload a new Album to Muxifi"
+                size="modal-title"
+            />
         </AppLayout>
     );
 };
