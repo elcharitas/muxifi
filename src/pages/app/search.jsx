@@ -1,12 +1,11 @@
-import React from "react";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Heading } from "src/components";
+import { useQuery } from "src/hooks";
+import { useRouter } from "next/router";
 import { RootStyle } from "src/components/styles";
 import { ItemCard } from "src/components/widgets";
-// import ArtisteImg from "src/assets/img/artisteImg.png";
-import PlayListImg from "src/assets/img/trial2.png";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -73,6 +72,11 @@ export const getStaticProps = async ({ locale }) => ({
 // ];
 
 const SearchPage = () => {
+    const { query } = useRouter();
+    const { data: results, isLoading } = useQuery("matching_albums", {
+        query: query.s,
+        skip: !query.s,
+    });
     return (
         <AppLayout title="Search">
             <RootStyle>
@@ -88,14 +92,21 @@ const SearchPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
-                        {[1, 2, 3].map((item) => (
+                        {results?.map?.((item) => (
                             <ItemCard
-                                key={item}
-                                title="Album name"
-                                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                image={PlayListImg}
+                                key={item.id}
+                                title={item.title}
+                                desc={item.description}
+                                image={item.image}
+                                owner={item.address}
                             />
-                        ))}
+                        )) ?? (
+                            <Typography>
+                                {!isLoading
+                                    ? "Sorry, There were no matching results."
+                                    : "Loading..."}
+                            </Typography>
+                        )}
                     </Grid>
                 </Box>
 

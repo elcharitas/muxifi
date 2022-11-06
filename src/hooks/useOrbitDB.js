@@ -1,27 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { orbit as orbitContext } from "src/providers/orbitdb/orbit-context";
 
-const createDb = async (path, orbit, opts, refreshDb) => {
-    const options = {
-        indexBy: "id",
-        create: true,
-        type: "keyvalue",
-        overwrite: false,
-        ...opts,
-        accessController: {
-            ...(opts.create && opts.public
-                ? { write: ["*"], admin: ["*"] }
-                : { write: [orbit.identity.id] }),
-        },
-    };
-    const dbAddress = await Promise.resolve(
-        path.split("/").length === 1
-            ? orbit.determineAddress(path, options.type, options)
-            : path,
-    );
-
-    const db = await orbit.open(dbAddress, options);
-
+const registerEvents = async (db, refreshDb) => {
     db.events.on("replicate", () => {
         refreshDb(db);
     });
@@ -45,17 +25,34 @@ export const useOrbitDb = (path, { handleError, ...opts }) => {
     const [records, setRecords] = useState([]);
     const [orbitDb, setDb] = useState(null);
 
-    useEffect(() => {
+    const openDb = useCallback(async () => {
         if (!path) {
             return handleError?.("No path provided");
         }
+        const options = {
+            indexBy: "id",
+            create: true,
+            type: "keyvalue",
+            overwrite: false,
+            ...opts,
+            accessController: {
+                ...(opts.create && opts.public
+                    ? { write: ["*"], admin: ["*"] }
+                    : { write: [orbit.identity.id] }),
+            },
+        };
+        let address = String(path);
+        if (!address.startsWith("/orbitdb/")) {
+            address = await orbit.determineAddress(path, options.type, options);
+        }
+        return orbit.open(address, options);
+    }, [opts, orbit, path, handleError]);
 
-        const refreshDb = async (db) => {
-            await db.sync().catch(() => null);
-            await db.load().catch(() => null);
-            if (!orbitDb) {
-                setDb(db);
-            }
+    const refreshDb = useCallback(
+        async (db) => {
+            await db.load().catch(handleError);
+            if (orbitDb) return;
+            setDb(db);
             if (db.type === "keyvalue") {
                 setRecords({ ...(db.all || {}) });
             } else if (db.type === "eventlog") {
@@ -69,16 +66,24 @@ export const useOrbitDb = (path, { handleError, ...opts }) => {
             } else if (db.type === "counter") {
                 setRecords(db.value);
             }
-        };
+        },
+        [handleError, orbitDb],
+    );
+
+    const refresh = useCallback(() => {
+        return openDb().then((db) => registerEvents(db, refreshDb));
+    }, [openDb, refreshDb]);
+
+    useEffect(() => {
         if (orbit && !orbitDb) {
-            createDb(path, orbit, opts, refreshDb);
+            refresh();
         }
         return () => {
             // if (orbitDb && !orbitDb.closed) {
             //     orbitDb.close();
             // }
         };
-    }, [orbit, path, opts, orbitDb, handleError]);
+    }, [orbit, orbitDb, refresh]);
 
-    return { orbit, db: orbitDb, records };
+    return { orbit, db: orbitDb, records, refresh };
 };

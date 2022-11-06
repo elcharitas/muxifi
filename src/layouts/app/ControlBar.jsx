@@ -3,7 +3,6 @@ import { Box, Stack, AppBar, Toolbar, Typography, Slider } from "@mui/material";
 import { useControl } from "src/hooks";
 import { ControlButton, PlayButton, Stackable } from "src/components";
 import { ImgStyle } from "src/components/styles";
-import CoverImg from "src/assets/img/cover.png";
 import { CONFIG } from "src/config";
 
 const RootStyle = styled(AppBar)(() => ({
@@ -32,20 +31,22 @@ const ControlBar = () => {
     return (
         ready && (
             <RootStyle>
-                <ImgStyle
-                    $src={CoverImg}
-                    sx={{
-                        borderRadius: 0,
-                        width: CONFIG.UI.APP_SIDEBAR_WIDTH,
-                        height: CONFIG.UI.APP_SIDEBAR_WIDTH,
-                    }}
-                />
+                {track.image && (
+                    <ImgStyle
+                        $src={track.image}
+                        sx={{
+                            borderRadius: 0,
+                            width: CONFIG.UI.APP_SIDEBAR_WIDTH,
+                            height: CONFIG.UI.APP_SIDEBAR_WIDTH,
+                        }}
+                    />
+                )}
                 <ToolbarStyle>
                     <Stackable sx={{ display: { xs: "none", md: "flex" } }}>
                         <Box sx={{ mr: 4 }}>
                             <Typography variant="h5">{track.name}</Typography>
                             <Typography variant="body2">
-                                {track.artiste.name}
+                                {track.item.title}
                             </Typography>
                         </Box>
                         <ControlButton icon="heart" />

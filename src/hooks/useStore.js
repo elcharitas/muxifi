@@ -4,7 +4,7 @@ import { useLocalStorage, useIsMounted, useIsClient } from "usehooks-ts";
 const INITIAL_STATE = {
     currentTrack: {
         id: 0,
-        playlist: 0,
+        type: "playlists",
         repeat: false,
         shuffle: false,
         playing: false,

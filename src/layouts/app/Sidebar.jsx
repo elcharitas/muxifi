@@ -19,7 +19,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
     const { pathname, push } = useRouter();
     const { openConnectModal } = useConnectModal();
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-    const { addPlaylist } = usePlaylist();
+    const { savePlaylist } = usePlaylist();
 
     useEffect(() => {
         if (isOpenSidebar) {
@@ -63,6 +63,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                 />
 
                 <Anchor
+                    href="/app"
                     icon={`add-square${
                         pathname === "/app/create" ? "-selected" : ""
                     }`}
@@ -84,21 +85,22 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                         e?.preventDefault();
                         if (!openConnectModal) {
                             const newId = uid(32);
-                            await addPlaylist({
+                            await savePlaylist({
                                 id: newId,
                                 title: "Playlist Name",
                                 description:
                                     "such a great playlist to listen to",
+                            })?.then(() => {
+                                push(`/app/playlists/${newId}`);
                             });
-                            push(`/app/playlists/${newId}`);
                         } else openConnectModal();
                     }}
                 />
 
                 <Anchor
                     icon="game"
-                    href="/app/play"
-                    label="Games"
+                    href="/app/coming-soon"
+                    label="Stake and Earn"
                     sx={{
                         fontSize: "18px",
                         color: "tertiary.main",
@@ -115,11 +117,14 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
             <Stack direction="column" spacing={3} sx={{ px: 6, mt: 8 }}>
                 <Anchor
                     icon="profile-circle"
-                    href="/app/create"
-                    label="Become a Creator"
+                    href="/app/studio"
+                    label="Creator"
                     sx={{
                         fontSize: "18px",
-                        color: "tertiary.main",
+                        color:
+                            pathname === "/app/studio"
+                                ? "tertiary.light"
+                                : "tertiary.main",
                         "&:hover": {
                             color: "tertiary.light",
                         },
@@ -131,22 +136,14 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
 
                 <Anchor
                     icon={`collections${
-                        pathname === "/app/playlists"
-                        || pathname === "/app/podcasts"
-                        || pathname === "/app/albums"
-                        || pathname === "/app/artistes"
-                            ? "-selected"
-                            : ""
+                        pathname === "/app/[collection]" ? "-selected" : ""
                     }`}
                     href="/app/playlists"
                     label="Collections"
                     sx={{
                         fontSize: "18px",
                         color:
-                            pathname === "/app/playlists"
-                            || pathname === "/app/podcasts"
-                            || pathname === "/app/albums"
-                            || pathname === "/app/artistes"
+                            pathname === "/app/[collection]"
                                 ? "tertiary.light"
                                 : "tertiary.main",
                         "&:hover": {

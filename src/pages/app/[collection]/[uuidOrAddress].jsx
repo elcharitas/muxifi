@@ -7,6 +7,8 @@ import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
 import { usePlaylist } from "src/hooks";
+import NotFoundPage from "src/pages/404";
+import { MacScrollbar } from "mac-scrollbar";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -24,23 +26,30 @@ export const getStaticPaths = async () => {
 const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
-    const { read } = usePlaylist();
+    const { read, savePlaylist } = usePlaylist();
     const [collection] = read(query.uuidOrAddress, query.collection);
+
+    if (!collection) return <NotFoundPage />;
     return (
         <AppLayout title={collection.title}>
             <RootStyle>
                 <ItemHeader
                     collection={collection}
                     isOwner={collection.address === address}
+                    handleSave={(data) => {
+                        savePlaylist({ ...collection, ...data });
+                    }}
+                    type={query.collection}
                 />
                 <Box sx={{ paddingTop: 14 }}>
                     <Stack justifyContent="end" direction="row">
                         <Search sx={{ mb: 3, width: 400 }} />
                     </Stack>
-
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                        <ItemBoardSmall key={item} />
-                    ))}
+                    <MacScrollbar>
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                            <ItemBoardSmall key={item} />
+                        ))}
+                    </MacScrollbar>
                 </Box>
             </RootStyle>
         </AppLayout>
