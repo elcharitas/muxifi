@@ -9,7 +9,7 @@
         "lint": "next lint",
         "contract:flatten": "hardhat flatten contracts/Muxify.sol > contracts/MuxifyFlattened.sol",
         "contract:compile": "hardhat compile --force && cp artifacts/contracts/**/**/Muxifi*.json src/contracts",
-        "postinstall": "husky install"
+        "postinstall": "husky install && npm run contract:compile"
     },
     "dependencies": {
         "@emotion/react": "^11.10.4",

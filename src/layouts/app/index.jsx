@@ -7,7 +7,7 @@ import { ItemCard } from "src/components/widgets";
 import { RootStyle as PageStyle } from "src/components/styles";
 import { Heading } from "src/components";
 import { useRouter } from "next/router";
-import { useQuery } from "src/hooks";
+import { useQuery, useStore } from "src/hooks";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import ControlBar from "./ControlBar";
@@ -20,7 +20,7 @@ export const RootStyle = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
 }));
 
-const Wrapper = styled("div")(({ theme }) => ({
+const Wrapper = styled("div")(({ theme, $ready }) => ({
     flexGrow: 1,
     overflow: "auto",
     minHeight: "100%",
@@ -30,12 +30,16 @@ const Wrapper = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
         padding: "50px 0",
     },
+    ...($ready && {
+        marginBottom: 100,
+    }),
 }));
 
 const AppLayout = ({ title = "", children }) => {
     const isMounted = useIsMounted();
     const isClient = useIsClient();
     const show = isMounted && isClient;
+    const { currentTrack } = useStore("currentTrack");
     const [isOpenSidebar, setOpenSidebar] = useState(false);
     const [search, setSearch] = useState("");
     const { asPath } = useRouter();
@@ -67,7 +71,7 @@ const AppLayout = ({ title = "", children }) => {
                                 isOpenSidebar={isOpenSidebar}
                                 onCloseSidebar={() => setOpenSidebar(false)}
                             />
-                            <Wrapper>
+                            <Wrapper $ready={!!currentTrack.id}>
                                 {search ? (
                                     <PageStyle>
                                         <Heading

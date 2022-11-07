@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import { NFTStorage, File } from "nft.storage";
 import { CONFIG } from "src/config";
 
-const client = new NFTStorage({ token: CONFIG });
+const client = new NFTStorage({ token: CONFIG.WAGMI.NFT_STORAGE });
 
 export const useNFTStorage = (metadata) => {
     const [meta, setMeta] = useState(null);
     const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         if (metadata) {
+            setLoading(true);
             client
                 .store({
                     ...metadata,
@@ -18,9 +20,10 @@ export const useNFTStorage = (metadata) => {
                     }),
                 })
                 .then(setMeta)
-                .catch(setError);
+                .catch(setError)
+                .finally(() => setLoading(false));
         }
     }, [metadata]);
 
-    return { metadata: meta, error };
+    return { metadata: meta, isLoading, error };
 };

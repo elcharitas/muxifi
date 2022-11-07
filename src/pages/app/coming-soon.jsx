@@ -11,7 +11,7 @@ export const getStaticProps = async ({ locale }) => ({
 const ComingSoonPage = () => {
     return (
         <AppLayout title="Coming Soon">
-            <Heading title="Coming Soon" />
+            <Heading sx={{ mb: 6 }} title="Coming Soon" size="modal-title" />
         </AppLayout>
     );
 };
