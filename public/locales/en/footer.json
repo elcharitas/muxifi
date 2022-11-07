@@ -1,71 +1,7 @@
 {
-    "menu": [
-        {
-            "title": "Company",
-            "items": [
-                {
-                    "title": "About",
-                    "link": "/about"
-                },
-                {
-                    "title": "Music",
-                    "link": "/music"
-                },
-                {
-                    "title": "Podcast",
-                    "link": "/podcasts"
-                },
-                {
-                    "title": "Careers",
-                    "link": "/careers"
-                },
-                {
-                    "title": "Contact",
-                    "link": "/contact"
-                }
-            ]
-        },
-        {
-            "title": "Communities",
-            "items": [
-                {
-                    "title": "Artists",
-                    "link": "/artists"
-                },
-                {
-                    "title": "Developers",
-                    "link": "/developers"
-                },
-                {
-                    "title": "Creators",
-                    "link": "/creators"
-                },
-                {
-                    "title": "Advertising",
-                    "link": "/advertise"
-                },
-                {
-                    "title": "Partners",
-                    "link": "/partners"
-                }
-            ]
-        },
-        {
-            "title": "Useful Links",
-            "items": [
-                {
-                    "title": "Support",
-                    "link": "/support"
-                },
-                {
-                    "title": "Web Player",
-                    "link": "/app"
-                },
-                {
-                    "title": "Mobile App",
-                    "link": "/download"
-                }
-            ]
-        }
-    ]
+    "menu": {
+        "company": "Company",
+        "community": "Communities",
+        "links": "Useful Links"
+    }
 }

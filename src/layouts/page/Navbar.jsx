@@ -54,7 +54,8 @@ const PageNavbar = ({ onOpenSidebar }) => {
                         },
                         {
                             label: t("nav.contact"),
-                            href: "/contact",
+                            href:
+                                "https://docs.google.com/forms/d/e/1FAIpQLSdE2W2xfDEDQbWJ6KJGr6vrjSHCSg8Dg1BOqvYxlPb78CW3Jw/viewform?usp=sharing",
                         },
                     ]}
                     sx={{ display: { xs: "none", md: "flex" } }}
