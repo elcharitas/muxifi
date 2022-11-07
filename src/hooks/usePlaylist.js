@@ -16,9 +16,9 @@ export const usePlaylist = () => {
             return db?.put(
                 {
                     id: data.id,
-                    title: data.title,
+                    name: data.name,
                     description: data.description,
-                    tags: data.tags || data.title.toLowerCase().split(" "),
+                    tags: data.tags || data.name.toLowerCase().split(" "),
                     address,
                 },
                 {

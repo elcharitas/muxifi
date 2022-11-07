@@ -8,9 +8,9 @@ import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
 import { CollectionCard } from "src/components/collections";
 import { ItemCard } from "src/components/widgets";
-import PlayListImg from "src/assets/img/trial2.png";
 import { usePlaylist } from "src/hooks";
 import { CONFIG } from "src/config";
+import { getAlbumsQuery } from "src/utils/query";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -38,8 +38,18 @@ const CollectionsPage = () => {
     useEffect(() => {
         if (query.collection === "playlists") {
             setItems(records);
-        } else setItems([]);
-    }, [records, query]);
+        } else {
+            setItems([]);
+            getAlbumsQuery({ type: collection.replace(/s$/, "") }).then((r) => {
+                const newItems = r.result.map((i) => ({
+                    ...i.metadata,
+                    id: i.tokenId,
+                    address: i.ownerOf,
+                }));
+                setItems(newItems);
+            });
+        }
+    }, [records, query, collection]);
 
     return (
         <AppLayout title={lang.title}>
@@ -68,10 +78,15 @@ const CollectionsPage = () => {
                                 key={item.id}
                                 id={item.id}
                                 href={`/app/${collection}/${item.id}`}
-                                title={item.title}
+                                title={item.name}
                                 desc={item.description}
-                                image={PlayListImg}
-                                owner={item.address}
+                                image={item.image}
+                                owner={
+                                    collection !== "artistes"
+                                        ? item.address
+                                        : undefined
+                                }
+                                handlePlay={false}
                             />
                         ))}
                     </Grid>

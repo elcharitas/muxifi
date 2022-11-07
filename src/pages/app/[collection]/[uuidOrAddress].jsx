@@ -1,14 +1,16 @@
+import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/router";
+import { MacScrollbar } from "mac-scrollbar";
+import { Box, Stack } from "@mui/material";
 import AppLayout from "src/layouts/app";
 import { buildI18n } from "src/utils/i18n";
-import { Box, Stack } from "@mui/material";
 import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
 import { usePlaylist } from "src/hooks";
 import NotFoundPage from "src/pages/404";
-import { MacScrollbar } from "mac-scrollbar";
+import { getAlbumMetaQuery } from "src/utils/query";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -27,11 +29,25 @@ const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
     const { read, savePlaylist } = usePlaylist();
-    const [collection] = read(query.uuidOrAddress, query.collection);
+    const [collection, setCollection] = useState({});
+
+    useEffect(() => {
+        if (query.collection === "playlists") {
+            const [playlist] = read(query.uuidOrAddress, query.collection);
+            setCollection(playlist);
+        } else if (query.collection) {
+            getAlbumMetaQuery({
+                type: query.collection?.replace(/s$/, ""),
+                id: query.uuidOrAddress,
+            })
+                .then((r) => setCollection(r.result[0].metadata))
+                .catch(() => setCollection([]));
+        }
+    }, [query, read]);
 
     if (!collection) return <NotFoundPage />;
     return (
-        <AppLayout title={collection.title}>
+        <AppLayout title={collection.name}>
             <RootStyle>
                 <ItemHeader
                     collection={collection}

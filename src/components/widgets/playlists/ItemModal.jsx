@@ -33,7 +33,7 @@ const NumberBox = styled("div")({
 });
 
 export const ItemModal = ({ onClose, open, collection, type, handleSave }) => {
-    const titleRef = useRef(collection.title);
+    const titleRef = useRef(collection.name);
     const descriptionRef = useRef(collection.description);
     return (
         <div>
@@ -68,7 +68,7 @@ export const ItemModal = ({ onClose, open, collection, type, handleSave }) => {
                                 <SearchInput
                                     type="text"
                                     placeholder="My Playlist"
-                                    defaultValue={collection.title}
+                                    defaultValue={collection.name}
                                     onChange={(e) => {
                                         titleRef.current = e.target.value;
                                     }}

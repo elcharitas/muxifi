@@ -39,7 +39,7 @@ const StudioPage = () => {
     });
     const [albumData, setAlbumData] = useState();
     const { data: creatorData } = useCollectionRead({
-        type: "creator",
+        type: "artiste",
         method: "balanceOf",
         args: [address],
     });
@@ -114,7 +114,7 @@ const StudioPage = () => {
                     color="primary"
                     onClick={() => {
                         setAlbumData({
-                            name: album.title,
+                            name: album.name,
                             description: album.description,
                             image: album.image,
                         });

@@ -20,7 +20,7 @@ export const CreatorModal = ({ onClose, open, creator }) => {
     const { writeAsync } = useCollection({
         method: "join",
         args: [metadata?.url],
-        type: "creator",
+        type: "artiste",
     });
 
     useEffect(() => {

@@ -59,7 +59,7 @@ export const useControl = () => {
         track: {
             ...current,
             id: Number(currentTrack.id),
-            name: current?.title || "------",
+            name: current?.name || "------",
             artiste: current?.artiste || {
                 id: 0,
                 name: "----",
