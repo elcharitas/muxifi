@@ -81,7 +81,7 @@ const CollectionsPage = () => {
                                 href={`/app/${collection}/${item.id}`}
                                 title={item.name}
                                 desc={item.description}
-                                image={getItemImage(item.image, item.address)}
+                                image={getItemImage(item.image, item.id)}
                                 owner={
                                     collection !== "artistes"
                                         ? item.address

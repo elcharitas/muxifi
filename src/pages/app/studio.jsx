@@ -124,7 +124,7 @@ const StudioPage = () => {
                     Mint Album
                 </Button>
             </Box>
-            {!creatorId && (
+            {creatorId !== undefined && !creatorId && (
                 <CreatorModal
                     creator={{}}
                     open={!creatorId && !openConnectModal}

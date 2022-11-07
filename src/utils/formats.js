@@ -2,7 +2,7 @@ import md5 from "md5";
 
 export const getGravatarUrl = (cid) => {
     const hash = md5(cid);
-    return `https://gravatar.com/avatar/${hash}`;
+    return `https://gravatar.com/avatar/${hash}.jpg?d=robohash&s=500`;
 };
 
 export const getIpfsUrl = (cid) => {

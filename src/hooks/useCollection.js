@@ -8,7 +8,7 @@ import {
 import { useAbi } from "./useAbi";
 
 export const useCollection = ({ method, args, type = "album" }) => {
-    const { abi } = useAbi({ type });
+    const { abi } = useAbi({ type: type.replace("artiste", "creator") });
     const { config } = usePrepareContractWrite({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
@@ -22,7 +22,7 @@ export const useCollection = ({ method, args, type = "album" }) => {
 };
 
 export const useCollectionRead = ({ method, args, type = "album" }) => {
-    const { abi } = useAbi({ type });
+    const { abi } = useAbi({ type: type.replace("artiste", "creator") });
     return useContractRead({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
