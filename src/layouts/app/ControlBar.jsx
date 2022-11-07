@@ -46,7 +46,7 @@ const ControlBar = () => {
                         <Box sx={{ mr: 4 }}>
                             <Typography variant="h5">{track.name}</Typography>
                             <Typography variant="body2">
-                                {track.item.title}
+                                {track.item.name}
                             </Typography>
                         </Box>
                         <ControlButton icon="heart" />

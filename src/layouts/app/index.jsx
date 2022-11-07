@@ -91,7 +91,7 @@ const AppLayout = ({ title = "", children }) => {
                                             {results?.map?.((item) => (
                                                 <ItemCard
                                                     key={item.id}
-                                                    title={item.title}
+                                                    title={item.name}
                                                     desc={item.description}
                                                     image={item.image}
                                                     owner={item.address}

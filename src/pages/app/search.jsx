@@ -95,7 +95,7 @@ const SearchPage = () => {
                         {results?.map?.((item) => (
                             <ItemCard
                                 key={item.id}
-                                title={item.title}
+                                title={item.name}
                                 desc={item.description}
                                 image={item.image}
                                 owner={item.address}
@@ -129,7 +129,7 @@ const SearchPage = () => {
                             >
                                 <SearchCard
                                     img={ArtisteImg}
-                                    title={item.title}
+                                    title={item.name}
                                     cardColor={item.color}
                                 />
                             </Grid>

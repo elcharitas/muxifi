@@ -36,11 +36,15 @@ export const ItemCard = ({
                     $src={image}
                     sx={{ mb: 1, width: { xs: 250, md: 200, ...sx } }}
                 >
-                    <div className="root-btn">
-                        <PlayButton
-                            onClick={handlePlay || (() => setTrack("id", id))}
-                        />
-                    </div>
+                    {handlePlay !== false && (
+                        <div className="root-btn">
+                            <PlayButton
+                                onClick={
+                                    handlePlay || (() => setTrack("id", id))
+                                }
+                            />
+                        </div>
+                    )}
                 </ImgStyle>
                 <Box sx={{ display: { xs: "flex", md: "none" } }}>
                     <Typography variant="body">{title}</Typography>
@@ -48,7 +52,7 @@ export const ItemCard = ({
                 <Box sx={{ display: { xs: "none", md: "block" } }}>
                     <Typography variant="h5">{title}</Typography>
                     <Typography variant="body2">{desc}</Typography>
-                    {owner !== address && !!address && (
+                    {owner && owner !== address && !!address && (
                         <Button
                             sx={{
                                 borderRadius: 1,

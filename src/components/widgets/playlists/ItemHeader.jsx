@@ -88,7 +88,7 @@ export const ItemHeader = ({ collection, type, handleSave }) => {
                         variant="h3"
                         sx={{ fontSize: 60, fontWeight: 700 }}
                     >
-                        {collection.title}
+                        {collection.name}
                     </Typography>
                     <Text
                         sx={{
