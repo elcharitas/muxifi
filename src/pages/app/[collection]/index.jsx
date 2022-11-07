@@ -11,6 +11,7 @@ import { ItemCard } from "src/components/widgets";
 import { usePlaylist } from "src/hooks";
 import { CONFIG } from "src/config";
 import { getAlbumsQuery } from "src/utils/query";
+import { getItemImage } from "src/utils/formats";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -80,7 +81,7 @@ const CollectionsPage = () => {
                                 href={`/app/${collection}/${item.id}`}
                                 title={item.name}
                                 desc={item.description}
-                                image={item.image}
+                                image={getItemImage(item.image, item.address)}
                                 owner={
                                     collection !== "artistes"
                                         ? item.address
