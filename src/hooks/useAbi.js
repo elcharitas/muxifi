@@ -1,6 +1,5 @@
 import { pascal } from "radash";
-
-const { useState, useEffect } = require("react");
+import { useState, useEffect } from "react";
 
 export const useAbi = ({ type = "album" } = {}) => {
     const [abi, setAbi] = useState([]);
