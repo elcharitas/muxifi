@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "src/assets/svgs/profile-circle.svg";
 import CloseIcon from "src/assets/svgs/close-icon.svg";
@@ -11,21 +11,28 @@ import {
     TextBox,
 } from "src/components/styles";
 import { useCollection, useNFTStorage } from "src/hooks";
+import { useTranslation } from "next-i18next";
 
 export const CreatorModal = ({ onClose, open, creator }) => {
     const nameRef = useRef(creator.name);
     const bioRef = useRef(creator.bio);
+    const profileImageRef = useRef();
+    const { t } = useTranslation("studio");
     const [data, setData] = useState();
+    const [image, setImage] = useState();
     const { metadata } = useNFTStorage(data);
     const { writeAsync } = useCollection({
         method: "join",
-        args: [metadata?.url],
+        args: [metadata.url],
         type: "artiste",
+        skip: !metadata.url,
     });
 
     useEffect(() => {
-        writeAsync?.().finally(() => setData(undefined));
-    }, [writeAsync]);
+        if (metadata.url) {
+            writeAsync?.().finally(() => setData(undefined));
+        }
+    }, [writeAsync, metadata]);
 
     return (
         <div>
@@ -50,7 +57,7 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                     }}
                 >
                     <Typography variant="modal-title" marginBottom="48">
-                        Creator Profile
+                        {t("creator.title")}
                     </Typography>
 
                     <Box
@@ -61,8 +68,24 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                             marginBottom: 1,
                         }}
                     >
-                        <IconBox sx={{ width: "224px", height: "224px" }}>
-                            <ProfileIcon />
+                        <IconBox
+                            sx={{
+                                width: "224px",
+                                height: "224px",
+                                cursor: "pointer",
+                            }}
+                            onClick={() => {
+                                profileImageRef.current.click();
+                            }}
+                            $src={image && URL.createObjectURL(image)}
+                        >
+                            {!image && <ProfileIcon />}
+                            <TextField
+                                type="file"
+                                inputProps={{ ref: profileImageRef }}
+                                sx={{ display: "none" }}
+                                onChange={(e) => setImage(e.target.files[0])}
+                            />
                         </IconBox>
 
                         <Box sx={{ width: "418px", marginLeft: "36px" }}>
@@ -87,7 +110,7 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                                     onChange={(e) => {
                                         bioRef.current = e.target.value;
                                     }}
-                                    placeholder="Add an optional bio"
+                                    placeholder={t("creator.bio")}
                                 />
                                 <CloseIcon />
                             </TextBox>
@@ -107,20 +130,19 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                                         setData({
                                             name: nameRef.current,
                                             description: bioRef.current,
-                                            image: {},
+                                            image,
                                         });
                                     }}
                                     isLoading={!!data}
                                 >
-                                    Save Profile
+                                    {t("creator.submit")}
                                 </Button>
                             </TextBox>
                         </Box>
                     </Box>
 
                     <Typography variant="body2">
-                        By proceeding, you consent to your information being
-                        used on Muxifi and the Binance Smart Chain network.
+                        {t("creator.agreement")}
                     </Typography>
                 </Box>
             </Modal>

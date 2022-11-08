@@ -14,7 +14,12 @@
         "playlist": "Playlist",
         "podcast": "Podcast",
         "search": "Search...",
-        "community": "Community"
+        "community": "Community",
+        "developers": "Developers",
+        "adverts": "Adverts",
+        "partners": "Partners",
+        "webapp": "WebApp",
+        "mobileapp": "Mobile App"
     },
     "podcasts": {
         "title": "Podcasts",

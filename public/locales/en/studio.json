@@ -1,0 +1,21 @@
+{
+    "page": {
+        "title": "Creator Studio",
+        "subtitle": "Mint/Upload a new Album to Muxifi"
+    },
+    "form": {
+        "title": "Album Title",
+        "description": "Describe your Album briefly",
+        "image": "Album Cover Image",
+        "audio": "Album Sound",
+        "tags": "Tags",
+        "royalty": "Royalty Fee",
+        "submit": "Mint Album"
+    },
+    "creator": {
+        "title": "Creator Profile",
+        "bio": "Add an optional bio",
+        "submit": "Save Profile",
+        "agreement": "By proceeding, you consent to your information being used on Muxifi and the Binance Smart Chain network."
+    }
+}

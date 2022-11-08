@@ -21,9 +21,35 @@ const SOCIAL_LINKS = {
     MAIL: "",
 };
 
+const MENU = [
+    {
+        title: "company",
+        items: {
+            about: "/about",
+            contact:
+                "https://docs.google.com/forms/d/e/1FAIpQLSdE2W2xfDEDQbWJ6KJGr6vrjSHCSg8Dg1BOqvYxlPb78CW3Jw/viewform?usp=sharing",
+            music: "/app/albums",
+        },
+    },
+    {
+        title: "community",
+        items: {
+            developers: "/coming-soon",
+            adverts: "/coming-soon",
+            partners: "/coming-soon",
+        },
+    },
+    {
+        title: "links",
+        items: {
+            webapp: "/app",
+            mobileapp: "/coming-soon",
+        },
+    },
+];
+
 const PageFooter = () => {
     const { t } = useTranslation("footer");
-    const menu = t("menu", { returnObjects: true });
     return (
         <AppBar
             sx={{
@@ -65,18 +91,18 @@ const PageFooter = () => {
                         </IconButton>
                     </Stack>
                 </Stack>
-                {menu.map(({ title, items }) => (
+                {MENU.map(({ title, items }) => (
                     <Stack key={title} direction="column">
                         <Typography variant="h5" gutterBottom>
-                            {title}
+                            {t(`menu.${title}`)}
                         </Typography>
-                        {items.map((nav) => (
+                        {Object.entries(items).map(([value, link]) => (
                             <Anchor
-                                key={nav.link}
-                                href={nav.link}
+                                key={link}
+                                href={link}
                                 variant="footer-link"
                             >
-                                {nav.title}
+                                {t(`common:nav.${value}`)}
                             </Anchor>
                         ))}
                     </Stack>

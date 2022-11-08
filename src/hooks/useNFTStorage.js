@@ -25,5 +25,5 @@ export const useNFTStorage = (metadata) => {
         }
     }, [metadata]);
 
-    return { metadata: meta, isLoading, error };
+    return { metadata: meta || { url: "" }, isLoading, error };
 };
