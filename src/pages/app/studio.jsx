@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useImmer } from "use-immer";
 import { Box, TextField } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
@@ -56,6 +56,9 @@ const StudioPage = () => {
         args: [metadata.url, album.royalty],
         skip: !metadata.url,
     });
+    const playImage = useMemo(() => {
+        return album.image ? URL.createObjectURL(album.image[0]) : PlaylistImg;
+    }, [album.image]);
 
     useEffect(() => {
         openConnectModal?.();
@@ -131,7 +134,7 @@ const StudioPage = () => {
                             setAlbumData({
                                 name: album.name,
                                 description: album.description,
-                                image: album.image,
+                                image: album.image[0],
                                 address,
                             });
                         }}
@@ -145,11 +148,7 @@ const StudioPage = () => {
                         id="new"
                         title={album.title || "------"}
                         desc={album.description || "--------"}
-                        image={
-                            album.image
-                                ? URL.createObjectURL(album.image)
-                                : PlaylistImg
-                        }
+                        image={playImage}
                         owner={address}
                     />
                 </Box>
