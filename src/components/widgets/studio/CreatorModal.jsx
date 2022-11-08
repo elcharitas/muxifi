@@ -11,10 +11,12 @@ import {
     TextBox,
 } from "src/components/styles";
 import { useCollection, useNFTStorage } from "src/hooks";
+import { useTranslation } from "next-i18next";
 
 export const CreatorModal = ({ onClose, open, creator }) => {
     const nameRef = useRef(creator.name);
     const bioRef = useRef(creator.bio);
+    const { t } = useTranslation("studio");
     const [data, setData] = useState();
     const { metadata } = useNFTStorage(data);
     const { writeAsync } = useCollection({
@@ -51,7 +53,7 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                     }}
                 >
                     <Typography variant="modal-title" marginBottom="48">
-                        Creator Profile
+                        {t("creator.title")}
                     </Typography>
 
                     <Box
@@ -88,7 +90,7 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                                     onChange={(e) => {
                                         bioRef.current = e.target.value;
                                     }}
-                                    placeholder="Add an optional bio"
+                                    placeholder={t("creator.bio")}
                                 />
                                 <CloseIcon />
                             </TextBox>
@@ -108,20 +110,19 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                                         setData({
                                             name: nameRef.current,
                                             description: bioRef.current,
-                                            image: {},
+                                            image: null,
                                         });
                                     }}
                                     isLoading={!!data}
                                 >
-                                    Save Profile
+                                    {t("creator.submit")}
                                 </Button>
                             </TextBox>
                         </Box>
                     </Box>
 
                     <Typography variant="body2">
-                        By proceeding, you consent to your information being
-                        used on Muxifi and the Binance Smart Chain network.
+                        {t("creator.agreement")}
                     </Typography>
                 </Box>
             </Modal>
