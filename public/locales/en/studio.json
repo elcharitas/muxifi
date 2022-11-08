@@ -1,0 +1,14 @@
+{
+    "page": {
+        "title": "Creator Studio",
+        "subtitle": "Mint/Upload a new Album to Muxifi"
+    },
+    "form": {
+        "title": "Album Title",
+        "description": "Describe your Album briefly",
+        "image": "Album Cover Image",
+        "audio": "Album Sound",
+        "tags": "Tags",
+        "submit": "Mint Album"
+    }
+}
