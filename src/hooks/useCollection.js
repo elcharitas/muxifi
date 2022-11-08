@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import { useAbi } from "./useAbi";
 
-export const useCollection = ({ method, args, type = "album" }) => {
+export const useCollection = ({ method, args, type = "album", skip }) => {
     // contract name is MuxifiCreator and not MuxifiArtiste
     const { abi } = useAbi({ type: type.replace("artiste", "creator") });
     const { config } = usePrepareContractWrite({
@@ -15,6 +15,7 @@ export const useCollection = ({ method, args, type = "album" }) => {
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
         onError: () => {},
         functionName: method,
+        enabled: !skip,
         args,
     });
     return useContractWrite(config);

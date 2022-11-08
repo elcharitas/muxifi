@@ -53,7 +53,8 @@ const StudioPage = () => {
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
         method: "create",
-        args: [metadata?.url, 30000],
+        args: [metadata.url, 30000],
+        skip: !metadata.url,
     });
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const StudioPage = () => {
     }, [openConnectModal]);
 
     useEffect(() => {
-        if (metadata?.url) {
+        if (metadata.url) {
             writeAsync?.().finally(() => setAlbumData(undefined));
         }
     }, [writeAsync, metadata]);

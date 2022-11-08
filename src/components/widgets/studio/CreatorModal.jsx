@@ -21,12 +21,13 @@ export const CreatorModal = ({ onClose, open, creator }) => {
     const { metadata } = useNFTStorage(data);
     const { writeAsync } = useCollection({
         method: "join",
-        args: [metadata?.url],
+        args: [metadata.url],
         type: "artiste",
+        skip: !metadata.url,
     });
 
     useEffect(() => {
-        if (metadata?.url) {
+        if (metadata.url) {
             writeAsync?.().finally(() => setData(undefined));
         }
     }, [writeAsync, metadata]);
