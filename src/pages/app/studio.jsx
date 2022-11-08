@@ -45,12 +45,14 @@ const StudioPage = () => {
         type: "artiste",
         method: "balanceOf",
         args: [address],
+        skip: false,
     });
     const creatorId = creatorData?.toNumber();
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
         method: "create",
         args: metadata?.url ? [metadata?.url, 30000] : [],
+        skip: !albumData,
     });
 
     useEffect(() => {
