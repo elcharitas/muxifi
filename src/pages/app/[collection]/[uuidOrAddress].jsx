@@ -41,7 +41,7 @@ const CollectionListing = () => {
                 id: query.uuidOrAddress,
             })
                 .then((r) => setCollection(r.result[0].metadata))
-                .catch(() => setCollection([]));
+                .catch(() => setCollection({}));
         }
     }, [query, read]);
 
