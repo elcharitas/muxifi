@@ -9,6 +9,7 @@
         "image": "Album Cover Image",
         "audio": "Album Sound",
         "tags": "Tags",
+        "royalty": "Royalty Fee",
         "submit": "Mint Album"
     },
     "creator": {

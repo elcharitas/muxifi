@@ -7,37 +7,28 @@ import {
 } from "wagmi";
 import { useAbi } from "./useAbi";
 
-export const useCollection = ({ type = "album", skip = true, ...rest }) => {
+export const useCollection = ({ method, args, type = "album" }) => {
+    // contract name is MuxifiCreator and not MuxifiArtiste
     const { abi } = useAbi({ type: type.replace("artiste", "creator") });
-    return !skip && abi.length ? <WriteCollection type={type} {...rest} /> : {};
-};
-
-export const useCollectionRead = ({ skip = true, type = "album", ...rest }) => {
-    const { abi } = useAbi({ type: type.replace("artiste", "creator") });
-    return !skip && abi.length ? <ReadCollection type={type} {...rest} /> : {};
-};
-
-export const WriteCollection = ({ abi, method, args, type }) => {
     const { config } = usePrepareContractWrite({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
         onError: () => {},
-        ...(abi.length && {
-            functionName: method,
-            args,
-        }),
+        functionName: method,
+        args,
     });
     return useContractWrite(config);
 };
 
-export const ReadCollection = ({ abi, method, args, type }) => {
+export const useCollectionRead = ({ method, args, skip, type = "album" }) => {
+    // contract name is MuxifiCreator and not MuxifiArtiste
+    const { abi } = useAbi({ type: type.replace("artiste", "creator") });
     return useContractRead({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
         onError: () => {},
-        ...(abi.length && {
-            functionName: method,
-            args,
-        }),
+        functionName: method,
+        enabled: !skip && abi.length > 0,
+        args,
     });
 };

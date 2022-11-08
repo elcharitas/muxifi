@@ -25,6 +25,7 @@ const ALBUM_FIELDS = {
     image: "file",
     audio: "file",
     tags: "text",
+    royalty: "number",
 };
 
 const StudioPage = () => {
@@ -39,20 +40,20 @@ const StudioPage = () => {
         image: "",
         audio: "",
         tags: "",
+        royalty: 30,
     });
     const [albumData, setAlbumData] = useState();
     const { data: creatorData } = useCollectionRead({
         type: "artiste",
         method: "balanceOf",
         args: [address],
-        skip: false,
+        skip: !address,
     });
     const creatorId = creatorData?.toNumber();
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
         method: "create",
-        args: metadata?.url ? [metadata?.url, 30000] : [],
-        skip: !albumData,
+        args: [metadata?.url, 30000],
     });
 
     useEffect(() => {
@@ -60,8 +61,10 @@ const StudioPage = () => {
     }, [openConnectModal]);
 
     useEffect(() => {
-        writeAsync?.().finally(() => setAlbumData(undefined));
-    }, [writeAsync]);
+        if (metadata?.url) {
+            writeAsync?.().finally(() => setAlbumData(undefined));
+        }
+    }, [writeAsync, metadata]);
 
     return (
         <AppLayout title={t("page.title")}>
@@ -104,6 +107,7 @@ const StudioPage = () => {
                         return (
                             <TextField
                                 key={key}
+                                type={type}
                                 label={t(`form.${key}`)}
                                 value={album[key]}
                                 onChange={(e) => {

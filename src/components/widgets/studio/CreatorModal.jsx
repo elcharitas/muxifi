@@ -23,12 +23,13 @@ export const CreatorModal = ({ onClose, open, creator }) => {
         method: "join",
         args: [metadata?.url],
         type: "artiste",
-        skip: !metadata?.url,
     });
 
     useEffect(() => {
-        writeAsync?.().finally(() => setData(undefined));
-    }, [writeAsync]);
+        if (metadata?.url) {
+            writeAsync?.().finally(() => setData(undefined));
+        }
+    }, [writeAsync, metadata]);
 
     return (
         <div>
