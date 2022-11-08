@@ -53,7 +53,7 @@ const StudioPage = () => {
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
         method: "create",
-        args: [metadata.url, 30000],
+        args: [metadata.url, album.royalty],
         skip: !metadata.url,
     });
 
@@ -96,10 +96,10 @@ const StudioPage = () => {
                                             ? ["mp3", "wav"]
                                             : undefined
                                     }
-                                    onChange={(value) => {
+                                    onChange={(e) => {
                                         dispatch((draft) => {
                                             // eslint-disable-next-line no-param-reassign
-                                            draft[key] = value;
+                                            draft[key] = e.target.files;
                                         });
                                     }}
                                 />
@@ -145,7 +145,11 @@ const StudioPage = () => {
                         id="new"
                         title={album.title || "------"}
                         desc={album.description || "--------"}
-                        image={album.image ? album.image : PlaylistImg}
+                        image={
+                            album.image
+                                ? URL.createObjectURL(album.image)
+                                : PlaylistImg
+                        }
                         owner={address}
                     />
                 </Box>

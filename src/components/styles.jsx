@@ -74,14 +74,16 @@ export const TextBox = styled("div")(({ theme }) => ({
     borderRadius: 12,
 }));
 
-export const IconBox = styled("div")(({ theme }) => ({
+export const IconBox = styled("div")(({ theme, $src }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: 360,
     height: 360,
     borderRadius: "50%",
-    backgroundColor: theme.palette.secondary.dark,
+    background: $src ? `url(${$src})` : theme.palette.secondary.dark,
+    backgroundPosition: "center",
+    backgroundSize: "contain",
 }));
 
 export const MessageInput = styled("textarea")({
