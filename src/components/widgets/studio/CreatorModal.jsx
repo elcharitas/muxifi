@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "src/assets/svgs/profile-circle.svg";
@@ -77,7 +77,9 @@ export const CreatorModal = ({ onClose, open, creator }) => {
                             onClick={() => {
                                 profileImageRef.current.click();
                             }}
-                            $src={image && URL.createObjectURL(image)}
+                            $src={useMemo(() => {
+                                return image && URL.createObjectURL(image);
+                            }, [image])}
                         >
                             {!image && <ProfileIcon />}
                             <TextField
