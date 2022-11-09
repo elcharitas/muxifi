@@ -98,7 +98,7 @@ const PageFooter = () => {
                         </Typography>
                         {Object.entries(items).map(([value, link]) => (
                             <Anchor
-                                key={link}
+                                key={value}
                                 href={link}
                                 variant="footer-link"
                             >

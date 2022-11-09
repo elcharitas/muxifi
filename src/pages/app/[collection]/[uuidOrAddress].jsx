@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/router";
 import { MacScrollbar } from "mac-scrollbar";
@@ -8,9 +8,7 @@ import { buildI18n } from "src/utils/i18n";
 import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
-import { usePlaylist } from "src/hooks";
-import NotFoundPage from "src/pages/404";
-import { getAlbumMetaQuery } from "src/utils/query";
+import { usePlaylist, useQuery } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -29,23 +27,18 @@ const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
     const { read, savePlaylist } = usePlaylist();
-    const [collection, setCollection] = useState({});
-
-    useEffect(() => {
-        if (query.collection === "playlists") {
-            const [playlist] = read(query.uuidOrAddress, query.collection);
-            setCollection(playlist);
-        } else if (query.collection) {
-            getAlbumMetaQuery({
-                type: query.collection?.replace(/s$/, ""),
-                id: query.uuidOrAddress,
-            })
-                .then((r) => setCollection(r.result[0].metadata))
-                .catch(() => setCollection({}));
+    const { data: collectionData } = useQuery("album_meta", {
+        type: query.collection?.replace(/s$/, ""),
+        id: query.uuidOrAddress,
+        skip: query.collection === "playlists",
+    });
+    const collection = useMemo(() => {
+        if (query.collection !== "playlists") {
+            return collectionData?.result[0].metadata || {};
         }
-    }, [query, read]);
+        return read(query.uuidOrAddress, query.collection)?.[0] || {};
+    }, [collectionData, read, query]);
 
-    if (!collection) return <NotFoundPage />;
     return (
         <AppLayout title={collection.name}>
             <RootStyle>

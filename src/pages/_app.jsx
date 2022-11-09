@@ -1,7 +1,12 @@
 import Moralis from "moralis";
 import NextProgress from "next-progress";
 import { appWithTranslation } from "next-i18next";
-import { AuthProvider, OrbitDBProvider, ThemeProvider } from "src/providers";
+import {
+    AuthProvider,
+    OrbitDBProvider,
+    SupabaseProvider,
+    ThemeProvider,
+} from "src/providers";
 import { CONFIG } from "src/config";
 import { Toaster } from "react-hot-toast";
 import { GlobalScrollbar } from "mac-scrollbar";
@@ -27,7 +32,9 @@ const MuxiApp = ({ Component, pageProps }) => {
             <GlobalScrollbar skin={CONFIG.THEME.DEFAULT_THEME} />;
             <AuthProvider>
                 <OrbitDBProvider>
-                    <Component {...pageProps} />
+                    <SupabaseProvider>
+                        <Component {...pageProps} />
+                    </SupabaseProvider>
                 </OrbitDBProvider>
             </AuthProvider>
             <Toaster
