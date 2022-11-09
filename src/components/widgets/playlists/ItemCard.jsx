@@ -33,7 +33,7 @@ export const ItemCard = ({
         >
             <Box>
                 <ImgStyle
-                    $src={image}
+                    $src={image || "/images/logo.svg"}
                     sx={{ mb: 1, width: { xs: 250, md: 200, ...sx } }}
                 >
                     {handlePlay !== false && (

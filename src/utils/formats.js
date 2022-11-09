@@ -9,7 +9,7 @@ export const getIpfsUrl = (cid) => {
     return cid.replace("ipfs://", "https://storry.tv/ipfs/");
 };
 
-export const getItemImage = (image, address) => {
-    if (!image) return getGravatarUrl(address);
+export const getItemImage = (image) => {
+    if (!image) return undefined;
     return getIpfsUrl(image);
 };

@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
 const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
-    const { read, savePlaylist } = usePlaylist();
+    const { records, savePlaylist } = usePlaylist(query.uuidOrAddress);
     const { data: collectionData } = useQuery("album_meta", {
         type: query.collection?.replace(/s$/, ""),
         id: query.uuidOrAddress,
@@ -36,8 +36,8 @@ const CollectionListing = () => {
         if (query.collection !== "playlists") {
             return collectionData?.result[0].metadata || {};
         }
-        return read(query.uuidOrAddress, query.collection)?.[0] || {};
-    }, [collectionData, read, query]);
+        return records[0] || {};
+    }, [collectionData, records, query]);
 
     return (
         <AppLayout title={collection.name}>
