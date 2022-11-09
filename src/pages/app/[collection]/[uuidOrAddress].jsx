@@ -8,7 +8,7 @@ import { buildI18n } from "src/utils/i18n";
 import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemHeader } from "src/components/widgets";
-import { usePlaylist, useQuery } from "src/hooks";
+import { useStore, usePlaylist, useQuery } from "src/hooks";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -26,6 +26,7 @@ export const getStaticPaths = async () => {
 const CollectionListing = () => {
     const { address } = useAccount();
     const { query } = useRouter();
+    const { currenTrack, set } = useStore();
     const { records, savePlaylist } = usePlaylist(query.uuidOrAddress);
     const { data: collectionData } = useQuery("album_meta", {
         type: query.collection?.replace(/s$/, ""),
@@ -55,8 +56,17 @@ const CollectionListing = () => {
                         <Search sx={{ mb: 3, width: 400 }} />
                     </Stack>
                     <MacScrollbar>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                            <ItemBoardSmall key={item} />
+                        {collection?.queue?.map((item, id) => (
+                            <ItemBoardSmall
+                                key={item.name}
+                                id={id}
+                                isPlaying={
+                                    currenTrack.current === id
+                                    && currenTrack.id === query.uuidOrAddress
+                                }
+                                handlePlay={() => set("current", id)}
+                                {...item}
+                            />
                         ))}
                     </MacScrollbar>
                 </Box>
