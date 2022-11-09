@@ -1,10 +1,14 @@
 import { useCallback, useMemo } from "react";
 import { CONFIG } from "src/config";
 import { useAccount } from "wagmi";
-import { useRealtime, useUpsert } from "react-supabase";
+import { useRealtime, useFilter, useUpsert } from "react-supabase";
 
-export const usePlaylist = () => {
+export const usePlaylist = (listId) => {
     const { address } = useAccount();
+    const filter = useFilter(
+        (query) => (listId ? query.eq("id", listId).limit(1) : query),
+        [listId],
+    );
     const [
         {
             data: selectData,
@@ -12,7 +16,7 @@ export const usePlaylist = () => {
             fetching: isFetching,
             stale: isStale,
         },
-    ] = useRealtime(CONFIG.SUPABASE.DB);
+    ] = useRealtime(CONFIG.SUPABASE.DB, { select: { filter } });
     const [
         { count, data: insertData, error: insertError, fetching: isUpdating },
         execute,
@@ -25,13 +29,16 @@ export const usePlaylist = () => {
 
     const savePlaylist = useCallback(
         (list) => {
-            return execute({
-                id: list.id,
-                name: list.title,
-                description: list.description,
-                tags: list.tags || list.title?.toLowerCase().split(" "),
-                address,
-            });
+            return execute(
+                {
+                    id: list.id,
+                    name: list.title,
+                    description: list.description,
+                    tags: list.tags || list.title?.toLowerCase().split(" "),
+                    address,
+                },
+                { onConflict: "id" },
+            );
         },
         [execute, address],
     );

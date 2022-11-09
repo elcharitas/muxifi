@@ -1,9 +1,14 @@
-import { Button } from "src/components/Button";
-import PlaylistImg from "src/assets/img/playListImg.png";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { PlayButton } from "src/components/ControlButton";
 
-export const ItemBoardSmall = () => {
+export const ItemBoardSmall = ({
+    name,
+    artiste,
+    image,
+    isPlaying,
+    handlePlay,
+}) => {
     return (
         <Box
             sx={{
@@ -15,14 +20,22 @@ export const ItemBoardSmall = () => {
         >
             <Box sx={{ display: "flex", width: "70%" }}>
                 <Box sx={{ marginRight: "19px", width: 48, height: 48 }}>
-                    <Image src={PlaylistImg} alt="image" layout="fixed" />
+                    <Image
+                        src={image || "/images/icon.svg"}
+                        alt="image"
+                        layout="fixed"
+                        {...(!image && {
+                            width: "50px",
+                            height: "50px",
+                        })}
+                    />
                 </Box>
 
                 <span>
                     <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>
-                        Song Name
+                        {name}
                     </Typography>
-                    <Typography variant="body2">Artists</Typography>
+                    <Typography variant="body2">{artiste}</Typography>
                 </span>
             </Box>
 
@@ -30,30 +43,11 @@ export const ItemBoardSmall = () => {
                 sx={{
                     display: "flex",
                     width: "50%",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-end",
                     alignItems: "center",
                 }}
             >
-                <p>Album Name</p>
-
-                <div>
-                    <Button
-                        sx={{
-                            backgroundColor: "background.default",
-                            color: "tertiary.light",
-                            borderStyle: "solid",
-                            borderWidth: "1px",
-                            borderColor: "tertiary.light",
-                            "&:hover": {
-                                border: "none",
-                                color: "tertiary.dark",
-                                // FIXME: enure to remove this
-                            },
-                        }}
-                    >
-                        + Add
-                    </Button>
-                </div>
+                <PlayButton onClick={handlePlay} isPlaying={isPlaying} />
             </Box>
         </Box>
     );

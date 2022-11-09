@@ -14,8 +14,8 @@ export const theme = createTheme({
         },
         background: {
             default: "#000402",
-            paper: "#010A06",
-            hover: "#010C07",
+            paper: "#040F0F",
+            hover: "#0b0f0f",
         },
         gradients: {
             primary:
