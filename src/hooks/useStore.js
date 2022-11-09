@@ -40,7 +40,7 @@ export const useStore = (path) => {
         store,
         dispatch,
         reset,
-        [path]: store[path],
+        [path]: store[path] || {},
         /**
          * Setter for the current path
          *
