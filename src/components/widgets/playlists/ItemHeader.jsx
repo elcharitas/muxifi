@@ -38,7 +38,7 @@ const Text = styled("p")(({ theme }) => ({
     marginRight: 24,
 }));
 
-export const ItemHeader = ({ collection, type, handleSave }) => {
+export const ItemHeader = ({ collection, stats, type, handleSave }) => {
     const { address } = useAccount();
     const isOwner = type === "playlists" && collection.address === address;
     const [open, setOpen] = useState(false);
@@ -100,8 +100,8 @@ export const ItemHeader = ({ collection, type, handleSave }) => {
                     </Text>
 
                     <Box sx={{ display: "flex" }}>
-                        <Text>3 Songs</Text>
-                        <Text>16 mins 12 Secs</Text>
+                        <Text>{stats?.count}</Text>
+                        {/* <Text>16 mins 12 Secs</Text> */}
 
                         {collection.price && (
                             <Box sx={{ display: "flex", alignItems: "center" }}>
