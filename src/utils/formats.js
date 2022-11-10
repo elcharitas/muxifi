@@ -6,7 +6,9 @@ export const getGravatarUrl = (cid) => {
 };
 
 export const getIpfsUrl = (cid) => {
-    return String(cid?.replace("ipfs://", "https://storry.tv/ipfs/"));
+    return String(
+        cid?.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
+    );
 };
 
 export const getItemImage = (image) => {
