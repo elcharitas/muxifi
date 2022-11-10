@@ -9,7 +9,7 @@ import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemCard, ItemHeader } from "src/components/widgets";
 import { useStore, usePlaylist, useQuery } from "src/hooks";
-import { getItemImage } from "src/utils/formats";
+import { compAddress, getItemImage } from "src/utils/formats";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -39,7 +39,7 @@ const CollectionListing = () => {
     const { records, savePlaylist } = usePlaylist(uuid);
     const { data: collectionData } = useQuery("album_meta", {
         type: cid?.replace(/s$/, ""),
-        id: uuid,
+        id: uuid.replace("0x", ""),
         skip: isPlaylist,
     });
     const { data: artisteData } = useQuery("account_albums", {
@@ -48,14 +48,15 @@ const CollectionListing = () => {
     });
     const [filter, setFilter] = useState("");
     const collection = useMemo(() => {
-        if (!isPlaylist) {
-            return collectionData?.result[0].metadata || {};
+        if (!isPlaylist && collectionData) {
+            const { tokenId, ownerOf, metadata } = collectionData.result[0];
+            return { ...metadata, id: `0x${tokenId}`, address: ownerOf };
         }
         return records[0] || {};
     }, [collectionData, records, isPlaylist]);
     const collectionStats = useMemo(() => {
-        const count = (artisteData?.result || collection?.queue)?.length || 0;
-        return { count: `${count} songs` };
+        const length = (artisteData?.result || collection.queue)?.length || 0;
+        return { count: `${length || 0} Songs`, length };
     }, [collection, artisteData]);
 
     return (
@@ -64,24 +65,26 @@ const CollectionListing = () => {
                 <ItemHeader
                     stats={collectionStats}
                     collection={collection}
-                    isOwner={collection.address === address}
+                    isOwner={compAddress(collection.address, address)}
                     handleSave={(data) => {
                         savePlaylist({ ...collection, ...data });
                     }}
                     type={cid}
                 />
                 <Box sx={{ paddingTop: 14 }}>
-                    <Stack justifyContent="end" direction="row">
-                        <Search
-                            search={filter}
-                            setSearch={setFilter}
-                            sx={{ mb: 3, width: 400 }}
-                        />
-                    </Stack>
+                    {collectionStats.length && (
+                        <Stack justifyContent="end" direction="row">
+                            <Search
+                                search={filter}
+                                setSearch={setFilter}
+                                sx={{ mb: 3, width: 400 }}
+                            />
+                        </Stack>
+                    )}
                     <MacScrollbar>
                         {!isArtiste ? (
-                            collection?.queue
-                                ?.filter(({ name }) => {
+                            Array.from(collection?.queue || [])
+                                .filter(({ name }) => {
                                     return name.indexOf(filter) > -1;
                                 })
                                 .map((item, id) => (

@@ -38,7 +38,7 @@ const StudioPage = () => {
         description: "",
         cover: "",
         image: "",
-        audio: "",
+        audio: [],
         tags: "",
         royalty: 30,
     });
@@ -52,8 +52,9 @@ const StudioPage = () => {
     const creatorId = creatorData?.toNumber();
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
-        method: "create",
-        args: [metadata.url, album.royalty],
+        type: "album",
+        method: "freeCreate",
+        args: [metadata.url],
         skip: !metadata.url,
     });
     const playImage = useMemo(() => {
@@ -101,6 +102,9 @@ const StudioPage = () => {
                                     }
                                     onChange={(e) => {
                                         dispatch((draft) => {
+                                            if (e.target.files.length === 0) {
+                                                return;
+                                            }
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = e.target.files;
                                         });
@@ -132,9 +136,10 @@ const StudioPage = () => {
                         onClick={() => {
                             if (!album.image) return;
                             setAlbumData({
-                                name: album.name,
+                                name: album.title,
                                 description: album.description,
                                 image: album.image[0],
+                                queue: album.audio,
                                 address,
                             });
                         }}

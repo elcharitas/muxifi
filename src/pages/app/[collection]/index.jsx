@@ -44,7 +44,7 @@ const CollectionsPage = () => {
             getAlbumsQuery({ type: collection.replace(/s$/, "") }).then((r) => {
                 const newItems = r.result.map((i) => ({
                     ...i.metadata,
-                    id: i.tokenId,
+                    id: `0x${i.tokenId}`,
                     address: i.ownerOf,
                 }));
                 setItems(newItems);
