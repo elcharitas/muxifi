@@ -8,7 +8,7 @@ import { useStore } from "./useStore";
 export const useControl = () => {
     const { currentTrack, dispatch, set, ready } = useStore("currentTrack");
     const { read } = usePlaylist();
-    const { data: albumData } = useQuery("album_meta", {
+    const { data: albumData, isLoading } = useQuery("album_meta", {
         id: currentTrack.id,
         type: currentTrack.type || "album",
         skip: !currentTrack.type || currentTrack.type === "playlists",
@@ -57,7 +57,7 @@ export const useControl = () => {
     }, [volume, currentTrack]);
 
     return {
-        ready: ready && item.name !== undefined,
+        ready: !isLoading && ready && item.name !== undefined,
         track: {
             ...current,
             id: Number(currentTrack.id),
