@@ -18,7 +18,7 @@ export const ItemCard = ({
 }) => {
     const { address } = useAccount();
     const { t } = useTranslation("playlist");
-    const { dispatch } = useControl();
+    const { dispatch, track } = useControl();
     return (
         <RootWidgetStyle
             sx={{
@@ -51,6 +51,7 @@ export const ItemCard = ({
                                                 : id,
                                         type: type.replace(/s$/, ""),
                                     });
+                                    track.togglePlayPause();
                                 }}
                             />
                         </div>

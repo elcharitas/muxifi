@@ -38,8 +38,8 @@ export const useControl = () => {
 
     const goto = useCallback(
         (percent) => {
-            const newPosition = position.duration * percent;
-            if (newPosition > 0) {
+            const newPosition = (position.duration * percent) / 100;
+            if (position.duration > 0) {
                 position.seek(newPosition);
                 set("position", newPosition);
             }
@@ -49,7 +49,7 @@ export const useControl = () => {
 
     const setVolume = useCallback(
         (vol) => {
-            volume(vol);
+            volume(vol / 100);
             set("volume", vol);
         },
         [set, volume],
@@ -72,7 +72,7 @@ export const useControl = () => {
                 name: "----",
             },
             favorite: false,
-            position: percentComplete,
+            percentComplete,
             goto,
             volume: setVolume,
             playing: currentTrack.playing,

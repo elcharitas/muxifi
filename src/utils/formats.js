@@ -6,9 +6,8 @@ export const getGravatarUrl = (cid) => {
 };
 
 export const getIpfsUrl = (cid) => {
-    return String(
-        cid?.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
-    );
+    const path = cid?.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/");
+    return String(path);
 };
 
 export const getItemImage = (image) => {
@@ -18,4 +17,10 @@ export const getItemImage = (image) => {
 
 export const compAddress = (addr1, addr2) => {
     return addr1?.toLowerCase() === addr2?.toLowerCase();
+};
+
+export const secondsWatch = (sec) => {
+    const minute = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
+    return `${minute}:${seconds > 9 ? seconds : `0${seconds}`}`;
 };
