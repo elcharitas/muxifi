@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAudioPlayer, useAudioPosition } from "react-use-audio-player";
 import { getIpfsUrl } from "src/utils/formats";
 import { useQuery } from "./useQuery";
@@ -13,8 +13,13 @@ export const useControl = () => {
         type: currentTrack.type || "album",
         skip: !currentTrack.type || currentTrack.type === "playlists",
     });
-    const [playlist] = read(currentTrack.id, currentTrack.type);
-    const item = albumData?.result[0].metadata || playlist || {};
+    const item = useMemo(() => {
+        if (currentTrack.type === "playlists") {
+            const [playlist] = read(currentTrack.id, currentTrack.type);
+            return playlist || {};
+        }
+        return albumData?.result[0].metadata || {};
+    }, [albumData?.result, currentTrack, read]);
     const queue = item?.queue || [];
     const current = queue[currentTrack.current] || {};
     const { percentComplete, ...position } = useAudioPosition({
@@ -68,7 +73,6 @@ export const useControl = () => {
             },
             favorite: false,
             position: percentComplete,
-            playlist,
             goto,
             volume: setVolume,
             playing: currentTrack.playing,

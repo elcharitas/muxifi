@@ -84,7 +84,7 @@ const CollectionListing = ({ params = {} }) => {
                         {!isArtiste ? (
                             Array.from(collection?.queue || [])
                                 .filter(({ name }) => {
-                                    return name.indexOf(filter) > -1;
+                                    return name?.indexOf(filter) > -1;
                                 })
                                 .map((item, id) => (
                                     <ItemBoardSmall

@@ -74,6 +74,7 @@ const ControlBar = () => {
                                 isPlaying={track.playing}
                                 onClick={() => {
                                     setTrack("playing", !track.playing);
+                                    track.togglePlayPause();
                                 }}
                             />
                             <ControlButton icon="next" />
