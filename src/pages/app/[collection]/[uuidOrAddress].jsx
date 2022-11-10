@@ -109,7 +109,7 @@ const CollectionListing = ({ params = {} }) => {
                                         key={metadata.id}
                                         id={metadata.id}
                                         type={cid}
-                                        title={metadata.name}
+                                        title={metadata.name || collection.name}
                                         desc={metadata.description}
                                         image={getItemImage(metadata.image)}
                                         owner={undefined}

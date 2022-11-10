@@ -109,7 +109,7 @@ const StudioPage = () => {
                                             const files = Array.from(
                                                 e.target.files,
                                             ).map((src, id) => {
-                                                return { src, name: src, id };
+                                                return { src, id };
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
