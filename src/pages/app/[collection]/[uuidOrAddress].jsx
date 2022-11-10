@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useAccount } from "wagmi";
-import { useRouter } from "next/router";
 import { MacScrollbar } from "mac-scrollbar";
 import { Box, Grid, Stack } from "@mui/material";
 import AppLayout from "src/layouts/app";
@@ -11,9 +10,10 @@ import { ItemBoardSmall, ItemCard, ItemHeader } from "src/components/widgets";
 import { useStore, usePlaylist, useQuery } from "src/hooks";
 import { compAddress, getItemImage } from "src/utils/formats";
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps = async ({ locale, params }) => ({
     props: {
         ...(await buildI18n(locale, ["playlist"])),
+        params,
     },
 });
 
@@ -24,23 +24,22 @@ export const getStaticPaths = async () => {
     };
 };
 
-const CollectionListing = () => {
+const CollectionListing = ({ params = {} }) => {
     const { address } = useAccount();
-    const { query } = useRouter();
     const {
         set,
         currenTrack: { current, id: tid },
     } = useStore("currenTrack");
 
-    const { collection: cid, uuidOrAddress: uuid } = query;
+    const { collection: cid, uuidOrAddress: uuid } = params;
     const isPlaylist = cid === "playlists";
     const isArtiste = cid === "artistes";
 
     const { records, savePlaylist } = usePlaylist(uuid);
     const { data: collectionData } = useQuery("album_meta", {
         type: cid?.replace(/s$/, ""),
-        id: uuid.replace("0x", ""),
-        skip: isPlaylist,
+        id: uuid?.replace("0x", ""),
+        skip: !uuid || isPlaylist,
     });
     const { data: artisteData } = useQuery("account_albums", {
         account: uuid,
