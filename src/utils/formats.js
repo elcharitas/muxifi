@@ -6,10 +6,14 @@ export const getGravatarUrl = (cid) => {
 };
 
 export const getIpfsUrl = (cid) => {
-    return cid.replace("ipfs://", "https://storry.tv/ipfs/");
+    return String(cid?.replace("ipfs://", "https://storry.tv/ipfs/"));
 };
 
 export const getItemImage = (image) => {
     if (!image) return undefined;
     return getIpfsUrl(image);
+};
+
+export const compAddress = (addr1, addr2) => {
+    return addr1?.toLowerCase() === addr2?.toLowerCase();
 };

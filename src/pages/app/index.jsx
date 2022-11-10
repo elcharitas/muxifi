@@ -22,7 +22,7 @@ const AppHomePage = () => {
                         size="hero-title"
                     />
                     <Grid container spacing="13px">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                        {[1, 2, 3, 4].map((item) => (
                             <ItemBoard title="Recent Playlist" key={item} />
                         ))}
                     </Grid>
@@ -31,9 +31,6 @@ const AppHomePage = () => {
                 {/* TODO: This would be removed once I have an array to loop through */}
                 <PlayList title="Muxifi Playlists" size="hero-subtitle" />
                 <PlayList title="Uniquely Yours" size="hero-subtitle" />
-                <PlayList title="Focus" size="hero-subtitle" />
-                <PlayList title="Mood" size="hero-subtitle" />
-                <PlayList title="Popular New Release" size="hero-subtitle" />
             </RootStyle>
         </AppLayout>
     );

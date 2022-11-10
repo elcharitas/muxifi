@@ -11,7 +11,6 @@ import { FileUpload } from "src/components/FileUpload";
 import { useAccount } from "wagmi";
 import { CreatorModal } from "src/components/widgets/studio/CreatorModal";
 import { ItemCard } from "src/components/widgets";
-import PlaylistImg from "src/assets/img/trial2.png";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -37,8 +36,8 @@ const StudioPage = () => {
         artist: address,
         description: "",
         cover: "",
-        image: "",
-        audio: "",
+        image: [],
+        audio: [],
         tags: "",
         royalty: 30,
     });
@@ -52,12 +51,15 @@ const StudioPage = () => {
     const creatorId = creatorData?.toNumber();
     const { metadata } = useNFTStorage(albumData);
     const { writeAsync } = useCollection({
-        method: "create",
-        args: [metadata.url, album.royalty],
+        type: "album",
+        method: "freeCreate",
+        args: [metadata.url],
         skip: !metadata.url,
     });
     const playImage = useMemo(() => {
-        return album.image ? URL.createObjectURL(album.image[0]) : PlaylistImg;
+        return album.image[0]?.src
+            ? URL.createObjectURL(album.image[0]?.src)
+            : undefined;
     }, [album.image]);
 
     useEffect(() => {
@@ -101,8 +103,16 @@ const StudioPage = () => {
                                     }
                                     onChange={(e) => {
                                         dispatch((draft) => {
+                                            if (e.target.files.length === 0) {
+                                                return;
+                                            }
+                                            const files = Array.from(
+                                                e.target.files,
+                                            ).map((src, id) => {
+                                                return { src, id };
+                                            });
                                             // eslint-disable-next-line no-param-reassign
-                                            draft[key] = e.target.files;
+                                            draft[key] = files;
                                         });
                                     }}
                                 />
@@ -132,9 +142,10 @@ const StudioPage = () => {
                         onClick={() => {
                             if (!album.image) return;
                             setAlbumData({
-                                name: album.name,
+                                name: album.title,
                                 description: album.description,
-                                image: album.image[0],
+                                image: album.image[0]?.src,
+                                queue: album.audio,
                                 address,
                             });
                         }}

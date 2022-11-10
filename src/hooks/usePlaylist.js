@@ -22,7 +22,7 @@ export const usePlaylist = (listId) => {
         execute,
     ] = useUpsert(CONFIG.SUPABASE.DB);
 
-    const records = useMemo(() => selectData || insertData || [], [
+    const records = useMemo(() => insertData || selectData || [], [
         selectData,
         insertData,
     ]);

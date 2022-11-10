@@ -42,7 +42,12 @@ const ControlBar = () => {
                     />
                 )}
                 <ToolbarStyle>
-                    <Stackable sx={{ display: { xs: "none", md: "flex" } }}>
+                    <Stackable
+                        sx={{
+                            display: { xs: "none", md: "flex" },
+                            maxWidth: "180px",
+                        }}
+                    >
                         <Box sx={{ mr: 4 }}>
                             <Typography variant="h5">{track.name}</Typography>
                             <Typography variant="body2">

@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useAccount } from "wagmi";
-import { useRouter } from "next/router";
 import { MacScrollbar } from "mac-scrollbar";
 import { Box, Grid, Stack } from "@mui/material";
 import AppLayout from "src/layouts/app";
@@ -9,38 +8,38 @@ import { Search } from "src/components";
 import { RootStyle } from "src/components/styles";
 import { ItemBoardSmall, ItemCard, ItemHeader } from "src/components/widgets";
 import { useStore, usePlaylist, useQuery } from "src/hooks";
-import { getItemImage } from "src/utils/formats";
+import { compAddress, getItemImage } from "src/utils/formats";
 
-export const getStaticProps = async ({ locale }) => ({
+export const getStaticProps = async ({ locale, params }) => ({
     props: {
         ...(await buildI18n(locale, ["playlist"])),
+        params,
     },
 });
 
 export const getStaticPaths = async () => {
     return {
         paths: [],
-        fallback: true,
+        fallback: "blocking",
     };
 };
 
-const CollectionListing = () => {
+const CollectionListing = ({ params = {} }) => {
     const { address } = useAccount();
-    const { query } = useRouter();
     const {
         set,
         currenTrack: { current, id: tid },
     } = useStore("currenTrack");
 
-    const { collection: cid, uuidOrAddress: uuid } = query;
+    const { collection: cid, uuidOrAddress: uuid } = params;
     const isPlaylist = cid === "playlists";
     const isArtiste = cid === "artistes";
 
     const { records, savePlaylist } = usePlaylist(uuid);
     const { data: collectionData } = useQuery("album_meta", {
         type: cid?.replace(/s$/, ""),
-        id: uuid,
-        skip: isPlaylist,
+        id: uuid?.replace("0x", ""),
+        skip: !uuid || isPlaylist,
     });
     const { data: artisteData } = useQuery("account_albums", {
         account: uuid,
@@ -48,14 +47,15 @@ const CollectionListing = () => {
     });
     const [filter, setFilter] = useState("");
     const collection = useMemo(() => {
-        if (!isPlaylist) {
-            return collectionData?.result[0].metadata || {};
+        if (!isPlaylist && collectionData) {
+            const { tokenId, ownerOf, metadata } = collectionData.result[0];
+            return { ...metadata, id: `0x${tokenId}`, address: ownerOf };
         }
         return records[0] || {};
     }, [collectionData, records, isPlaylist]);
     const collectionStats = useMemo(() => {
-        const count = (artisteData?.result || collection?.queue)?.length || 0;
-        return { count: `${count} songs` };
+        const length = (artisteData?.result || collection.queue)?.length || 0;
+        return { count: `${length || 0} Songs`, length };
     }, [collection, artisteData]);
 
     return (
@@ -64,30 +64,33 @@ const CollectionListing = () => {
                 <ItemHeader
                     stats={collectionStats}
                     collection={collection}
-                    isOwner={collection.address === address}
+                    isOwner={compAddress(collection.address, address)}
                     handleSave={(data) => {
                         savePlaylist({ ...collection, ...data });
                     }}
                     type={cid}
                 />
                 <Box sx={{ paddingTop: 14 }}>
-                    <Stack justifyContent="end" direction="row">
-                        <Search
-                            search={filter}
-                            setSearch={setFilter}
-                            sx={{ mb: 3, width: 400 }}
-                        />
-                    </Stack>
+                    {collectionStats.length && (
+                        <Stack justifyContent="end" direction="row">
+                            <Search
+                                search={filter}
+                                setSearch={setFilter}
+                                sx={{ mb: 3, width: 400 }}
+                            />
+                        </Stack>
+                    )}
                     <MacScrollbar>
                         {!isArtiste ? (
-                            collection?.queue
-                                ?.filter(({ name }) => {
+                            Array.from(collection?.queue || [])
+                                .filter(({ name }) => {
                                     return name.indexOf(filter) > -1;
                                 })
                                 .map((item, id) => (
                                     <ItemBoardSmall
                                         key={item.name}
                                         id={id}
+                                        type={cid}
                                         isPlaying={
                                             current === id && tid === uuid
                                         }
@@ -105,12 +108,11 @@ const CollectionListing = () => {
                                     <ItemCard
                                         key={metadata.id}
                                         id={metadata.id}
-                                        href={`/app/${cid}/${metadata.id}`}
-                                        title={metadata.name}
+                                        type={cid}
+                                        title={metadata.name || collection.name}
                                         desc={metadata.description}
                                         image={getItemImage(metadata.image)}
                                         owner={undefined}
-                                        handlePlay={false}
                                     />
                                 ))}
                             </Grid>

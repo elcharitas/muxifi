@@ -3,7 +3,6 @@ import { PageSection } from "src/components/widgets";
 import { ImgStyle } from "src/components/styles";
 import PageLayout from "src/layouts/page";
 import { buildI18n } from "src/utils/i18n";
-import HomeSample from "src/assets/img/samples/home.png";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -11,9 +10,13 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
+const sections = ["hero", "about", "earn", "defi"];
+const images = {
+    hero: "preview-1.png",
+    about: "preview-2.png",
+};
 export default function Home() {
     const { t } = useTranslation("home");
-    const sections = ["hero", "about", "earn", "defi"];
     return (
         <PageLayout title="Home">
             {sections.map((section, index) => (
@@ -24,14 +27,16 @@ export default function Home() {
                     cta={t(`${section}.cta`)}
                     reverse={index % 2 !== 0}
                 >
-                    <ImgStyle
-                        $src={HomeSample}
-                        sx={{
-                            width: "100%",
-                            height: "600px",
-                            backgroundPosition: "center",
-                        }}
-                    />
+                    {images[section] && (
+                        <ImgStyle
+                            $src={`/images/${images[section]}`}
+                            sx={{
+                                width: "100%",
+                                height: "600px",
+                                backgroundPosition: "center",
+                            }}
+                        />
+                    )}
                 </PageSection>
             ))}
         </PageLayout>

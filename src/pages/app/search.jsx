@@ -95,6 +95,8 @@ const SearchPage = () => {
                         {results?.map?.((item) => (
                             <ItemCard
                                 key={item.id}
+                                id={item.id}
+                                type="albums"
                                 title={item.name}
                                 desc={item.description}
                                 image={item.image}

@@ -38,7 +38,12 @@ export const useStore = (path) => {
 
     return {
         store,
-        dispatch,
+        dispatch(value) {
+            dispatch(path, {
+                ...store[path],
+                ...value,
+            });
+        },
         reset,
         [path]: store[path] || {},
         /**

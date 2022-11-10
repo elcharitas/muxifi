@@ -9,6 +9,7 @@ import EditIcon from "src/assets/svgs/edit-icon.svg";
 import BinanceIcon from "src/assets/svgs/binance-icon.svg";
 import NoteIcon from "src/assets/svgs/note-icon.svg";
 import { useAccount } from "wagmi";
+import { compAddress } from "src/utils/formats";
 
 const GridContainer = styled("div")({
     display: "grid",
@@ -40,7 +41,7 @@ const Text = styled("p")(({ theme }) => ({
 
 export const ItemHeader = ({ collection, stats, type, handleSave }) => {
     const { address } = useAccount();
-    const isOwner = type === "playlists" && collection.address === address;
+    const isOwner = compAddress(collection.address, address);
     const [open, setOpen] = useState(false);
     const handleModal = () => {
         if (!isOwner) return;
@@ -115,7 +116,7 @@ export const ItemHeader = ({ collection, stats, type, handleSave }) => {
                 </GridItemTwo>
 
                 <GridItemThree>
-                    {!isOwner && !!address && (
+                    {!isOwner && type === "playlists" && (
                         <Button
                             sx={{
                                 backgroundColor: "background.default",

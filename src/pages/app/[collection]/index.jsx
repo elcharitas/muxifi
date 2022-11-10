@@ -44,7 +44,7 @@ const CollectionsPage = () => {
             getAlbumsQuery({ type: collection.replace(/s$/, "") }).then((r) => {
                 const newItems = r.result.map((i) => ({
                     ...i.metadata,
-                    id: i.tokenId,
+                    id: `0x${i.tokenId}`,
                     address: i.ownerOf,
                 }));
                 setItems(newItems);
@@ -78,7 +78,7 @@ const CollectionsPage = () => {
                             <ItemCard
                                 key={item.id}
                                 id={item.id}
-                                href={`/app/${collection}/${item.id}`}
+                                type={collection}
                                 title={item.name}
                                 desc={item.description}
                                 image={getItemImage(item.image, item.id)}
@@ -87,7 +87,11 @@ const CollectionsPage = () => {
                                         ? item.address
                                         : undefined
                                 }
-                                handlePlay={false}
+                                handlePlay={
+                                    collection === "artistes"
+                                        ? false
+                                        : undefined
+                                }
                             />
                         ))}
                     </Grid>
