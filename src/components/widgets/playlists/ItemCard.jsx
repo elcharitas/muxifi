@@ -9,7 +9,7 @@ import { useControl } from "src/hooks";
 export const ItemCard = ({
     id = "",
     title,
-    href,
+    type,
     desc,
     image,
     handlePlay,
@@ -18,7 +18,7 @@ export const ItemCard = ({
 }) => {
     const { address } = useAccount();
     const { t } = useTranslation("playlist");
-    const { setTrack } = useControl();
+    const { dispatch } = useControl();
     return (
         <RootWidgetStyle
             sx={{
@@ -29,19 +29,29 @@ export const ItemCard = ({
                     backgroundColor: "background.hover",
                 },
             }}
-            href={href}
+            href={type ? `/app/${type}/${id}` : undefined}
         >
             <Box>
                 <ImgStyle
-                    $src={image || "/images/logo.svg"}
-                    sx={{ mb: 1, width: { xs: 250, md: 200, ...sx } }}
+                    $src={image || "/images/icon.svg"}
+                    sx={{
+                        mb: 1,
+                        width: { xs: 250, md: 200, ...sx },
+                        ...(image && { backgroundSize: "cover" }),
+                    }}
                 >
                     {handlePlay !== false && (
                         <div className="root-btn">
                             <PlayButton
-                                onClick={
-                                    handlePlay || (() => setTrack("id", id))
-                                }
+                                onClick={() => {
+                                    dispatch({
+                                        id:
+                                            type === "albums"
+                                                ? id.replace("0x", "")
+                                                : id,
+                                        type: type.replace(/s$/, ""),
+                                    });
+                                }}
                             />
                         </div>
                     )}

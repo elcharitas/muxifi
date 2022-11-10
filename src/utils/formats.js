@@ -6,7 +6,7 @@ export const getGravatarUrl = (cid) => {
 };
 
 export const getIpfsUrl = (cid) => {
-    return cid.replace("ipfs://", "https://storry.tv/ipfs/");
+    return String(cid?.replace("ipfs://", "https://storry.tv/ipfs/"));
 };
 
 export const getItemImage = (image) => {

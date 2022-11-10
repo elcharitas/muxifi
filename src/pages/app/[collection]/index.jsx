@@ -78,7 +78,7 @@ const CollectionsPage = () => {
                             <ItemCard
                                 key={item.id}
                                 id={item.id}
-                                href={`/app/${collection}/${item.id}`}
+                                type={collection}
                                 title={item.name}
                                 desc={item.description}
                                 image={getItemImage(item.image, item.id)}
@@ -87,7 +87,11 @@ const CollectionsPage = () => {
                                         ? item.address
                                         : undefined
                                 }
-                                handlePlay={false}
+                                handlePlay={
+                                    collection === "artistes"
+                                        ? false
+                                        : undefined
+                                }
                             />
                         ))}
                     </Grid>

@@ -4,7 +4,6 @@ import { useTranslation } from "next-i18next";
 import { useControl } from "src/hooks";
 import { Button } from "src/components/Button";
 import { Heading } from "src/components/Heading";
-import PlayListImg from "src/assets/img/trial2.png";
 import { ItemCard } from "./ItemCard";
 
 const HeadingWrapper = styled("div")({
@@ -47,8 +46,8 @@ export const PlayList = ({ title, size }) => {
                     <ItemCard
                         key={item}
                         title="Playlist Title"
+                        type="playlists"
                         desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                        image={PlayListImg}
                         handlePlay={() => setTrack("id", item)}
                     />
                 ))}

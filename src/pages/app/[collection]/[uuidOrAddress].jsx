@@ -90,6 +90,7 @@ const CollectionListing = ({ params = {} }) => {
                                     <ItemBoardSmall
                                         key={item.name}
                                         id={id}
+                                        type={cid}
                                         isPlaying={
                                             current === id && tid === uuid
                                         }
@@ -107,12 +108,11 @@ const CollectionListing = ({ params = {} }) => {
                                     <ItemCard
                                         key={metadata.id}
                                         id={metadata.id}
-                                        href={`/app/${cid}/${metadata.id}`}
+                                        type={cid}
                                         title={metadata.name}
                                         desc={metadata.description}
                                         image={getItemImage(metadata.image)}
                                         owner={undefined}
-                                        handlePlay={false}
                                     />
                                 ))}
                             </Grid>

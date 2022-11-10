@@ -59,7 +59,7 @@ const StudioPage = () => {
     const playImage = useMemo(() => {
         return album.image[0]?.src
             ? URL.createObjectURL(album.image[0]?.src)
-            : "/images/logo.svg";
+            : undefined;
     }, [album.image]);
 
     useEffect(() => {
@@ -106,13 +106,13 @@ const StudioPage = () => {
                                             if (e.target.files.length === 0) {
                                                 return;
                                             }
-                                            const files = e.target.files.map(
-                                                (src, id) => {
-                                                    return { src, name: src, id };
-                                                },
-                                            );
+                                            const files = Array.from(
+                                                e.target.files,
+                                            ).map((src, id) => {
+                                                return { src, name: src, id };
+                                            });
                                             // eslint-disable-next-line no-param-reassign
-                                            draft[key].push(files);
+                                            draft[key] = files;
                                         });
                                     }}
                                 />
