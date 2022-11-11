@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useImmer } from "use-immer";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 import { Box, TextField } from "@mui/material";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useTranslation } from "next-i18next";
@@ -11,7 +13,6 @@ import { FileUpload } from "src/components/FileUpload";
 import { useAccount } from "wagmi";
 import { CreatorModal } from "src/components/widgets/studio/CreatorModal";
 import { ItemCard } from "src/components/widgets";
-import toast from "react-hot-toast";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -30,6 +31,7 @@ const ALBUM_FIELDS = {
 
 const StudioPage = () => {
     const { address } = useAccount();
+    const router = useRouter();
     const { t } = useTranslation("studio");
     const { openConnectModal } = useConnectModal();
     const [album, dispatch] = useImmer({
@@ -115,14 +117,14 @@ const StudioPage = () => {
                                                 return;
                                             }
                                             const files = Array.from(
-                                                e.target.files,
+                                                e.target.files
                                             ).map((src, id) => {
                                                 return { src, id };
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
                                             toast.success(
-                                                `Added ${files.length} ${key} files`,
+                                                `Added ${files.length} ${key} files`
                                             );
                                         });
                                     }}
@@ -185,6 +187,7 @@ const StudioPage = () => {
                 <CreatorModal
                     creator={{}}
                     open={!creatorId && !openConnectModal}
+                    onClose={() => router.push("/app")}
                 />
             )}
         </AppLayout>
