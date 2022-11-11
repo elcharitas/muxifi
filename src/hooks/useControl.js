@@ -55,12 +55,6 @@ export const useControl = () => {
         }
     }, [volume, currentTrack]);
 
-    useEffect(() => {
-        if (currentTrack.id !== albumData?.result[0].tokenId) {
-            mutate();
-        }
-    }, [currentTrack.id, albumData, mutate]);
-
     return {
         ready: ready || item.name !== undefined,
         track: {

@@ -5,7 +5,8 @@ import * as queries from "src/utils/query";
 
 export const useQuery = (query, args) => {
     const [isLoading, setIsLoading] = useState(!!args.skip);
-    const response = useSWR(`${query}${args.type || ""}`, async () => {
+    const key = `${query}${args.id || ""}${args.type || ""}`;
+    const response = useSWR(key, async () => {
         if (args.skip) {
             setIsLoading(false);
             return null;
