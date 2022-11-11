@@ -14,8 +14,6 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: "14.15.4"
-            - run: npm install -g lerna
             - run: npm install -g yarn
-            - run: yarn bootstrap
-            - run: yarn typecheck
+            - run: yarn install
             - run: yarn lint
