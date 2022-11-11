@@ -10,7 +10,9 @@
         "audio": "Album Sound",
         "tags": "Tags",
         "royalty": "Royalty Fee",
-        "submit": "Mint Album"
+        "submit": "Mint Album",
+        "loading": "Minting Album...",
+        "uploading": "Uploading to IPFS..."
     },
     "creator": {
         "title": "Creator Profile",
