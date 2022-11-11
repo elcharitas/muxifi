@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAudioPlayer, useAudioPosition } from "react-use-audio-player";
 import { getIpfsUrl } from "src/utils/formats";
 import { useQuery } from "./useQuery";
@@ -6,35 +6,34 @@ import { usePlaylist } from "./usePlaylist";
 import { useStore } from "./useStore";
 
 export const useControl = () => {
-    const { currentTrack, dispatch, set, ready } = useStore("currentTrack");
+    const { currentTrack, dispatch, set } = useStore("currentTrack");
     const { read } = usePlaylist();
-    const { data: albumData, isLoading } = useQuery("album_meta", {
+    const { data: albumData, mutate } = useQuery("album_meta", {
         id: currentTrack.id,
-        type: currentTrack.type || "album",
-        skip: !currentTrack.type || currentTrack.type === "playlists",
+        type: currentTrack.type,
+        skip: currentTrack.type === "playlist",
     });
-    const [playlist] = read(currentTrack.id, currentTrack.type);
-    const item = albumData?.result[0].metadata || playlist || {};
+    const item = useMemo(() => {
+        if (currentTrack.type === "playlist") {
+            const [playlist] = read(currentTrack.id);
+            return playlist || {};
+        }
+        return albumData?.result[0].metadata || {};
+    }, [albumData?.result, currentTrack, read]);
     const queue = item?.queue || [];
     const current = queue[currentTrack.current] || {};
     const { percentComplete, ...position } = useAudioPosition({
         highRefreshRate: true,
     });
-    const {
-        ready: isPlayerReady,
-        load,
-        error,
-        volume,
-        ...player
-    } = useAudioPlayer({
+    const { ready, load, error, volume, ...player } = useAudioPlayer({
         src: getIpfsUrl(current?.src),
         autoplay: false,
     });
 
     const goto = useCallback(
         (percent) => {
-            const newPosition = position.duration * percent;
-            if (newPosition > 0) {
+            const newPosition = (position.duration * percent) / 100;
+            if (position.duration > 0) {
                 position.seek(newPosition);
                 set("position", newPosition);
             }
@@ -44,7 +43,7 @@ export const useControl = () => {
 
     const setVolume = useCallback(
         (vol) => {
-            volume(vol);
+            volume(vol / 100);
             set("volume", vol);
         },
         [set, volume],
@@ -56,8 +55,14 @@ export const useControl = () => {
         }
     }, [volume, currentTrack]);
 
+    useEffect(() => {
+        if (currentTrack.id !== albumData?.result[0].tokenId) {
+            mutate();
+        }
+    }, [currentTrack.id, albumData, mutate]);
+
     return {
-        ready: !isLoading && ready && item.name !== undefined,
+        ready: ready || item.name !== undefined,
         track: {
             ...current,
             id: Number(currentTrack.id),
@@ -67,14 +72,18 @@ export const useControl = () => {
                 name: "----",
             },
             favorite: false,
-            position: percentComplete,
-            playlist,
+            percentComplete,
             goto,
             volume: setVolume,
             playing: currentTrack.playing,
             item,
             ...player,
             ...position,
+            togglePlayPause() {
+                mutate().then(() => {
+                    player.togglePlayPause();
+                });
+            },
         },
         repeat: currentTrack.repeat,
         shuffle: currentTrack.shuffle,

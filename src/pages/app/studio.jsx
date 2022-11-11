@@ -11,6 +11,7 @@ import { FileUpload } from "src/components/FileUpload";
 import { useAccount } from "wagmi";
 import { CreatorModal } from "src/components/widgets/studio/CreatorModal";
 import { ItemCard } from "src/components/widgets";
+import toast from "react-hot-toast";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -24,7 +25,7 @@ const ALBUM_FIELDS = {
     image: "file",
     audio: "file",
     tags: "text",
-    royalty: "number",
+    // royalty: "number",
 };
 
 const StudioPage = () => {
@@ -68,7 +69,14 @@ const StudioPage = () => {
 
     useEffect(() => {
         if (metadata.url) {
-            writeAsync?.().finally(() => setAlbumData(undefined));
+            writeAsync?.()
+                .then(() => {
+                    toast.success("Album created successfully");
+                })
+                .catch((e) => {
+                    toast.error(e.message);
+                })
+                .finally(() => setAlbumData(undefined));
         }
     }, [writeAsync, metadata]);
 
@@ -113,6 +121,9 @@ const StudioPage = () => {
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
+                                            toast.success(
+                                                `Added ${files.length} ${key} files`,
+                                            );
                                         });
                                     }}
                                 />
@@ -139,13 +150,19 @@ const StudioPage = () => {
                     <Button
                         variant="contained"
                         color="primary"
+                        disabled={!!openConnectModal}
                         onClick={() => {
+                            if (openConnectModal) {
+                                openConnectModal();
+                                return;
+                            }
                             if (!album.image) return;
                             setAlbumData({
                                 name: album.title,
                                 description: album.description,
                                 image: album.image[0]?.src,
                                 queue: album.audio,
+                                royalty: album.royalty,
                                 address,
                             });
                         }}

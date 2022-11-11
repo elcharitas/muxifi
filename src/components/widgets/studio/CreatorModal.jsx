@@ -12,6 +12,7 @@ import {
 } from "src/components/styles";
 import { useCollection, useNFTStorage } from "src/hooks";
 import { useTranslation } from "next-i18next";
+import toast from "react-hot-toast";
 
 export const CreatorModal = ({ onClose, open, creator }) => {
     const nameRef = useRef(creator.name);
@@ -30,7 +31,11 @@ export const CreatorModal = ({ onClose, open, creator }) => {
 
     useEffect(() => {
         if (metadata.url) {
-            writeAsync?.().finally(() => setData(undefined));
+            writeAsync?.()
+                .then(() => {
+                    toast.success("Your creator profile has been updated");
+                })
+                .finally(() => setData(undefined));
         }
     }, [writeAsync, metadata]);
 

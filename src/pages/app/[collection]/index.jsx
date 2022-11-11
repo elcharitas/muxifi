@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import AppLayout from "src/layouts/app";
@@ -8,9 +8,8 @@ import { Box, Grid } from "@mui/material";
 import { Heading } from "src/components";
 import { CollectionCard } from "src/components/collections";
 import { ItemCard } from "src/components/widgets";
-import { usePlaylist } from "src/hooks";
+import { usePlaylist, useQuery } from "src/hooks";
 import { CONFIG } from "src/config";
-import { getAlbumsQuery } from "src/utils/query";
 import { getItemImage } from "src/utils/formats";
 
 export const getStaticProps = async ({ locale }) => ({
@@ -30,27 +29,25 @@ export const getStaticPaths = async () => {
 
 const CollectionsPage = () => {
     const { query } = useRouter();
-    const { records } = usePlaylist();
-    const [items, setItems] = useState([]);
     const { t } = useTranslation();
     const { collection } = query;
     const lang = t(collection, { returnObjects: true });
 
-    useEffect(() => {
-        if (query.collection === "playlists") {
-            setItems(records);
-        } else {
-            setItems([]);
-            getAlbumsQuery({ type: collection.replace(/s$/, "") }).then((r) => {
-                const newItems = r.result.map((i) => ({
-                    ...i.metadata,
-                    id: `0x${i.tokenId}`,
-                    address: i.ownerOf,
-                }));
-                setItems(newItems);
-            });
-        }
-    }, [records, query, collection]);
+    const { records } = usePlaylist();
+    const { data: itemsData } = useQuery("albums", {
+        type: collection.replace(/s$/, ""),
+        skip: collection === "playlists",
+    });
+    const items = useMemo(() => {
+        if (collection === "playlists") return records;
+        return (
+            itemsData?.result.map((i) => ({
+                ...i.metadata,
+                id: `0x${i.tokenId}`,
+                address: i.ownerOf,
+            })) || []
+        );
+    }, [records, collection, itemsData]);
 
     return (
         <AppLayout title={lang.title}>
@@ -67,12 +64,7 @@ const CollectionsPage = () => {
                         spacing="18px"
                         sx={{ "& > *": { margin: "1%!important" } }}
                     >
-                        {lang.fav && (
-                            <CollectionCard
-                                title={lang.fav}
-                                sx={{ backgroundColor: "#CC0C0C" }}
-                            />
-                        )}
+                        {lang.fav && <CollectionCard title={lang.fav} />}
 
                         {items.map((item) => (
                             <ItemCard

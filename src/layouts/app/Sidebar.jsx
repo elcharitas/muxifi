@@ -7,6 +7,7 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { usePlaylist } from "src/hooks";
 import { Anchor, SvgIcon } from "src/components";
 import { CONFIG } from "src/config";
+import toast from "react-hot-toast";
 
 const RootStyle = styled("div")(({ theme }) => ({
     [theme.breakpoints.up("lg")]: {
@@ -91,6 +92,7 @@ const Sidebar = ({ isOpenSidebar, onCloseSidebar }) => {
                                 description:
                                     "such a great playlist to listen to",
                             })?.then(() => {
+                                toast.success("You have successfully created a new playlist");
                                 push(`/app/playlists/${newId}`);
                             });
                         } else openConnectModal();

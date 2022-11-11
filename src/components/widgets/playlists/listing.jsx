@@ -13,7 +13,7 @@ const HeadingWrapper = styled("div")({
     marginBottom: 24,
 });
 
-export const PlayList = ({ title, size }) => {
+export const PlayList = ({ title, size, records }) => {
     const { t } = useTranslation("playlist");
     const { setTrack } = useControl();
     return (
@@ -42,12 +42,12 @@ export const PlayList = ({ title, size }) => {
                 spacing="13px"
                 sx={{ "& > *": { margin: "1%!important" } }}
             >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                {records.map((item) => (
                     <ItemCard
-                        key={item}
-                        title="Playlist Title"
+                        key={item.id}
+                        title={item.name}
                         type="playlists"
-                        desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        desc={item.description}
                         handlePlay={() => setTrack("id", item)}
                     />
                 ))}

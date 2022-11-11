@@ -1,9 +1,11 @@
+import { memo } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, Typography, Slider } from "@mui/material";
 import { useControl } from "src/hooks";
 import { ControlButton, PlayButton, Stackable } from "src/components";
 import { ImgStyle } from "src/components/styles";
 import { CONFIG } from "src/config";
+import { secondsWatch } from "src/utils/formats";
 
 const RootStyle = styled(AppBar)(() => ({
     boxShadow: "none",
@@ -45,7 +47,7 @@ const ControlBar = () => {
                     <Stackable
                         sx={{
                             display: { xs: "none", md: "flex" },
-                            maxWidth: "180px",
+                            maxWidth: "300px",
                         }}
                     >
                         <Box sx={{ mr: 4 }}>
@@ -74,6 +76,7 @@ const ControlBar = () => {
                                 isPlaying={track.playing}
                                 onClick={() => {
                                     setTrack("playing", !track.playing);
+                                    track.togglePlayPause();
                                 }}
                             />
                             <ControlButton icon="next" />
@@ -89,7 +92,9 @@ const ControlBar = () => {
                             justifyContent="center"
                             spacing={{ xs: 0.5, sm: 1.5 }}
                         >
-                            <Typography variant="body2">0:0</Typography>
+                            <Typography variant="body2">
+                                {secondsWatch(track.position || 0)}
+                            </Typography>
                             <Slider
                                 value={track.position}
                                 aria-label="Disabled slider"
@@ -103,7 +108,9 @@ const ControlBar = () => {
                                 color="secondary"
                                 onChange={(e) => track.goto(e.target.value)}
                             />
-                            <Typography variant="body2">0:0</Typography>
+                            <Typography variant="body2">
+                                {secondsWatch(track.duration || 0)}
+                            </Typography>
                         </Stack>
                     </Box>
 
@@ -134,4 +141,4 @@ const ControlBar = () => {
     );
 };
 
-export default ControlBar;
+export default memo(ControlBar);

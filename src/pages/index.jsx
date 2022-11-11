@@ -10,26 +10,28 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-const sections = ["hero", "about", "earn", "defi"];
-const images = {
-    hero: "preview-1.png",
-    about: "preview-2.png",
-};
+const sections = Object.entries({
+    hero: { image: "preview-1.png", href: "/app" },
+    about: { image: "preview-2.png", href: "/app" },
+    defi: { image: "", href: "/app" },
+});
+
 export default function Home() {
     const { t } = useTranslation("home");
     return (
         <PageLayout title="Home">
-            {sections.map((section, index) => (
+            {sections.map(([section, { image, href }], index) => (
                 <PageSection
                     key={section}
                     title={t(`${section}.entry`)}
                     description={t(`${section}.desc`)}
                     cta={t(`${section}.cta`)}
                     reverse={index % 2 !== 0}
+                    href={href}
                 >
-                    {images[section] && (
+                    {image && (
                         <ImgStyle
-                            $src={`/images/${images[section]}`}
+                            $src={`/images/${image}`}
                             sx={{
                                 width: "100%",
                                 height: "600px",
