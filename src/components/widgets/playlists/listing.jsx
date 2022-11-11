@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
@@ -20,21 +21,23 @@ export const PlayList = ({ title, size, records }) => {
         <Box mt="37.5px">
             <HeadingWrapper>
                 <Heading title={title} size={size} />
-                <Button
-                    sx={{
-                        backgroundColor: "background.default",
-                        color: "tertiary.light",
-                        borderStyle: "solid",
-                        borderWidth: "1px",
-                        borderColor: "tertiary.light",
-                        "&:hover": {
-                            border: "none",
-                            color: "tertiary.dark",
-                        },
-                    }}
-                >
-                    {t("more")}
-                </Button>
+                <NextLink href="/app/playlists" passHref>
+                    <Button
+                        sx={{
+                            backgroundColor: "background.default",
+                            color: "tertiary.light",
+                            borderStyle: "solid",
+                            borderWidth: "1px",
+                            borderColor: "tertiary.light",
+                            "&:hover": {
+                                border: "none",
+                                color: "tertiary.dark",
+                            },
+                        }}
+                    >
+                        {t("more")}
+                    </Button>
+                </NextLink>
             </HeadingWrapper>
 
             <Grid
