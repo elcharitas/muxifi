@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PlayButton } from "src/components/ControlButton";
 
 export const ItemBoardSmall = ({
+    id,
     name,
     artiste,
     image,
@@ -33,7 +34,7 @@ export const ItemBoardSmall = ({
 
                 <span>
                     <Typography variant="hero-subtitle" sx={{ fontSize: 20 }}>
-                        {name}
+                        {name || `Track #${Number(id) + 1}`}
                     </Typography>
                     <Typography variant="body2">{artiste}</Typography>
                 </span>
