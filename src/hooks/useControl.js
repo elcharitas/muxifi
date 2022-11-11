@@ -50,6 +50,12 @@ export const useControl = () => {
     );
 
     useEffect(() => {
+        if (position.position === 0 && !player.playing && currentTrack.repeat) {
+            player.play();
+        }
+    }, [currentTrack.repeat, player, position.position]);
+
+    useEffect(() => {
         if (currentTrack.volume) {
             volume(currentTrack.volume);
         }
