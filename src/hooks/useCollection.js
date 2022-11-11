@@ -18,7 +18,7 @@ export const useCollection = ({ method, args, type, value, skip }) => {
             toast.error(e.message);
         },
         functionName: method,
-        enabled: !skip,
+        enabled: abi.length > 0 && !skip,
         args,
         ...(value && { overrides: { value } }),
     });

@@ -22,7 +22,7 @@ export const useNFTStorage = (metadata) => {
                 .then(setMeta)
                 .catch(setError)
                 .finally(() => setLoading(false));
-        }
+        } else setMeta(null);
     }, [metadata]);
 
     return { metadata: meta || { url: "" }, isLoading, error };
