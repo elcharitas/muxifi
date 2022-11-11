@@ -117,14 +117,14 @@ const StudioPage = () => {
                                                 return;
                                             }
                                             const files = Array.from(
-                                                e.target.files
+                                                e.target.files,
                                             ).map((src, id) => {
                                                 return { src, id };
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
                                             toast.success(
-                                                `Added ${files.length} ${key} files`
+                                                `Added ${files.length} ${key} files`,
                                             );
                                         });
                                     }}
