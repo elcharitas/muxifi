@@ -53,7 +53,7 @@ const StudioPage = () => {
     });
     const creatorId = creatorData?.toNumber();
     const { metadata, error, isLoading } = useNFTStorage(albumData);
-    const { writeAsync } = useCollection({
+    const { writeAsync, error: writeError } = useCollection({
         type: "album",
         method: "freeCreate",
         args: [metadata.url],
@@ -70,11 +70,11 @@ const StudioPage = () => {
     }, [openConnectModal]);
 
     useEffect(() => {
-        if (error) {
-            toast.error(error.message);
+        if (error || writeError) {
+            toast.error((error || writeError).message);
             setAlbumData(undefined);
         }
-    }, [error]);
+    }, [error, writeError]);
 
     useEffect(() => {
         if (metadata.url) {
