@@ -8,3 +8,4 @@ export * from "./useCollection";
 export * from "./useNFTStorage";
 export * from "./usePlaylist";
 export * from "./useQuery";
+export * from "./useAccountPlaylist";

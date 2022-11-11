@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, Typography, Slider } from "@mui/material";
 import { useControl } from "src/hooks";
@@ -140,4 +141,4 @@ const ControlBar = () => {
     );
 };
 
-export default ControlBar;
+export default memo(ControlBar);
