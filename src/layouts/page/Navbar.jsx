@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { Anchor, Button, SvgIcon } from "src/components";
+import { CONFIG } from "src/config";
 import { NavItems } from "../NavItems";
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -54,8 +55,7 @@ const PageNavbar = ({ onOpenSidebar }) => {
                         },
                         {
                             label: t("nav.contact"),
-                            href:
-                                "https://docs.google.com/forms/d/e/1FAIpQLSdE2W2xfDEDQbWJ6KJGr6vrjSHCSg8Dg1BOqvYxlPb78CW3Jw/viewform?usp=sharing",
+                            href: CONFIG.APP.SOCIAL.MESSAGE,
                         },
                     ]}
                     sx={{ display: { xs: "none", md: "flex" } }}
