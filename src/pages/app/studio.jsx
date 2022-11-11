@@ -24,7 +24,7 @@ const ALBUM_FIELDS = {
     image: "file",
     audio: "file",
     tags: "text",
-    royalty: "number",
+    // royalty: "number",
 };
 
 const StudioPage = () => {
@@ -146,6 +146,7 @@ const StudioPage = () => {
                                 description: album.description,
                                 image: album.image[0]?.src,
                                 queue: album.audio,
+                                royalty: album.royalty,
                                 address,
                             });
                         }}

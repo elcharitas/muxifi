@@ -1,4 +1,5 @@
 import PlaySVG from "src/assets/svgs/play.svg";
+import PauseSVG from "src/assets/svgs/pause.svg";
 import NextSVG from "src/assets/svgs/next.svg";
 import PrevSVG from "src/assets/svgs/prev.svg";
 import HeartSVG from "src/assets/svgs/heart.svg";
@@ -10,6 +11,7 @@ import { Button } from "./Button";
 
 const BUTTON_ICONS = {
     play: PlaySVG,
+    pause: PauseSVG,
     next: NextSVG,
     prev: PrevSVG,
     heart: HeartSVG,
@@ -58,7 +60,7 @@ export const PlayButton = ({ isPlaying, onClick }) => (
             onClick?.(e);
         }}
         variant="contained"
-        disabled={isPlaying}
         color="primary"
+        icon={isPlaying ? "pause" : "play"}
     />
 );
