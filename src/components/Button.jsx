@@ -4,6 +4,7 @@ export const Button = ({
     children,
     variant = "contained",
     isLoading,
+    disabled,
     sx,
     ...props
 }) => (
@@ -15,7 +16,7 @@ export const Button = ({
             fontWeight: "bold",
             ...sx,
         }}
-        disabled={isLoading}
+        disabled={disabled || isLoading}
         {...props}
     >
         {isLoading && <CircularProgress size="20px" sx={{ mr: 2 }} />}

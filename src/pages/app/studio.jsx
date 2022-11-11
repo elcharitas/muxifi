@@ -139,7 +139,12 @@ const StudioPage = () => {
                     <Button
                         variant="contained"
                         color="primary"
+                        disabled={!!openConnectModal}
                         onClick={() => {
+                            if (openConnectModal) {
+                                openConnectModal();
+                                return;
+                            }
                             if (!album.image) return;
                             setAlbumData({
                                 name: album.title,
