@@ -21,19 +21,19 @@
     },
     "features": {
         "entry": "How we built MuxiFi",
-        "desc": "Maximizing the power of blockchain technology to emhance music experience.",
+        "desc": "Maximizing the power of blockchain technology to enhance music experience.",
         "items": [
             {
-                "title": "Music",
-                "desc": "Listen to your favorite music on MuxiFi"
+                "title": "Moralis",
+                "desc": "Moralis powered everything from data fetching to crunching the numbers for the Music NFTs. Moralis aided us as leverage in building the MuxiFi platform."
             },
             {
-                "title": "Podcast",
-                "desc": "Connect with your friends on MuxiFi"
+                "title": "IPFS(NFT.storage)/Pinata",
+                "desc": "IPFS and Pinata were used to store the NFTs and the music files. IPFS was used to store the NFTs and Pinata was pin and access the stored the music files."
             },
             {
-                "title": "DeFi",
-                "desc": "Manage your finances with MuxiFi"
+                "title": "BNB Chain",
+                "desc": "MuxiFi was built on the Binance Smart Chain. The BNB Chain was used to mint the NFTs and to store the music files. This was done to reduce the gas fees and to make the platform more accessible to users."
             }
         ]
     },
