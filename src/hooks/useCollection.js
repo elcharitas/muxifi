@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import toast from "react-hot-toast";
 import { CONFIG } from "src/config";
 import {
     useContractRead,
@@ -13,7 +14,9 @@ export const useCollection = ({ method, args, type, value, skip }) => {
     const { config } = usePrepareContractWrite({
         contractInterface: new ethers.utils.Interface(abi),
         addressOrName: CONFIG.WAGMI.CONTRACT_ADDRESSES[type.toUpperCase()],
-        onError: () => {},
+        onError: (e) => {
+            toast.error(e.message);
+        },
         functionName: method,
         enabled: !skip,
         args,

@@ -52,8 +52,8 @@ const StudioPage = () => {
         skip: !address,
     });
     const creatorId = creatorData?.toNumber();
-    const { metadata } = useNFTStorage(albumData);
-    const { writeAsync } = useCollection({
+    const { metadata, error, isLoading } = useNFTStorage(albumData);
+    const { writeAsync, error: writeError } = useCollection({
         type: "album",
         method: "freeCreate",
         args: [metadata.url],
@@ -70,6 +70,13 @@ const StudioPage = () => {
     }, [openConnectModal]);
 
     useEffect(() => {
+        if (error || writeError) {
+            toast.error((error || writeError).message);
+            setAlbumData(undefined);
+        }
+    }, [error, writeError]);
+
+    useEffect(() => {
         if (metadata.url) {
             writeAsync?.()
                 .then(() => {
@@ -81,6 +88,8 @@ const StudioPage = () => {
                 .finally(() => setAlbumData(undefined));
         }
     }, [writeAsync, metadata]);
+
+    const tLoading = isLoading ? "uploading" : "loading";
 
     return (
         <AppLayout title={t("page.title")}>
@@ -170,7 +179,7 @@ const StudioPage = () => {
                         }}
                         isLoading={!!albumData}
                     >
-                        {t("form.submit")}
+                        {t(`form.${albumData ? tLoading : "submit"}`)}
                     </Button>
                 </Box>
                 <Box sx={{ ml: 4 }}>
