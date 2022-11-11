@@ -89,6 +89,8 @@ const StudioPage = () => {
         }
     }, [writeAsync, metadata]);
 
+    const tLoading = isLoading ? "uploading" : "loading";
+
     return (
         <AppLayout title={t("page.title")}>
             <Heading
@@ -177,15 +179,7 @@ const StudioPage = () => {
                         }}
                         isLoading={!!albumData}
                     >
-                        {t(
-                            `form.${
-                                albumData
-                                    ? isLoading
-                                        ? "uploading"
-                                        : "loading"
-                                    : "submit"
-                            }`
-                        )}
+                        {t(`form.${albumData ? tLoading : "submit"}`)}
                     </Button>
                 </Box>
                 <Box sx={{ ml: 4 }}>
