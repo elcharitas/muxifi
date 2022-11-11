@@ -6,16 +6,16 @@ import { usePlaylist } from "./usePlaylist";
 import { useStore } from "./useStore";
 
 export const useControl = () => {
-    const { currentTrack, dispatch, set, ready } = useStore("currentTrack");
+    const { currentTrack, dispatch, set } = useStore("currentTrack");
     const { read } = usePlaylist();
-    const { data: albumData, isLoading } = useQuery("album_meta", {
+    const { data: albumData, mutate } = useQuery("album_meta", {
         id: currentTrack.id,
-        type: currentTrack.type || "album",
-        skip: !currentTrack.type || currentTrack.type === "playlists",
+        type: currentTrack.type,
+        skip: currentTrack.type === "playlist",
     });
     const item = useMemo(() => {
-        if (currentTrack.type === "playlists") {
-            const [playlist] = read(currentTrack.id, currentTrack.type);
+        if (currentTrack.type === "playlist") {
+            const [playlist] = read(currentTrack.id);
             return playlist || {};
         }
         return albumData?.result[0].metadata || {};
@@ -25,13 +25,7 @@ export const useControl = () => {
     const { percentComplete, ...position } = useAudioPosition({
         highRefreshRate: true,
     });
-    const {
-        ready: isPlayerReady,
-        load,
-        error,
-        volume,
-        ...player
-    } = useAudioPlayer({
+    const { ready, load, error, volume, ...player } = useAudioPlayer({
         src: getIpfsUrl(current?.src),
         autoplay: false,
     });
@@ -61,8 +55,14 @@ export const useControl = () => {
         }
     }, [volume, currentTrack]);
 
+    useEffect(() => {
+        if (currentTrack.id !== albumData?.result[0].tokenId) {
+            mutate();
+        }
+    }, [currentTrack.id, albumData, mutate]);
+
     return {
-        ready: !isLoading && ready && item.name !== undefined,
+        ready: ready || item.name !== undefined,
         track: {
             ...current,
             id: Number(currentTrack.id),
@@ -79,6 +79,11 @@ export const useControl = () => {
             item,
             ...player,
             ...position,
+            togglePlayPause() {
+                mutate().then(() => {
+                    player.togglePlayPause();
+                });
+            },
         },
         repeat: currentTrack.repeat,
         shuffle: currentTrack.shuffle,
