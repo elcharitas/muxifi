@@ -16,8 +16,8 @@ export const getStaticProps = async ({ locale }) => ({
 
 const AppHomePage = () => {
     const { address } = useAccount();
-    const { records } = useAccountPlaylist(address);
-    const { records: userRecords } = useAccountPlaylist(address, 12);
+    const { records } = useAccountPlaylist(address || "0x0");
+    const { records: userRecords } = useAccountPlaylist(address || "0x0", 12);
     const { records: muxifiRecords } = useAccountPlaylist(undefined, 12);
     return (
         <AppLayout title="Welcome to MuxiFi">

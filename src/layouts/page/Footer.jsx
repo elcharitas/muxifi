@@ -1,8 +1,9 @@
 import { styled } from "@mui/material/styles";
 import { Stack, AppBar, Toolbar, IconButton, Typography } from "@mui/material";
-import { Facebook, Twitter, Mail } from "@mui/icons-material";
+import { GitHub, Twitter, Mail } from "@mui/icons-material";
 import { useTranslation } from "next-i18next";
 import { Anchor, SvgIcon } from "src/components";
+import { CONFIG } from "src/config";
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: 80,
@@ -16,9 +17,9 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 }));
 
 const SOCIAL_LINKS = {
-    FACEBOOK: "",
-    TWITTER: "",
-    MAIL: "",
+    GITHUB: CONFIG.APP.SOCIAL.GITHUB,
+    TWITTER: CONFIG.APP.SOCIAL.TWITTER,
+    MAIL: CONFIG.APP.SOCIAL.MESSAGE,
 };
 
 const MENU = [
@@ -26,8 +27,7 @@ const MENU = [
         title: "company",
         items: {
             about: "/about",
-            contact:
-                "https://docs.google.com/forms/d/e/1FAIpQLSdE2W2xfDEDQbWJ6KJGr6vrjSHCSg8Dg1BOqvYxlPb78CW3Jw/viewform?usp=sharing",
+            contact: CONFIG.APP.SOCIAL.MESSAGE,
             music: "/app/albums",
         },
     },
@@ -70,10 +70,10 @@ const PageFooter = () => {
                     <Stack direction="row" spacing={2}>
                         <IconButton
                             LinkComponent={Anchor}
-                            href={SOCIAL_LINKS.FACEBOOK}
+                            href={SOCIAL_LINKS.GITHUB}
                             variant="social-icon"
                         >
-                            <Facebook />
+                            <GitHub />
                         </IconButton>
                         <IconButton
                             LinkComponent={Anchor}

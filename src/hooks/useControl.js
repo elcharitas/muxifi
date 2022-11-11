@@ -50,16 +50,16 @@ export const useControl = () => {
     );
 
     useEffect(() => {
+        if (position.position === 0 && !player.playing && currentTrack.repeat) {
+            player.play();
+        }
+    }, [currentTrack.repeat, player, position.position]);
+
+    useEffect(() => {
         if (currentTrack.volume) {
             volume(currentTrack.volume);
         }
     }, [volume, currentTrack]);
-
-    useEffect(() => {
-        if (currentTrack.id !== albumData?.result[0].tokenId) {
-            mutate();
-        }
-    }, [currentTrack.id, albumData, mutate]);
 
     return {
         ready: ready || item.name !== undefined,

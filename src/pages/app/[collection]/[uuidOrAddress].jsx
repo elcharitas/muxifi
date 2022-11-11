@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
 const CollectionListing = ({ params = {} }) => {
     const { address } = useAccount();
     const {
-        set,
+        dispatch,
         currenTrack: { current, id: tid },
     } = useStore("currenTrack");
 
@@ -84,7 +84,9 @@ const CollectionListing = ({ params = {} }) => {
                         {!isArtiste ? (
                             Array.from(collection?.queue || [])
                                 .filter(({ name }) => {
-                                    return name?.indexOf(filter) > -1;
+                                    return (
+                                        name?.indexOf(filter) > -1 || !filter
+                                    );
                                 })
                                 .map((item, id) => (
                                     <ItemBoardSmall
@@ -94,7 +96,13 @@ const CollectionListing = ({ params = {} }) => {
                                         isPlaying={
                                             current === id && tid === uuid
                                         }
-                                        handlePlay={() => set("current", id)}
+                                        handlePlay={() => {
+                                            dispatch({
+                                                id: uuid,
+                                                type: cid,
+                                                current: id,
+                                            });
+                                        }}
                                         {...item}
                                     />
                                 ))
