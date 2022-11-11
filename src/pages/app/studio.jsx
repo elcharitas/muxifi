@@ -11,6 +11,7 @@ import { FileUpload } from "src/components/FileUpload";
 import { useAccount } from "wagmi";
 import { CreatorModal } from "src/components/widgets/studio/CreatorModal";
 import { ItemCard } from "src/components/widgets";
+import toast from "react-hot-toast";
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
@@ -68,7 +69,14 @@ const StudioPage = () => {
 
     useEffect(() => {
         if (metadata.url) {
-            writeAsync?.().finally(() => setAlbumData(undefined));
+            writeAsync?.()
+                .then(() => {
+                    toast.success("Album created successfully");
+                })
+                .catch((e) => {
+                    toast.error(e.message);
+                })
+                .finally(() => setAlbumData(undefined));
         }
     }, [writeAsync, metadata]);
 
@@ -113,6 +121,9 @@ const StudioPage = () => {
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
+                                            toast.success(
+                                                `Added ${files.length} ${key} files`,
+                                            );
                                         });
                                     }}
                                 />
