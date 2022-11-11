@@ -5,8 +5,11 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./MuxifiCreator.sol";
-import "./MuxifiMarket.sol";
 import "./ERC2981Base.sol";
+
+interface IMuxifiMarket {
+	function setPrice(uint256 _albumId, uint256 _price) external;
+}
 
 /**
  * @title MuxifiAlbum
@@ -98,7 +101,7 @@ contract MuxifiAlbum is ERC1155URIStorage, ERC1155Supply, ERC2981Base {
             "Sorry, only album creator can list an album"
         );
         setApprovalForAll(_market, true);
-        MuxifiMarket(_market).setPrice(_albumId, _price);
+        IMuxifiMarket(_market).setPrice(_albumId, _price);
     }
 
     function royaltyInfo(uint256, uint256 value)
