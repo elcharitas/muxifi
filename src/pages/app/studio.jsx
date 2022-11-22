@@ -53,11 +53,11 @@ const StudioPage = () => {
     });
     const creatorId = creatorData?.toNumber();
     const { metadata, error, isLoading } = useNFTStorage(albumData);
-    const { writeAsync, error: writeError } = useCollection({
+    const { writeAsync } = useCollection({
         type: "album",
         method: "freeCreate",
         args: [metadata.url],
-        skip: !metadata.url,
+        skip: !albumData || !metadata.url,
     });
     const playImage = useMemo(() => {
         return album.image[0]?.src
@@ -70,15 +70,15 @@ const StudioPage = () => {
     }, [openConnectModal]);
 
     useEffect(() => {
-        if (error || writeError) {
-            toast.error((error || writeError).message);
+        if (error) {
+            toast.error((error).message);
             setAlbumData(undefined);
         }
-    }, [error, writeError]);
+    }, [error]);
 
     useEffect(() => {
-        if (metadata.url) {
-            writeAsync?.()
+        if (writeAsync) {
+            writeAsync()
                 .then(() => {
                     toast.success("Album created successfully");
                 })
@@ -87,7 +87,7 @@ const StudioPage = () => {
                 })
                 .finally(() => setAlbumData(undefined));
         }
-    }, [writeAsync, metadata]);
+    }, [writeAsync]);
 
     const tLoading = isLoading ? "uploading" : "loading";
 
