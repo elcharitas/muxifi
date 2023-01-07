@@ -1,4 +1,3 @@
-import Moralis from "moralis";
 import NextProgress from "next-progress";
 import { appWithTranslation } from "next-i18next";
 import {
@@ -12,14 +11,6 @@ import { Toaster } from "react-hot-toast";
 import { GlobalScrollbar } from "mac-scrollbar";
 import "mac-scrollbar/dist/mac-scrollbar.css";
 import { theme } from "src/providers/theme/theme-context";
-
-// calling this without having the key may lead to undesired effects
-if (process.env.NEXT_PUBLIC_MORALIS_API_KEY) {
-    Moralis.start({
-        apiKey: process.env.NEXT_PUBLIC_MORALIS_API_KEY,
-        defaultEvmApiChain: CONFIG.WAGMI.DEFAULT_CHAIN.id,
-    });
-}
 
 const MuxiApp = ({ Component, pageProps }) => {
     return (
