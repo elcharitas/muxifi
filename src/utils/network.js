@@ -1,8 +1,14 @@
-import { getDefaultWallets } from "@rainbow-me/rainbowkit";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
+import {
+    metaMaskWallet,
+    rainbowWallet,
+    walletConnectWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 import { configureChains, createClient } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { CONFIG } from "src/config";
+import { udWallet } from "./udWallet";
 
 const { ALCHEMY_ID, SUPPORTED_CHAINS } = CONFIG.WAGMI;
 
@@ -11,10 +17,16 @@ export const { chains, provider } = configureChains(SUPPORTED_CHAINS, [
     publicProvider(),
 ]);
 
-export const { connectors } = getDefaultWallets({
-    appName: CONFIG.APP.NAME,
-    chains,
-});
+const connectors = connectorsForWallets([
+    {
+        groupName: "Recommended",
+        wallets: [rainbowWallet({ chains }), metaMaskWallet({ chains })],
+    },
+    {
+        groupName: "Others",
+        wallets: [udWallet(), walletConnectWallet({ chains })],
+    },
+]);
 
 export const wagmiClient = createClient({
     autoConnect: true,
@@ -23,8 +35,9 @@ export const wagmiClient = createClient({
 });
 
 export const formatAddress = (address) => {
+    if (!address?.startsWith("0x")) return address;
+    const endAddr = address.substring(address.length - 4);
     return (
-        address
-        && `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+        typeof address === "string" && `${address.substring(0, 6)}...${endAddr}`
     );
 };
