@@ -1,23 +1,25 @@
 import { chain } from "wagmi";
 
 const bnbChain = {
-    id: 97,
-    name: "Binance Testnet",
-    network: "bnbt",
+    id: 56,
+    name: "Binance Smart Chain",
+    network: "bnb",
     nativeCurrency: {
-        name: "tBNB",
-        symbol: "tBNB",
+        name: "BNB",
+        symbol: "BNB",
         decimals: 18,
     },
     rpcUrls: {
-        default: "https://data-seed-prebsc-1-s3.binance.org:8545",
-        public: "https://data-seed-prebsc-1-s3.binance.org:8545",
+        default: "https://bsc-dataseed.binance.org/",
+        public: "https://bsc-dataseed.binance.org/",
     },
-    testnet: true,
+    blockExplorers: {
+        bscscan: "https://bscscan.com/",
+    },
 };
 
 /** @type {import('wagmi').Chain[]} */
-const SUPPORTED_CHAINS = [bnbChain, chain.polygonMumbai];
+const SUPPORTED_CHAINS = [bnbChain, chain.mainnet];
 
 const CONTRACT_ADDRESSES = {
     MUXIFY: process.env.NEXT_PUBLIC_MUXIFI_ADDRESS,
@@ -31,6 +33,7 @@ export const WAGMI_CONFIG = {
     CONTRACT_ADDRESSES,
     ALCHEMY_ID: process.env.ALCHEMY_ID,
     SUPPORTED_CHAINS,
+    UNSTOPPABLE_ID: process.env.NEXT_PUBLIC_UNSTOPPABLE_ID,
     get DEFAULT_CHAIN() {
         return SUPPORTED_CHAINS[0];
     },
