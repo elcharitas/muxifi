@@ -71,7 +71,7 @@ const StudioPage = () => {
 
     useEffect(() => {
         if (error) {
-            toast.error((error).message);
+            toast.error(error.message);
             setAlbumData(undefined);
         }
     }, [error]);
@@ -100,6 +100,15 @@ const StudioPage = () => {
                 size="modal-title"
             />
             <Box sx={{ display: "flex" }}>
+                <Box sx={{ ml: 4, mr: 8 }}>
+                    <ItemCard
+                        id="new"
+                        title={album.title || "------"}
+                        desc={album.description || "--------"}
+                        image={playImage}
+                        owner={address}
+                    />
+                </Box>
                 <Box
                     sx={{
                         display: "flex",
@@ -126,14 +135,14 @@ const StudioPage = () => {
                                                 return;
                                             }
                                             const files = Array.from(
-                                                e.target.files,
+                                                e.target.files
                                             ).map((src, id) => {
                                                 return { src, id };
                                             });
                                             // eslint-disable-next-line no-param-reassign
                                             draft[key] = files;
                                             toast.success(
-                                                `Added ${files.length} ${key} files`,
+                                                `Added ${files.length} ${key} files`
                                             );
                                         });
                                     }}
@@ -181,15 +190,6 @@ const StudioPage = () => {
                     >
                         {t(`form.${albumData ? tLoading : "submit"}`)}
                     </Button>
-                </Box>
-                <Box sx={{ ml: 4 }}>
-                    <ItemCard
-                        id="new"
-                        title={album.title || "------"}
-                        desc={album.description || "--------"}
-                        image={playImage}
-                        owner={address}
-                    />
                 </Box>
             </Box>
             {creatorId !== undefined && !creatorId && (
