@@ -40,6 +40,9 @@ export const udWallet = () => ({
                 });
                 localStorage.setItem("unstoppable", ud);
             },
+            isAuthorized() {
+                return !!this.getAccount();
+            },
             on() {},
         },
     }),
