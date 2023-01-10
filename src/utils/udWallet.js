@@ -1,7 +1,7 @@
 import UAuth from "@uauth/js";
 import { CONFIG } from "src/config";
 
-const uauth = new UAuth({
+export const uauth = new UAuth({
     clientID: CONFIG.WAGMI.UNSTOPPABLE_ID,
     redirectUri: CONFIG.APP.URL,
     scope: "openid wallet",
