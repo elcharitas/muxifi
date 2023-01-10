@@ -11,10 +11,7 @@ import { useStore, usePlaylist, useQuery } from "src/hooks";
 import { compAddress, getItemImage } from "src/utils/formats";
 
 export const getStaticProps = async ({ locale, params }) => ({
-    props: {
-        ...(await buildI18n(locale, ["playlist"])),
-        params,
-    },
+    props: { params, ...(await buildI18n(locale, ["playlist"])) },
 });
 
 export const getStaticPaths = async () => {
