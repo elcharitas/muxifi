@@ -33,7 +33,12 @@ export const ConnectButton = () => {
                 return (
                     <Button
                         color="tertiary"
-                        sx={{ py: 0.5, pl: 0.5, fontSize: 15 }}
+                        sx={{
+                            py: 0.5,
+                            pl: 0.5,
+                            fontSize: 15,
+                            textTransform: "lowercase",
+                        }}
                         onClick={openAccountModal}
                     >
                         <Box
@@ -48,7 +53,9 @@ export const ConnectButton = () => {
                         >
                             <SvgIcon name="wallet-check" size="24px" />
                         </Box>
-                        {account.displayName}
+                        {account.address.includes(".")
+                            ? account.address
+                            : account.displayName}
                     </Button>
                 );
             }}

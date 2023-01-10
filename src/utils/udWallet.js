@@ -31,14 +31,18 @@ export const udWallet = () => ({
                 return uauth.logout();
             },
             getAccount() {
-                return this.connect()?.account;
+                return this.connect()?.address;
             },
             async getChainId() {
                 const auth = await uauth.loginWithPopup();
                 const ud = JSON.stringify({
-                    account: auth.idToken.wallet_address,
+                    account: auth.idToken.sub,
+                    address: auth.idToken.wallet_address,
                 });
                 localStorage.setItem("unstoppable", ud);
+            },
+            isAuthorized() {
+                return !!this.getAccount();
             },
             on() {},
         },

@@ -1,7 +1,7 @@
 const APP_URL = String(
-    process.env.VERCEL_ENV !== "development"
+    process.env.VERCEL_ENV === "production"
         ? "https://muxifi.com"
-        : `http://${process.env.VERCEL_URL}`,
+        : "http://localhost:6001",
 );
 
 export const APP_CONFIG = {
