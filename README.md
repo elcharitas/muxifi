@@ -19,7 +19,7 @@ MuxiFi is Live at https://muxifi.vercel.app.
 
 ## 💪 Motivation
 
-Music is life, and it's part of what makes us Human. Over time, civilizations have passed down history through music, and the ones responsible for this are not well compensated. Music production on the centralized web is left to distributors, producing companies, and agencies, making it difficult for artists to get their music out there. That's what Muxifi is solving. Muxifi is creating a decentralized world for artists where from production to sales is left to the artiste. Muxifi is allowing the audience to connect with their favourite artistes even more by bridging the distributor gap and allowing the audience to collect(at a fee) an artiste's song.
+Music is life, and it's part of what makes us Human. Over time, civilizations have passed down history through music, and the ones responsible for this are not well compensated. Music production on the centralized web is left to distributors, producing companies, and agencies, making it difficult for artistes to get their music out there. That's what Muxifi is solving. Muxifi is creating a decentralized world for artistes where from production to sales is left to the artiste. Muxifi is allowing the audience to connect with their favourite artistes even more by bridging the distributor gap and allowing the audience to collect(at a fee) an artiste's song.
 
 
 ## 🚀 How it Works
